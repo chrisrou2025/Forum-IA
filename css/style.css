@@ -1,0 +1,500 @@
+/* Styles généraux */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+}
+
+/* HEADER */
+.header {
+    width: 1440px;
+    margin: 0 auto; /* Centre le header */
+}
+
+.header-top-space {
+    width: 100%;
+    height: 27px;
+    background-color: white;
+}
+
+.header-banner {
+    width: 100%;
+    height: 115px;
+    background-image: url('../assets/bandeau.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header-logo {
+    width: 174px;
+    height: 128px;
+    margin-left: 10px;
+    display: flex; /* Assure que l'image du logo est bien centrée dans la zone cliquable */
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Conteneur pour tous les contrôles du header */
+.header-controls {
+    position: absolute;
+    right: 15px;
+    bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+/* Styles pour les liens englobant les boutons */
+.contact-link,
+.login-link,
+.signup-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.contact-icon,
+.connexion-icon,
+.inscription-icon,
+.globe-icon,
+.contrast-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+
+.search-icon {
+    width: 25px;
+    height: 25px;
+    display: block;
+}
+
+/* Styles pour les boutons */
+.contact-button,
+.login-button,
+.signup-button,
+.contrast-button {
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-button {
+    width: 120px;
+    margin-right: 30px;
+}
+
+.login-button {
+    width: 110px;
+    margin-right: 30px;
+}
+
+.signup-button {
+    width: 105px;
+    margin-right: 30px;
+}
+
+.contrast-button {
+    width: 78px;
+}
+
+.contact-button:hover,
+.login-button:hover,
+.signup-button:hover,
+.contrast-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* SÉLECTEUR DE LANGUE */
+.lang-dropdown-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.lang-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
+
+.lang-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+}
+
+.lang-dropdown-content a {
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.lang-dropdown-content a img {
+    width: 20px;
+    height: 20px;
+}
+
+.lang-dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.lang-dropdown-content.show {
+    display: block;
+}
+
+/* Style du bouton recherche */
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.header-title-section {
+    width: 100%;
+    height: 94px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.header-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header-subtitle {
+    font-size: 16px;
+    font-weight: 800;
+    color: black;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* MAIN */
+.main-content {
+    width: 1440px;
+    height: 734px;
+    background-image: url('../assets/main-background.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto; /* Centrera le bloc main sur la page */
+}
+
+/* Conteneur pour les deux rectangles sur la page d'index */
+.index-rectangles-container {
+    display: flex; /* Active flexbox pour aligner les rectangles */
+    gap: 50px; /* Crée un espace de 50px entre les rectangles */
+    justify-content: center; /* Centre les rectangles horizontalement dans le main */
+    align-items: center; /* Centre les rectangles verticalement dans le main */
+    width: 100%; /* S'assure que le conteneur prend toute la largeur du main */
+    height: 100%; /* S'assure que le conteneur prend toute la hauteur du main */
+}
+
+.rectangle {
+    background-color: white;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.rectangle-one {
+    width: 237px;
+    height: 671px;
+}
+
+.rectangle-two {
+    width: 963px;
+    height: 671px;
+}
+
+/* FOOTER */
+.footer {
+    width: 1440px;
+    height: 53px;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+}
+
+/* AUGMENTATION DE L'ESPACE ENTRE LES DEUX TEXTES DU FOOTER */
+.footer-left span.all-rights-text {
+    margin-left: 180px;
+}
+
+.copyright-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    transition: filter 0.3s ease;
+}
+
+.footer-left span {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+/* STYLES POUR LE MODE SOMBRE (DARK MODE) */
+body.dark-mode .header-title-section {
+    background-color: black;
+}
+
+body.dark-mode .header-title,
+body.dark-mode .header-subtitle {
+    color: white;
+    text-shadow: none;
+}
+
+body.dark-mode .footer {
+    background-color: black;
+}
+
+body.dark-mode .footer-left span,
+body.dark-mode .all-rights-text {
+    color: white;
+}
+
+/* STYLES POUR LA FENÊTRE MODALE DE RECHERCHE */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatemodal;
+    animation-duration: 0.4s;
+}
+
+@keyframes animatemodal {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.search-input-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#performSearchButton {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#performSearchButton:hover {
+    background-color: #0056b3;
+}
+
+.search-results-container {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.search-result-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.search-result-item p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* NOUVEAUX STYLES SPÉCIFIQUES À LA PAGE DE CONNEXION */
+
+/* Centrage du logo dans le bandeau de la page de connexion */
+.header-banner .header-logo.header-logo-centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0; /* Annule la marge de base pour un centrage parfait */
+}
+
+/* Positionnement des contrôles restants (langue, contraste) sur la page de connexion */
+.header-controls.header-controls-login-page {
+    position: absolute;
+    right: 15px;
+    bottom: 25px;
+    display: flex;
+    align-items: center;
+}
+
+/* Réduction de la hauteur de la zone de titre pour la page de connexion */
+.header-title-section.header-title-section-reduced {
+    height: 27px; /* Même hauteur que le bandeau supérieur */
+    justify-content: center; /* Centre le contenu verticalement */
+}
+
+/* Styles spécifiques pour le layout du main sur la page de connexion */
+.main-content.main-connexion-layout {
+    display: flex; /* Active flexbox pour centrer le rectangle de connexion */
+    justify-content: center; /* Centre horizontalement le rectangle */
+    align-items: center; /* Centre verticalement le rectangle */
+}
+
+/* Styles du nouveau rectangle principal de connexion */
+.login-main-rectangle {
+    width: 960px;
+    height: 680px;
+    background-color: rgba(127, 117, 75, 0.8); /* Couleur #7F754B avec 80% d'opacité */
+    border-radius: 30px;
+    display: flex; /* Utilise flexbox pour son contenu */
+    flex-direction: column; /* Organise le contenu en colonne */
+}
+
+/* Conteneur pour le contenu interne du rectangle, pour l'espacement du titre */
+.login-content-wrapper {
+    padding-top: 50px;
+    padding-left: 100px;
+}
+
+/* Style du titre "Connexion" dans le rectangle */
+.login-rectangle-title {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 700; /* Bold */
+    color: white;
+    margin: 0; /* Réinitialise les marges par défaut du h2 */
+}
