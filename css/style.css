@@ -289,9 +289,8 @@ body {
     align-items: center;
 }
 
-/* AUGMENTATION DE L'ESPACE ENTRE LES DEUX TEXTES DU FOOTER */
 .footer-left span.all-rights-text {
-    margin-left: 180px;
+    margin-left: 180px; /* Augmente l'espace à 180px à gauche du texte "Tous droits réservés" */
 }
 
 .copyright-icon {
@@ -442,14 +441,14 @@ body.dark-mode .all-rights-text {
     font-size: 14px;
 }
 
-/* NOUVEAUX STYLES SPÉCIFIQUES À LA PAGE DE CONNEXION */
+/* STYLES SPÉCIFIQUES À LA PAGE DE CONNEXION */
 
 /* Centrage du logo dans le bandeau de la page de connexion */
 .header-banner .header-logo.header-logo-centered {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-left: 0; /* Annule la marge de base pour un centrage parfait */
+    margin-left: 0;
 }
 
 /* Positionnement des contrôles restants (langue, contraste) sur la page de connexion */
@@ -463,38 +462,133 @@ body.dark-mode .all-rights-text {
 
 /* Réduction de la hauteur de la zone de titre pour la page de connexion */
 .header-title-section.header-title-section-reduced {
-    height: 27px; /* Même hauteur que le bandeau supérieur */
-    justify-content: center; /* Centre le contenu verticalement */
+    height: 27px;
+    justify-content: center;
 }
 
 /* Styles spécifiques pour le layout du main sur la page de connexion */
 .main-content.main-connexion-layout {
-    display: flex; /* Active flexbox pour centrer le rectangle de connexion */
-    justify-content: center; /* Centre horizontalement le rectangle */
-    align-items: center; /* Centre verticalement le rectangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Styles du nouveau rectangle principal de connexion */
+/* Styles du rectangle principal de connexion */
 .login-main-rectangle {
     width: 960px;
     height: 680px;
-    background-color: rgba(127, 117, 75, 0.8); /* Couleur #7F754B avec 80% d'opacité */
+    background-color: rgba(127, 117, 75, 0.8);
     border-radius: 30px;
-    display: flex; /* Utilise flexbox pour son contenu */
-    flex-direction: column; /* Organise le contenu en colonne */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
-/* Conteneur pour le contenu interne du rectangle, pour l'espacement du titre */
+/* Conteneur pour le titre "Connexion" (pour gérer son positionnement) */
 .login-content-wrapper {
     padding-top: 50px;
     padding-left: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
 }
 
-/* Style du titre "Connexion" dans le rectangle */
+/* Style du titre "Connexion" */
 .login-rectangle-title {
     font-family: 'Inria Sans', sans-serif;
     font-size: 32px;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
     color: white;
-    margin: 0; /* Réinitialise les marges par défaut du h2 */
+    margin: 0;
+}
+
+/* Rectangle blanc interne pour l'inscription */
+.login-inner-rectangle {
+    width: 760px;
+    height: 465px;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 35px 0 35px;
+    box-sizing: border-box;
+}
+
+/* Champ d'entrée pour l'email */
+.form-input.email-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding-bottom: 5px;
+    color: #333;
+}
+
+.form-input.email-input::placeholder {
+    color: #999;
+}
+
+/* Champ d'entrée pour le mot de passe */
+.form-input.password-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding-bottom: 5px;
+    color: #333;
+    margin-top: 30px; /* Distance du champ email */
+}
+
+.form-input.password-input::placeholder {
+    color: #999;
+}
+
+/* Conteneur pour "Mot de passe oublié ?" et le bouton "Envoyer" */
+.forgot-password-and-submit {
+    display: flex;
+    justify-content: flex-end; /* Alignement de l'ensemble (lien + bouton) à droite */
+    align-items: center; /* Centre verticalement les éléments */
+    width: 100%;
+    margin-top: 20px; /* 20px en dessous de la ligne du mot de passe */
+    /* REMOVED: gap: 20px; */
+}
+
+/* Lien "Mot de passe oublié ?" */
+.forgot-password-link {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-right: 20px; /* NOUVEAU : Crée un espace de 20px à droite du lien, le séparant du bouton */
+}
+
+.forgot-password-link:hover {
+    color: #555;
+}
+
+/* Bouton "Envoyer" */
+.submit-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+}
+
+/* Icône du bouton "Envoyer" */
+.submit-icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    /* REMOVED: margin-left car la marge est maintenant sur le lien */
 }
