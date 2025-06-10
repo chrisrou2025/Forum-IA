@@ -44,7 +44,7 @@
                             <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
                         </a>
                         <a href="#" data-lang="pt">
-                            <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            <img src="assets/icones/drapeau_pt.png"> Português
                         </a>
                     </div>
                 </div>
@@ -62,7 +62,27 @@
         <div class="login-main-rectangle">
             <div class="login-content-wrapper">
                 <h2 class="login-rectangle-title" data-lang-key="loginHeaderTitleRect">Connexion</h2>
+            </div>
+            
+            <div class="login-inner-rectangle">
+                <input type="email" class="form-input email-input" data-lang-key="emailPlaceholder" placeholder="Email">
+                
+                <input type="password" class="form-input password-input" data-lang-key="passwordPlaceholder" placeholder="Mot de passe">
+
+                <div class="forgot-password-and-submit">
+                    <a href="#" class="forgot-password-link" data-lang-key="forgotPasswordLink">Mot de passe oublié ?</a>
+                    <button type="button" class="submit-icon-button" aria-label="Ouvrir la réinitialisation du mot de passe" id="openForgotPasswordModalButton"></button>
                 </div>
+
+                <button type="submit" class="login-form-submit-button" data-lang-key="loginButtonText">Connexion</button>
+
+                <div class="signup-prompt-and-icon">
+                    <a href="inscription.html" class="signup-link-group" aria-label="Créer un compte">
+                        <span class="signup-prompt-text" data-lang-key="noAccountPrompt">Pas encore de compte ?</span>
+                        <span class="signup-icon-visual"></span> </a>
+                </div>
+
+            </div>
         </div>
     </main>
 
@@ -76,7 +96,21 @@
         </div>
     </footer>
 
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeForgotPasswordModal">&times;</span>
+            <h2 data-lang-key="forgotPasswordModalTitle">Mot de passe oublié</h2>
+            <p data-lang-key="forgotPasswordModalText">Vous allez recevoir un e-mail qui va vous permettre de réinitialiser votre mot de passe.</p>
+            <div class="forgot-password-input-container">
+                <input type="email" id="resetEmailInput" data-lang-key="emailInputRequired" placeholder="Votre email *" required class="form-input reset-email-input">
+                <button id="resetPasswordSubmitButton" data-lang-key="sendButtonText">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/language.js"></script>
     <script src="js/contrast.js"></script>
-    </body>
+    <script src="js/forgot_password.js"></script>
+
+</body>
 </html>
