@@ -444,9 +444,9 @@ body.dark-mode .all-rights-text {
 }
 
 
-/* STYLES SPÉCIFIQUES À LA PAGE DE CONNEXION */
+/* STYLES SPÉCIFIQUES À LA PAGE DE CONNEXION et RÉINITIALISATION */
 
-/* Centrage du logo dans le bandeau de la page de connexion */
+/* Centrage du logo dans le bandeau de la page de connexion/réinitialisation */
 .header-banner .header-logo.header-logo-centered {
     position: absolute;
     left: 50%;
@@ -454,7 +454,7 @@ body.dark-mode .all-rights-text {
     margin-left: 0;
 }
 
-/* Positionnement des contrôles restants (langue, contraste) sur la page de connexion */
+/* Positionnement des contrôles restants (langue, contraste) sur la page de connexion/réinitialisation */
 .header-controls.header-controls-login-page {
     position: absolute;
     right: 15px;
@@ -463,20 +463,20 @@ body.dark-mode .all-rights-text {
     align-items: center;
 }
 
-/* Réduction de la hauteur de la zone de titre pour la page de connexion */
+/* Réduction de la hauteur de la zone de titre pour la page de connexion/réinitialisation */
 .header-title-section.header-title-section-reduced {
     height: 27px;
     justify-content: center;
 }
 
-/* Styles spécifiques pour le layout du main sur la page de connexion */
+/* Styles spécifiques pour le layout du main sur la page de connexion/réinitialisation */
 .main-content.main-connexion-layout {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Styles du rectangle principal de connexion */
+/* Styles du rectangle principal de connexion/réinitialisation */
 .login-main-rectangle {
     width: 960px;
     height: 680px;
@@ -487,7 +487,7 @@ body.dark-mode .all-rights-text {
     box-sizing: border-box;
 }
 
-/* Conteneur pour le titre "Connexion" (pour gérer son positionnement) */
+/* Conteneur pour le titre "Connexion" ou "Réinitialiser" (pour gérer son positionnement) */
 .login-content-wrapper {
     padding-top: 50px;
     padding-left: 100px;
@@ -496,7 +496,7 @@ body.dark-mode .all-rights-text {
     margin-bottom: 30px;
 }
 
-/* Style du titre "Connexion" */
+/* Style du titre "Connexion" ou "Réinitialiser" */
 .login-rectangle-title {
     font-family: 'Inria Sans', sans-serif;
     font-size: 32px;
@@ -505,7 +505,7 @@ body.dark-mode .all-rights-text {
     margin: 0;
 }
 
-/* Rectangle blanc interne pour l'inscription */
+/* Rectangle blanc interne pour le formulaire */
 .login-inner-rectangle {
     width: 760px;
     height: 465px;
@@ -535,7 +535,7 @@ body.dark-mode .all-rights-text {
     color: #999;
 }
 
-/* Champ d'entrée pour le mot de passe */
+/* Champ d'entrée pour le mot de passe et nouveau mot de passe */
 .form-input.password-input {
     width: 100%;
     border: none;
@@ -545,7 +545,7 @@ body.dark-mode .all-rights-text {
     font-size: 16px;
     padding-bottom: 5px;
     color: #333;
-    margin-top: 30px; /* Distance du champ email */
+    margin-top: 30px; /* Distance du champ précédent */
 }
 
 .form-input.password-input::placeholder {
@@ -604,7 +604,7 @@ body.dark-mode .all-rights-text {
     justify-content: center;
     align-items: center;
     
-    /* Positionnement et centrage du bouton à 115px du bas */
+    /* Positionnement et centrage du bouton */
     position: absolute;
     bottom: 115px; /* Distance par rapport au bas du rectangle blanc */
     left: 50%;
@@ -615,7 +615,7 @@ body.dark-mode .all-rights-text {
     background-color: #c07a2c;
 }
 
-/* Conteneur pour "Pas encore de compte ?" et son icône */
+/* Conteneur pour le texte "Pas encore de compte ?" et l'icône */
 .signup-prompt-and-icon {
     display: flex; /* Active flexbox pour aligner le texte et l'icône */
     justify-content: center; /* Centre l'ensemble texte+icône horizontalement */
@@ -623,7 +623,7 @@ body.dark-mode .all-rights-text {
     
     /* Positionnement absolu par rapport au .login-inner-rectangle */
     position: absolute;
-    bottom: 75px; /* Place le bas du conteneur à 75px du bas du parent, le mettant ainsi en dessous du bouton avec 20px d'espace */
+    bottom: 75px; /* Place le bas du conteneur à 75px du bas du parent */
     left: 50%;
     transform: translateX(-50%);
     width: auto; /* S'adapte au contenu */
@@ -648,20 +648,18 @@ body.dark-mode .all-rights-text {
     font-family: 'Inria Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
-    /* La couleur est gérée par .signup-link-group */
     margin-right: 20px; /* Espace de 20px entre le texte et le bouton icône */
 }
 
-/* Icône visuelle pour "S'inscrire" (anciennement un bouton) */
+/* Icône visuelle pour "S'inscrire" */
 .signup-icon-visual {
     background: url('../assets/icones/envoyer.png') no-repeat center center / contain; /* Image de fond */
     width: 10px; /* Même taille que l'icône précédente */
     height: 10px; /* Même taille que l'icône précédente */
     display: block; /* S'assure qu'il se comporte comme un bloc pour les dimensions */
-    /* Pas de cursor: pointer; ici car le parent a déjà un curseur pointer */
 }
 
-/* NOUVEAU : Styles spécifiques pour la modale "Mot de passe oublié ?" */
+/* STYLES SPÉCIFIQUES POUR LA MODALE "Mot de passe oublié ?" */
 
 .forgot-password-input-container {
     display: flex;
@@ -704,4 +702,16 @@ body.dark-mode .all-rights-text {
 
 #resetPasswordSubmitButton:hover {
     background-color: #c07a2c;
+}
+
+/* NOUVEAU : Style pour les messages d'erreur/succès dans les formulaires (y compris la page de réinitialisation) */
+.form-message {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
+    display: none; /* Caché par défaut, affiché par JS */
 }
