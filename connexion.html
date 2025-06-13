@@ -65,16 +65,18 @@
             </div>
             
             <div class="login-inner-rectangle">
-                <input type="email" class="form-input email-input" data-lang-key="emailPlaceholder" placeholder="Email">
+                <p id="loginMessageDisplay" class="form-message"></p> 
+
+                <input type="email" id="emailInput" class="form-input email-input" data-lang-key="emailPlaceholder" placeholder="Email">
                 
-                <input type="password" class="form-input password-input" data-lang-key="passwordPlaceholder" placeholder="Mot de passe">
+                <input type="password" id="passwordInput" class="form-input password-input" data-lang-key="passwordPlaceholder" placeholder="Mot de passe">
 
                 <div class="forgot-password-and-submit">
                     <a href="#" class="forgot-password-link" data-lang-key="forgotPasswordLink">Mot de passe oublié ?</a>
                     <button type="button" class="submit-icon-button" aria-label="Ouvrir la réinitialisation du mot de passe" id="openForgotPasswordModalButton"></button>
                 </div>
 
-                <button type="submit" class="login-form-submit-button" data-lang-key="loginButtonText">Connexion</button>
+                <button type="submit" id="loginSubmitButton" class="login-form-submit-button" data-lang-key="loginButtonText">Connexion</button>
 
                 <div class="signup-prompt-and-icon">
                     <a href="inscription.html" class="signup-link-group" aria-label="Créer un compte">
