@@ -1,0 +1,382 @@
+/* menu_gauche.css */
+
+/* Styles pour le conteneur du menu déroulant utilisateur dans le premier rectangle */
+.user-dropdown-container {
+    position: absolute;
+    top: 20px; /* 20px depuis le haut du rectangle */
+    left: 5px; /* 5px depuis le bord gauche du rectangle */
+    display: flex; /* Utilise flexbox pour aligner les éléments sur une ligne */
+    align-items: center; /* Centre les éléments verticalement */
+    z-index: 50; /* Assure qu'il est au-dessus d'autres contenus si nécessaire */
+}
+
+/* Style de l'icône "parametre.png" ajoutée à côté de la flèche */
+.settings-icon {
+    width: 20px;  /* Dimensions de l'icône */
+    height: 20px; /* Dimensions de l'icône */
+    margin-left: 10px; /* 10px du bord gauche du conteneur (qui est lui-même à 5px du bord gauche du rectangle) */
+    margin-right: 10px; /* Espace de 10px vers la droite pour pousser les autres éléments */
+    display: block;
+    flex-shrink: 0; /* Empêche l'icône de rétrécir */
+    transition: filter 0.3s ease; /* Garde la transition au cas où un autre filtre soit appliqué */
+}
+
+/* Style du bouton qui déclenche le menu déroulant */
+.user-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espace entre l'icône de flèche et le texte UTILISATEUR */
+}
+
+/* Style de l'icône de flèche */
+.user-dropdown-icon {
+    width: 10px; /* Largeur de la flèche */
+    height: 10px; /* Hauteur de la flèche */
+    display: block;
+    transition: transform 0.3s ease; /* Pour l'effet de rotation fluide */
+}
+
+/* Rotation de l'icône de flèche lorsque le menu est ouvert */
+.user-dropdown-icon.rotate {
+    transform: rotate(90deg); /* Tourne l'icône vers le bas (90 degrés vers la droite) */
+}
+
+/* Style du texte "UTILISATEUR" */
+.user-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700; /* Gras */
+    color: black; /* Couleur par défaut pour le mode clair */
+    transition: color 0.3s ease;
+    text-transform: uppercase; /* Met le texte en majuscules */
+}
+
+/* Nouveau style pour l'icône de cadenas à droite du texte UTILISATEUR */
+.lock-icon {
+    width: 20px; /* Dimensions de l'icône du cadenas */
+    height: 20px; /* Dimensions de l'icône du cadenas */
+    margin-left: 10px; /* Espacement de 10px à droite du texte "UTILISATEUR" */
+    display: block;
+    flex-shrink: 0; /* Empêche l'icône de rétrécir */
+    transition: filter 0.3s ease;
+}
+
+/* Style du contenu du menu déroulant (caché par défaut) */
+.user-dropdown-content {
+    display: none; /* Masqué par default */
+    position: absolute; /* Positionnement absolu par rapport à user-dropdown-container */
+    background-color: #f9f9f9;
+    min-width: 200px; /* Vérifiez si cette valeur est suffisante, augmentez si nécessaire */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; /* Assure qu'il est au-dessus d'autres éléments, mais en dessous du bouton */
+    border-radius: 5px;
+    margin-top: 5px; /* Espacement sous le bouton */
+    top: 100%; /* Positionne le menu déroulant sous le user-dropdown-button */
+    left: 15px; /* Déplace le menu de 15px vers la droite */
+}
+
+/* Affichage du contenu du menu déroulant lorsque la classe 'show' est ajoutée */
+.user-dropdown-content.show {
+    display: block;
+}
+
+/* Style des éléments individuels du menu déroulant (les liens) */
+.dropdown-item { /* Appliqué à tous les dropdown-item pour uniformité */
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: flex; /* Utilise flexbox pour aligner l'icône et le texte */
+    align-items: center; /* Centre verticalement l'icône et le texte */
+    justify-content: flex-start; /* Aligne les éléments au début de la ligne (gauche)*/
+    gap: 5px; /* Ajoute un espace entre l'icône et le texte*/
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap; /* Ajouté pour empêcher le texte de passer à la ligne */
+}
+
+/* Style des icônes à l'intérieur des éléments du menu déroulant */
+.dropdown-item img { /* Appliqué à toutes les icônes dans les dropdown-item */
+    width: 20px;  /* Dimensions des icônes */
+    height: 20px; /* Dimensions des icônes */
+    margin-right: 5px; /* Espacement de 5px à droite de l'icône */
+    display: block;
+    flex-shrink: 0; /* Empêche l'icône de rétrécir */
+    transition: filter 0.3s ease; /* Pour le mode sombre */
+}
+
+/* Effet au survol des éléments du menu déroulant */
+.dropdown-item:hover { /* Appliqué à tous les dropdown-item */
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* Styles pour désactiver le bouton déroulant et son contenu quand il est verrouillé */
+.user-dropdown-container.locked .user-dropdown-button {
+    cursor: default;
+    pointer-events: none;
+}
+
+.user-dropdown-container.locked .user-dropdown-icon {
+    transform: none !important;
+}
+
+.user-dropdown-container.locked .user-dropdown-content {
+    display: none !important;
+}
+
+
+/* --- STYLES POUR LE MENU ADMINISTRATION --- */
+
+/* Conteneur principal pour le menu déroulant Administration */
+.admin-dropdown-container {
+    position: absolute;
+    top: 60px; /* Positionnement initial, sera ajusté par JS */
+    left: 5px;
+    display: flex;
+    align-items: center;
+    z-index: 50;
+    transition: top 0.3s ease; /* Ajout d'une transition pour un mouvement fluide */
+}
+
+/* Style de l'icône "administration.png" */
+.admin-settings-icon {
+    width: 20px; /* Dimensions de l'icône */
+    height: 20px; /* Dimensions de l'icône */
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+/* Style du bouton qui déclenche le menu déroulant administration */
+.admin-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Style de l'icône de flèche pour le menu administration (réutilisation de user-dropdown-icon) */
+.admin-dropdown-icon {
+    width: 10px; /* Largeur de la flèche */
+    height: 10px; /* Hauteur de la flèche */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Rotation de l'icône de flèche pour le menu administration */
+.admin-dropdown-icon.rotate {
+    transform: rotate(90deg);
+}
+
+/* Style du texte "ADMINISTRATION" */
+.admin-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Style du contenu du menu déroulant administration */
+.admin-dropdown-content {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px; /* Ajustez cette largeur si le texte ne tient pas sur une ligne */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 5px;
+    top: 100%;
+    left: 15px;
+}
+
+/* Affichage du contenu du menu déroulant administration */
+.admin-dropdown-content.show {
+    display: block;
+}
+
+
+/* --- STYLES POUR LE MENU CATEGORIES --- */
+.categories-dropdown-container {
+    position: absolute;
+    top: 100px; /* Positionnement initial, sera ajusté par JS */
+    left: 5px;
+    display: flex;
+    align-items: center;
+    z-index: 50;
+    transition: top 0.3s ease; /* Ajout d'une transition pour un mouvement fluide */
+}
+
+.categories-icon {
+    width: 20px; /* Dimensions de l'icône */
+    height: 20px; /* Dimensions de l'icône */
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+.categories-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.categories-dropdown-icon {
+    width: 10px; /* Largeur de la flèche */
+    height: 10px; /* Hauteur de la flèche */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.categories-dropdown-icon.rotate {
+    transform: rotate(90deg);
+}
+
+.categories-text {
+    font-family: 'Inria Sans', sans-serif; /* Assure la bonne police */
+    font-size: 14px; /* Assure la bonne taille de police */
+    font-weight: 700; /* Assure le gras */
+    color: black; /* Assure la couleur par défaut (mode clair) */
+    transition: color 0.3s ease;
+    text-transform: uppercase; /* Met le texte en majuscules */
+}
+
+.categories-dropdown-content {
+    display: none; /* Masqué par default */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 240px; /* Ajustez cette largeur pour les noms longs des catégories */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 5px;
+    top: 100%;
+    left: 15px;
+}
+
+.categories-dropdown-content.show {
+    display: block;
+}
+
+/* --- NOUVEAU : STYLES POUR LE MENU TAGS --- */
+.tags-dropdown-container {
+    position: absolute;
+    top: 140px; /* Positionnement initial, sera ajusté par JS */
+    left: 5px;
+    display: flex;
+    align-items: center;
+    z-index: 50;
+    transition: top 0.3s ease; /* Ajout d'une transition pour un mouvement fluide */
+}
+
+.tags-icon {
+    width: 20px; /* Dimensions de l'icône */
+    height: 20px; /* Dimensions de l'icône */
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+.tags-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tags-dropdown-icon {
+    width: 10px; /* Largeur de la flèche */
+    height: 10px; /* Hauteur de la flèche */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.tags-dropdown-icon.rotate {
+    transform: rotate(90deg);
+}
+
+.tags-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.tags-dropdown-content {
+    display: none; /* Masqué par défaut */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px; /* Ajustez cette largeur si le texte ne tient pas sur une ligne */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 5px;
+    top: 100%;
+    left: 15px;
+}
+
+.tags-dropdown-content.show {
+    display: block;
+}
+
+
+/* Styles pour le mode sombre (dark mode) pour le menu déroulant */
+body.dark-mode .user-text,
+body.dark-mode .admin-text,
+body.dark-mode .categories-text,
+body.dark-mode .tags-text { /* Assure la couleur blanche en mode sombre */
+    color: white;
+}
+
+body.dark-mode .user-dropdown-content,
+body.dark-mode .admin-dropdown-content,
+body.dark-mode .categories-dropdown-content,
+body.dark-mode .tags-dropdown-content {
+    background-color: #333;
+}
+
+body.dark-mode .dropdown-item { /* Appliqué à tous les dropdown-item en mode sombre */
+    color: white;
+}
+
+body.dark-mode .dropdown-item:hover { /* Appliqué à tous les dropdown-item en mode sombre */
+    background-color: #555;
+}
+
+/* Inversion des couleurs UNIQUEMENT pour l'icône "fleche.png" en mode sombre */
+body.dark-mode .user-dropdown-icon,
+body.dark-mode .admin-dropdown-icon,
+body.dark-mode .categories-dropdown-icon,
+body.dark-mode .tags-dropdown-icon {
+    filter: invert(100%) brightness(200%);
+}
+
+/* Inversion des couleurs pour l'icône cadenas en mode sombre si elle est censée changer */
+body.dark-mode .lock-icon {
+    filter: invert(100%) brightness(200%);
+}

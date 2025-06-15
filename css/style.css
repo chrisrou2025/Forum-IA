@@ -1,3 +1,6 @@
+/* style.css */
+/* Nettoyé et optimisé. */
+
 /* Styles généraux */
 body {
     margin: 0;
@@ -5,10 +8,10 @@ body {
     overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
-/* HEADER */
+/* EN-TÊTE (HEADER) */
 .header {
-    width: 1440px; /* Largeur fixe comme demandé */
-    margin: 0 auto; /* Centre le header */
+    width: 1440px;
+    margin: 0 auto; /* Centre l'en-tête */
 }
 
 .header-top-space {
@@ -21,298 +24,664 @@ body {
     width: 100%;
     height: 115px;
     background-image: url('../assets/bandeau.jpg');
-    background-size: cover; /* Couvre toute la surface */
+    background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center; /* Centre verticalement le contenu (logo) */
-    position: relative; /* Nécessaire pour positionner le conteneur de contrôles */
+    align-items: center;
+    position: relative;
 }
 
 .header-logo {
-    width: 174px; /* Nouvelle largeur pour le logo */
-    height: 128px; /* Nouvelle hauteur pour le logo */
-    margin-left: 10px; /* Décalage de 10px du bord gauche */
-}
-
-/* Centrage du logo pour les pages de connexion/inscription */
-.header-logo-centered {
-    position: absolute; /* Permet un positionnement libre */
-    left: 50%; /* Commence au milieu */
-    transform: translateX(-50%); /* Décale de la moitié de sa propre largeur vers la gauche */
-    margin-left: 0; /* Réinitialise la marge pour le centrage */
+    width: 174px;
+    height: 128px;
+    margin-left: 10px;
+    display: flex; /* Assure que l'image du logo est bien centrée dans la zone cliquable */
+    justify-content: center;
+    align-items: center;
 }
 
 .header-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Assure que l'image du logo s'adapte sans être coupée */
+    object-fit: contain;
 }
 
+/* Centrage du logo dans le bandeau des pages de connexion/inscription */
+.header-banner .header-logo.header-logo-centered {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0; /* Annule le margin-left générique pour le centrage */
+}
+
+/* Conteneur pour tous les contrôles du header (page index et login/signup) */
 .header-controls {
-    position: absolute; /* Positionne les contrôles par rapport au bandeau */
-    right: 20px; /* 20px du bord droit */
+    position: absolute;
+    right: 15px;
+    bottom: 25px;
     display: flex;
-    align-items: center; /* Aligne verticalement les icônes et boutons */
-    gap: 15px; /* Espace entre les éléments */
+    align-items: center;
+    gap: 25px; /* L'espacement de 25px entre les "groupes" de contrôle */
 }
 
-/* Positionnement pour la page de connexion/inscription où le logo est centré */
-.header-controls-login-page {
-    right: 20px; /* Garde la position à droite */
+/* Nouveau : Conteneur pour regrouper chaque icône et son texte/bouton */
+.header-control-group {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* L'espacement de 5px entre l'icône et le texte/bouton à l'intérieur du groupe */
 }
 
+/* Styles pour les icônes du header (contact, connexion, inscription, globe, contraste, recherche) */
 .contact-icon,
 .connexion-icon,
+.inscription-icon,
 .globe-icon,
-.contrast-icon {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle; /* Aligne l'icône avec le texte du bouton si présent */
-    transition: filter 0.3s ease; /* Pour l'effet en mode sombre */
+.contrast-icon,
+.search-icon {
+    width: 25px;
+    height: 25px;
+    display: block; /* S'assure que l'icône se comporte comme un bloc pour les dimensions */
+    transition: filter 0.3s ease; /* For the dark mode effect */
 }
 
-.contact-link,
-.connexion-link {
-    text-decoration: none; /* Supprime le soulignement des liens */
-}
-
-.contact-button,
-.connexion-button,
-.lang-button,
-.contrast-button,
-.search-button { /* Styles généraux pour les boutons du header */
-    padding: 8px 15px;
-    background-color: #007bff; /* Couleur de fond bleue */
-    color: white;
+/* Style du bouton recherche */
+.search-button {
+    background: none;
     border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles pour les liens englobant les boutons (Contact, Connexion, Inscription) */
+.contact-link,
+.login-link,
+.signup-link {
+    text-decoration: none;
+    color: inherit; /* Hérite la couleur du parent */
+    align-items: center;
+}
+
+/* Styles pour les boutons du header */
+.contact-button,
+.login-button,
+.signup-button,
+.contrast-button {
+    height: 20px;
+    padding: 0 15px;
+    border: 1px solid white;
     border-radius: 5px;
+    background-color: transparent;
+    color: white;
     font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: flex; /* Permet d'aligner l'icône et le texte */
-    align-items: center;
-    gap: 5px; /* Espace entre l'icône et le texte du bouton */
+    width: auto;
 }
 
 .contact-button:hover,
-.connexion-button:hover,
-.lang-button:hover,
-.contrast-button:hover,
-.search-button:hover {
-    background-color: #0056b3; /* Bleu plus foncé au survol */
+.login-button:hover,
+.signup-button:hover,
+.contrast-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Styles pour le menu déroulant de langue */
+/* SÉLECTEUR DE LANGUE */
 .lang-dropdown-container {
     position: relative;
-    display: inline-block; /* Permet le positionnement relatif pour le menu déroulant */
+    display: inline-block;
+}
+
+.lang-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.lang-icon {
+    width: 30px;
+    height: 30px;
+    display: block;
+    transition: filter 0.3s ease;
 }
 
 .lang-dropdown-content {
-    display: none; /* Caché par défaut */
+    display: none;
     position: absolute;
-    background-color: white;
-    min-width: 160px;
+    background-color: #f9f9f9;
+    min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 100;
     border-radius: 5px;
-    top: 100%; /* S'affiche en dessous du bouton */
+    top: 100%;
     left: 0;
-    margin-top: 5px; /* Petite marge entre le bouton et le menu */
+    margin-top: 5px;
 }
 
 .lang-dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 8px 10px;
     text-decoration: none;
-    display: flex; /* Pour aligner drapeau et texte */
+    display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-family: 'Inria Sans', sans-serif;
     font-size: 14px;
+    font-weight: 700;
+}
+
+.lang-dropdown-content a img {
+    width: 20px;
+    height: 20px;
 }
 
 .lang-dropdown-content a:hover {
-    background-color: #f1f1f1;
-}
-
-.lang-dropdown-content a img.lang-icon {
-    width: 20px; /* Taille des drapeaux dans le dropdown */
-    height: 15px;
+    background-color: #ddd;
+    border-radius: 5px;
 }
 
 .lang-dropdown-content.show {
-    display: block; /* Affiche le menu déroulant */
+    display: block;
 }
-
-.lang-icon {
-    width: 24px;
-    height: 18px;
-    vertical-align: middle;
-}
-
 
 .header-title-section {
     width: 100%;
-    height: 250px; /* Hauteur définie pour le grand titre */
-    background-image: url('../assets/rectangle_grand_titre.jpg');
-    background-size: cover;
-    background-position: center;
+    height: 94px;
+    background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre verticalement le contenu */
-    align-items: center; /* Centre horizontalement le contenu */
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    color: white;
+    transition: background-color 0.3s ease;
 }
 
-/* Pour les pages avec un titre réduit (connexion, inscription, etc.) */
-.header-title-section-reduced {
-    height: 60px; /* Hauteur réduite */
-    justify-content: flex-start; /* Aligne le contenu en haut */
-    align-items: flex-start; /* Aligne le contenu à gauche */
-    padding-left: 10px; /* Décalage de 10px à gauche */
-    box-sizing: border-box; /* Inclut le padding dans la largeur */
-    padding-top: 15px; /* Ajuste la position verticale du titre */
+/* Réduction de la hauteur de la zone de titre pour les pages de connexion/inscription */
+.header-title-section.header-title-section-reduced {
+    height: 27px;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 36px; /* Taille pour le grand titre */
+    font-size: 32px;
     font-weight: 800;
-    margin: 0;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .header-subtitle {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: black;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* MAIN CONTENT */
+/* CONTENU PRINCIPAL (MAIN) */
 .main-content {
-    width: 1440px; /* Largeur fixe comme demandé */
-    margin: 0 auto; /* Centre le contenu principal */
+    width: 1440px;
+    height: 734px;
     background-image: url('../assets/main-background.jpg');
     background-size: cover;
     background-position: center;
-    display: flex;
-    justify-content: space-around; /* Espace les rectangles */
-    align-items: center; /* Centre verticalement les rectangles */
-    height: 734px; /* Hauteur restante pour le contenu principal */
-    box-sizing: border-box; /* Inclut padding/border dans la dimension */
+    margin: 0 auto; /* Centrera le bloc main sur la page */
 }
 
-.rectangle {
-    width: 530px; /* Largeur des rectangles */
-    height: 520px; /* Hauteur des rectangles */
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+/* Styles spécifiques pour les layouts du main sur les pages de formulaire (connexion/inscription) */
+.main-content.main-connexion-layout,
+.main-content.main-signup-layout {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../assets/main-background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Conteneur pour les deux rectangles sur la page d'index */
+.index-rectangles-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.rectangle {
+    background-color: white;
+    border-radius: 30px;
+    border: 1px solid black;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.rectangle-one {
+    width: 237px;
+    height: 671px;
+    position: relative; /* Added for positioning inner elements */
+}
+
+.rectangle-two {
+    width: 963px;
+    height: 671px;
+}
+
+/* Styles du rectangle principal (extérieur) des pages de connexion et inscription */
+.login-main-rectangle,
+.signup-main-rectangle {
+    width: 960px;
+    height: 680px;
+    background-color: rgba(127, 117, 75, 0.8);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+/* Conteneur pour le titre (connexion/inscription) */
+.login-content-wrapper,
+.signup-content-wrapper {
+    padding-top: 50px;
+    padding-left: 100px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+/* Style du titre "Connexion" ou "Inscription" */
+.login-rectangle-title,
+.signup-rectangle-title {
     font-family: 'Inria Sans', sans-serif;
-    font-size: 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+/* Rectangle blanc interne pour les formulaires (connexion/inscription) */
+.login-inner-rectangle,
+.signup-inner-rectangle {
+    width: 760px;
+    height: 495px;
+    background-color: white;
+    border-radius: 25px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 35px 0 35px;
+    box-sizing: border-box;
+    position: relative; /* Très important pour le positionnement absolu des éléments enfants */
+    transition: background-color 0.3s ease;
+}
+
+/* Messages de succès/erreur sur les formulaires */
+.form-message {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 70px);
+    z-index: 10;
+    color: green; /* Couleur par défaut, à changer en JS pour erreur/succès */
+}
+
+/* Styles pour le texte "Mes informations" sur la page Inscription */
+.signup-info-title {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 20px;
     font-weight: 700;
     color: black;
+    position: absolute;
+    top: 50px;
+    left: 35px;
+    margin: 0;
+    width: calc(100% - 70px);
+    text-align: left;
+    transition: color 0.3s ease;
 }
 
-/* FOOTER */
-.footer {
-    width: 1440px; /* Largeur fixe */
-    margin: 0 auto; /* Centre le footer */
-    height: 68px;
-    background-color: black;
-    color: white;
-    display: flex;
-    justify-content: center; /* Centre le contenu horizontalement */
-    align-items: center; /* Centre le contenu verticalement */
+/* Styles pour le texte descriptif sur la page Inscription */
+.signup-info-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    top: 80px;
+    left: 35px;
+    margin: 0;
+    width: calc(100% - 70px);
+    text-align: left;
+    line-height: 1.4;
+    transition: color 0.3s ease;
 }
 
-.footer-content {
-    width: 100%; /* Prend toute la largeur du footer */
-    max-width: 1400px; /* Optionnel: limiter la largeur du contenu */
-    display: flex;
-    justify-content: flex-start; /* Aligne le contenu à gauche */
-    align-items: center; /* Centre le contenu à l'intérieur de footer-content */
-    padding-left: 20px; /* Petite marge à gauche */
+/* Styles de base pour les champs de formulaire */
+.form-input {
+    width: calc(100% - 70px);
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 0;
+    color: #333;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 15px; /* Espace entre les inputs (valeur par défaut, peut être surchargée) */
 }
 
-.footer-left {
+.form-input::placeholder {
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+/* Positionnement des champs pour la page de connexion */
+.login-inner-rectangle .email-input {
+    position: absolute;
+    top: 90px;
+    left: 35px;
+}
+.login-inner-rectangle .password-input {
+    position: absolute;
+    top: 140px;
+    left: 35px;
+    /* margin-bottom: 20px; <-- Supprimé car inefficace avec position: absolute */
+}
+
+/* Conteneur pour le lien "Mot de passe oublié ?" et l'icône */
+.forgot-password-trigger-container {
+    position: absolute; /* AJOUTÉ: Permet de positionner ce bloc précisément */
+    top: 215px; /* MODIFIÉ: Ajusté pour laisser un espace de 20px après l'input mot de passe (140px + env. 35px (hauteur input) + 20px) */
+    left: 35px; /* Aligné avec les inputs */
+    width: calc(100% - 70px); /* Même largeur que les inputs */
+    display: flex; /* Maintient la disposition flex */
+    align-items: center;
+    justify-content: flex-start; /* Aligne le contenu à gauche */
+    /* REMPLACÉ PAR LA RÈGLE CI-DESSOUS pour le gap de l'icône interne */
+}
+
+/* NOUVEAUX STYLES POUR LE LIEN "MOT DE PASSE OUBLIÉ ?" ET SON ICÔNE */
+/* Le conteneur du lien lui-même (à l'intérieur de .forgot-password-trigger-container) */
+.forgot-password-link-group {
     display: flex;
     align-items: center;
+    gap: 20px; /* MODIFIÉ: Espacement de 20px entre le texte et l'icône, comme demandé */
+    text-decoration: none;
+    color: black; /* Couleur correcte (noir) */
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px; /* Taille de police correcte */
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* Nouveau style pour l'espace de 10px */
-.footer-left span.all-rights-text {
-    margin-left: 10px; /* Ajoute un espace de 10px à gauche du texte "Tous droits réservés" */
+.forgot-password-link-group:hover {
+    color: #555;
 }
 
-.copyright-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
-    transition: filter 0.3s ease; /* Pour l'effet en mode sombre */
+.forgot-password-link-group .forgot-password-text {
+    /* Ce span peut exister dans le HTML, mais le style hérite déjà du parent */
+    /* Aucune règle spécifique nécessaire ici à moins de vouloir le surcharger */
 }
 
-.footer-left span {
+.submit-icon-visual { /* Style pour le span de l'icône "Envoyer" du lien mot de passe oublié */
+    background: url('../assets/icones/envoyer.png') no-repeat center center / contain;
+    width: 10px; /* Taille correcte */
+    height: 10px; /* Taille correcte */
+    display: block;
+    outline: none;
+    transition: filter 0.3s ease;
+}
+
+
+/* Positionnement des champs pour la page d'inscription */
+.signup-inner-rectangle .username-input {
+    position: absolute;
+    top: 110px;
+    left: 35px;
+}
+.signup-inner-rectangle .email-input {
+    position: absolute;
+    top: 160px;
+    left: 35px;
+}
+.signup-inner-rectangle .password-input {
+    position: absolute;
+    top: 210px;
+    left: 35px;
+}
+.signup-inner-rectangle .confirm-password-input {
+    position: absolute;
+    top: 260px;
+    left: 35px;
+}
+
+
+/* Conteneur pour la case à cocher de la newsletter */
+.newsletter-consent-container {
+    position: absolute;
+    top: 326px;
+    left: 35px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: calc(100% - 70px);
+}
+
+.newsletter-checkbox {
+    width: 12px;
+    height: 12px;
+    border: 1px solid black;
+    -webkit-appearance: none; /* Cache le style par default du navigateur */
+    -moz-appearance: none;
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+    flex-shrink: 0; /* Empêche le redimensionnement de la checkbox */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* Style de la checkbox quand elle est cochée */
+.newsletter-checkbox:checked {
+    background-color: #D38731;
+    border-color: #D38731;
+}
+
+/* Pour afficher un "tick" ou une couleur différente quand coché */
+.newsletter-checkbox:checked::before {
+    content: '\2713'; /* Caractère "checkmark" (tick) */
+    display: block;
+    color: white;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+}
+
+.newsletter-label {
     font-family: 'Inria Sans', sans-serif;
     font-size: 14px;
     font-weight: 700;
-    color: white; /* Couleur de texte par défaut pour le footer */
-    transition: color 0.3s ease; /* Transition pour le mode sombre */
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-/* MODALE DE RECHERCHE (Search Modal) */
+/* Bouton de connexion ou d'inscription dans les formulaires */
+.login-form-submit-button,
+.signup-form-submit-button {
+    width: 295px;
+    height: 65px;
+    background-color: #D38731;
+    border: 1px solid black;
+    border-radius: 25px;
+    color: black;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.login-form-submit-button:hover,
+.signup-form-submit-button:hover {
+    background-color: #c07a2c;
+}
+
+/* Conteneur pour le prompt "Pas encore de compte ?" (page connexion) ou "Déjà un compte ?" (page inscription) */
+.signup-prompt-and-icon,
+.login-prompt-and-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* Le groupe de lien (pour "Pas encore de compte ?" ou "Déjà un compte ?") */
+.signup-link-group,
+.login-link-group {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.signup-link-group:hover,
+.login-link-group:hover {
+    color: #555;
+}
+
+/* Texte du prompt */
+.signup-prompt-text,
+.login-prompt-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 20px; /* Garde cet espacement pour l'icône à droite */
+}
+
+/* Icône visuelle pour le prompt */
+.signup-icon-visual,
+.login-icon-visual {
+    background: url('../assets/icones/envoyer.png') no-repeat center center / contain;
+    width: 10px; /* Taille cohérente avec la demande */
+    height: 10px; /* Taille cohérente avec la demande */
+    display: block;
+    outline: none;
+    transition: filter 0.3s ease;
+}
+
+/* Styles spécifiques pour la modale "Mot de passe oublié ?" */
+.forgot-password-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-input.reset-email-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    padding-bottom: 5px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.form-input.reset-email-input::placeholder {
+    color: #999;
+}
+
+#resetPasswordSubmitButton {
+    padding: 10px 15px;
+    background-color: #D38731;
+    color: black;
+    border: 1px solid black;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
+    width: 120px;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+#resetPasswordSubmitButton:hover {
+    background-color: #c07a2c;
+}
+
+/* MODAL */
 .modal {
-    display: none; /* Caché par défaut */
-    position: fixed; /* Reste en place même au défilement */
-    z-index: 1000; /* Par-dessus tout le reste */
+    display: none;
+    position: fixed;
+    z-index: 200;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Permet le défilement si le contenu est trop grand */
-    background-color: rgba(0,0,0,0.6); /* Fond semi-transparent */
-    justify-content: center; /* Centre horizontalement le contenu */
-    align-items: center; /* Centre verticalement le contenu */
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: auto; /* Centrage automatique */
-    padding: 30px;
+    padding: 20px;
     border: 1px solid #888;
-    width: 500px; /* Largeur de la modale */
-    max-width: 90%; /* S'assure qu'elle ne dépasse pas l'écran sur mobile */
+    width: 80%;
+    max-width: 500px;
     border-radius: 10px;
-    position: relative; /* Pour positionner le bouton de fermeture */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.modal-content h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    color: black;
-    margin-bottom: 10px;
+    position: relative;
+    text-align: center;
 }
 
 .close-button {
     color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
     position: absolute;
     right: 15px;
     top: 10px;
-    font-size: 28px;
-    font-weight: bold;
     cursor: pointer;
 }
 
@@ -323,479 +692,376 @@ body {
     cursor: pointer;
 }
 
+.modal h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Styles pour la barre de recherche dans la modale */
 .search-input-container {
     display: flex;
-    width: 100%;
-    gap: 10px;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 5px 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #f0f0f0;
 }
 
 #searchInput {
-    flex-grow: 1; /* Prend l'espace disponible */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Inria Sans', sans-serif;
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 8px 0;
     font-size: 16px;
+    background-color: transparent;
+}
+
+#searchInput::placeholder {
+    color: #888;
 }
 
 #performSearchButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: #D38731;
+    color: black;
     border: none;
-    border-radius: 5px;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
+    border-radius: 20px;
+    padding: 8px 15px;
     cursor: pointer;
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700;
     transition: background-color 0.3s ease;
 }
 
 #performSearchButton:hover {
-    background-color: #0056b3;
+    background-color: #c07a2c;
 }
 
 .search-results-container {
-    width: 100%;
-    max-height: 200px; /* Limite la hauteur des résultats */
-    overflow-y: auto; /* Permet le défilement */
-    margin-top: 10px;
+    margin-top: 20px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
     border-top: 1px solid #eee;
     padding-top: 10px;
 }
 
-.search-result-item {
-    padding: 8px 0;
+.search-results-container p {
+    margin-bottom: 10px;
+    padding: 5px 0;
     border-bottom: 1px dashed #eee;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
-    color: #333;
 }
 
-.search-result-item:last-child {
+.search-results-container p:last-child {
     border-bottom: none;
 }
 
-.search-result-item a {
-    color: #007bff;
-    text-decoration: none;
-}
 
-.search-result-item a:hover {
-    text-decoration: underline;
-}
-
-.no-results-message {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
-    color: #555;
-    text-align: center;
-    padding: 20px;
-}
-
-
-/* --- STYLES SPÉCIFIQUES POUR LES PAGES DE CONNEXION ET INSCRIPTION --- */
-
-/* Mise en page générale des pages de formulaire */
-.main-connexion-layout,
-.main-signup-layout {
-    display: flex;
-    justify-content: center; /* Centre horizontalement le contenu principal */
-    align-items: center;     /* Centre verticalement le contenu principal */
-    height: 734px; /* Hauteur pour le centrage vertical dans le main */
-    background-image: url('../assets/main-background.jpg');
-    background-size: cover;
-    background-position: center;
-    margin: 0 auto;
+/* PIED DE PAGE (FOOTER) */
+.footer {
     width: 1440px;
-}
-
-/* Styles pour le rectangle principal (extérieur) */
-.login-main-rectangle,
-.signup-main-rectangle {
-    width: 600px; /* Largeur du rectangle principal */
-    height: 500px; /* Hauteur du rectangle principal, ajustez si besoin */
+    height: 70px;
     background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre le contenu horizontalement */
-    padding: 20px;
-    box-sizing: border-box; /* Inclut le padding dans la largeur/hauteur */
-}
-
-/* Styles pour le wrapper du titre (Connexion/Inscription) */
-.login-content-wrapper,
-.signup-content-wrapper {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px; /* Espace entre le titre principal et le rectangle intérieur */
-}
-
-/* Styles pour le titre "Connexion" ou "Inscription" */
-.login-rectangle-title,
-.signup-rectangle-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px;
-    font-weight: 800;
-    color: black;
-    margin: 0; /* Supprime les marges par défaut des h2 */
-}
-
-/* Styles pour le rectangle intérieur */
-.login-inner-rectangle,
-.signup-inner-rectangle {
-    width: 90%; /* Le rectangle intérieur est un peu plus petit */
-    height: 380px; /* Une hauteur fixe pour maintenir la cohérence visuelle */
-    background-color: #f0f0f0; /* Fond gris clair */
-    border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    position: relative; /* Important pour positionner les éléments internes absolument */
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacement entre les éléments (inputs, boutons) si non positionnés absolument */
-    align-items: center; /* Centre les éléments flex horizontalement */
-}
-
-/* Message de succès/erreur sur les formulaires */
-.form-message {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 10px;
-    display: block; /* S'assure que le paragraphe prend sa propre ligne */
-    /* top, left etc. peuvent être définis si on veut une position fixe */
-    position: absolute; /* Positionnement absolu pour le contrôle fin */
-    top: 40px; /* Ajustez selon le design */
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 80px); /* Assurez-vous qu'il ne déborde pas */
-}
-
-
-/* NOUVEAUX STYLES pour le texte "Mes informations" sur la page Inscription */
-.signup-info-title {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 20px; /* Taille 20px comme demandé */
-    font-weight: 700;
-    color: black;
-    position: absolute; /* Positionnement absolu par rapport à .signup-inner-rectangle */
-    top: 20px; /* 20px du haut du .signup-inner-rectangle */
-    left: 40px; /* 40px de la gauche du .signup-inner-rectangle */
-    margin: 0; /* Supprime les marges par défaut */
-    width: calc(100% - 80px); /* Ajuste la largeur pour laisser un espace de chaque côté */
-    text-align: left; /* Aligne le texte à gauche */
-}
-
-/* NOUVEAUX STYLES pour le texte descriptif sur la page Inscription */
-.signup-info-text {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px; /* Taille 14px comme demandé */
-    color: black;
-    position: absolute; /* Positionnement absolu par rapport à .signup-inner-rectangle */
-    top: 50px; /* Positionnement juste en dessous du titre, ajustez si besoin */
-    left: 40px; /* 40px de la gauche du .signup-inner-rectangle */
-    margin: 0; /* Supprime les marges par défaut */
-    width: calc(100% - 80px); /* Ajuste la largeur */
-    text-align: left; /* Aligne le texte à gauche */
-    line-height: 1.4; /* Améliore la lisibilité */
-}
-
-
-/* Styles de base pour les champs de formulaire (appliqués aux deux pages) */
-.form-input {
-    width: calc(100% - 80px); /* Prend 100% de la largeur du parent moins 40px de padding de chaque côté */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-/* Positionnement des champs pour la page de connexion */
-.login-inner-rectangle #emailInput {
-    position: absolute;
-    top: 80px; /* Ajustez pour positionner sous le message si présent */
-    left: 40px;
-}
-.login-inner-rectangle #passwordInput {
-    position: absolute;
-    top: 140px; /* Sous l'email */
-    left: 40px;
-}
-
-/* Styles pour le groupe mot de passe oublié et bouton submit */
-.forgot-password-and-submit {
-    display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: calc(100% - 80px);
-    position: absolute;
-    top: 210px; /* Ajustez la position */
-    left: 40px;
-}
-
-.forgot-password-link {
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
-    color: #007bff; /* Exemple link color */
-    text-decoration: none;
-}
-
-.forgot-password-link:hover {
-    text-decoration: underline;
-}
-
-.submit-icon-button {
-    width: 24px; /* Icon size */
-    height: 24px;
-    background-image: url('../assets/icones/fleche.png'); /* Replace with actual arrow icon */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-/* Styles pour le bouton de connexion/inscription */
-.login-form-submit-button {
-    width: calc(100% - 80px);
-    padding: 10px;
-    background-color: #007bff; /* Exemple button color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    cursor: pointer;
     transition: background-color 0.3s ease;
-    position: absolute; /* Positionnement absolu */
-    top: 270px; /* Ajustez la position */
-    left: 40px;
 }
 
-.login-form-submit-button:hover {
-    background-color: #0056b3;
+.footer-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Styles pour le prompt d'inscription/connexion */
-.signup-prompt-and-icon {
+.footer-left {
     display: flex;
     align-items: center;
-    position: absolute; /* Positionnement absolu */
-    top: 320px; /* Ajustez la position */
-    left: 50%; /* Centrage horizontal */
-    transform: translateX(-50%);
 }
 
-.signup-link-group {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #007bff; /* Link color */
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 14px;
+.footer-left span.all-rights-text {
+    margin-left: 10px;
 }
 
-.signup-prompt-text {
+.copyright-icon {
+    width: 20px;
+    height: 20px;
     margin-right: 5px;
+    transition: filter 0.3s ease;
 }
 
-.signup-icon-visual {
-    width: 24px; /* Adjust size of the visual icon */
-    height: 24px;
-    background-image: url('../assets/icones/inscription.png'); /* Placeholder, replace with actual icon */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/* Styles pour la modale de mot de passe oublié (utilisée par connexion.html) */
-.forgot-password-input-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 15px;
-    align-items: center;
-}
-
-.reset-email-input {
-    width: calc(100% - 40px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.footer-left span,
+.footer-right span {
     font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-#resetPasswordSubmitButton {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Inria Sans', sans-serif;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: calc(100% - 40px); /* Même largeur que l'input */
-}
-
-#resetPasswordSubmitButton:hover {
-    background-color: #0056b3;
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
+    transition: color 0.3s ease;
 }
 
 /* STYLES POUR LE MODE SOMBRE (DARK MODE) */
-body.dark-mode {
-    background-color: #1a1a1a;
-    color: white;
-}
-
-body.dark-mode .header-top-space {
+body.dark-mode .header-top-space,
+body.dark-mode .header-title-section,
+body.dark-mode .footer,
+body.dark-mode .lang-dropdown-content,
+body.dark-mode .modal-content {
     background-color: #333;
 }
 
-body.dark-mode .header-controls .contact-icon,
-body.dark-mode .header-controls .connexion-icon,
-body.dark-mode .header-controls .globe-icon,
-body.dark-mode .header-controls .contrast-icon,
-body.dark-mode .copyright-icon {
-    filter: invert(100%) brightness(200%); /* Rend les icônes blanches */
+body.dark-mode .header-title,
+body.dark-mode .header-subtitle,
+body.dark-mode .footer-left span,
+body.dark-mode .footer-right span,
+body.dark-mode .lang-dropdown-content a,
+body.dark-mode .modal h2,
+body.dark-mode .modal p {
+    color: white;
+    text-shadow: none;
 }
 
 body.dark-mode .contact-button,
-body.dark-mode .connexion-button,
-body.dark-mode .lang-button,
-body.dark-mode .contrast-button,
-body.dark-mode .search-button,
-body.dark-mode #performSearchButton,
-body.dark-mode #resetPasswordSubmitButton,
-body.dark-mode .login-form-submit-button {
-    background-color: #004d99; /* Bleu plus foncé en mode sombre */
+body.dark-mode .login-button,
+body.dark-mode .signup-button,
+body.dark-mode .contrast-button {
+    border-color: #888;
+    color: white;
 }
 
 body.dark-mode .contact-button:hover,
-body.dark-mode .connexion-button:hover,
-body.dark-mode .lang-button:hover,
-body.dark-mode .contrast-button:hover,
-body.dark-mode .search-button:hover,
-body.dark-mode #performSearchButton:hover,
-body.dark-mode #resetPasswordSubmitButton:hover,
-body.dark-mode .login-form-submit-button:hover {
-    background-color: #003366; /* Encore plus foncé au survol */
+body.dark-mode .login-button:hover,
+body.dark-mode .signup-button:hover,
+body.dark-mode .contrast-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-body.dark-mode .lang-dropdown-content {
-    background-color: #333;
-    box-shadow: 0px 8px 16px 0px rgba(255,255,255,0.2);
-}
-
-body.dark-mode .lang-dropdown-content a {
-    color: white;
+body.dark-mode .rectangle {
+    background-color: #444;
+    border-color: #666;
 }
 
 body.dark-mode .lang-dropdown-content a:hover {
     background-color: #555;
 }
 
-body.dark-mode .header-title-section {
-    background-image: url('../assets/rectangle_grand_titre_dark.jpg'); /* Si vous avez une version sombre */
-    color: white;
-}
-
-body.dark-mode .header-title,
-body.dark-mode .header-subtitle {
-    color: white;
-}
-
-body.dark-mode .main-content {
-    background-image: url('../assets/main-background-dark.jpg'); /* Si vous avez une version sombre */
-}
-
-body.dark-mode .rectangle {
-    background-color: #333;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    color: white;
-}
-
-body.dark-mode .footer {
-    background-color: #1a1a1a;
-    color: white;
-}
-
-body.dark-mode .footer-left span {
-    color: white;
-}
-
-body.dark-mode .modal-content {
-    background-color: #333;
-    border-color: #555;
-}
-
-body.dark-mode .modal-content h2,
-body.dark-mode .close-button {
-    color: white;
-}
-
-body.dark-mode #searchInput {
+body.dark-mode .search-input-container {
     background-color: #555;
-    color: white;
     border-color: #777;
 }
 
+body.dark-mode #searchInput {
+    color: white;
+}
+
 body.dark-mode #searchInput::placeholder {
-    color: #bbb;
+    color: #ccc;
 }
 
-body.dark-mode .search-result-item {
-    color: #ddd;
-    border-color: #444;
+body.dark-mode #performSearchButton {
+    background-color: #a06b25;
+    color: white;
+    border-color: #555;
 }
 
-body.dark-mode .search-result-item a {
-    color: #99ccff;
+body.dark-mode #performSearchButton:hover {
+    background-color: #8d5e20;
 }
 
-body.dark-mode .no-results-message {
-    color: #bbb;
-}
-
-/* Styles spécifiques Connexion/Inscription en mode sombre */
+/* Dark mode for login and signup pages */
 body.dark-mode .login-main-rectangle,
 body.dark-mode .signup-main-rectangle {
-    background-color: #333; /* Darker background */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    background-color: rgba(90, 80, 50, 0.8);
 }
 
 body.dark-mode .login-rectangle-title,
-body.dark-mode .signup-rectangle-title,
-body.dark-mode .signup-info-title,
-body.dark-mode .signup-info-text,
-body.dark-mode .form-message {
-    color: white; /* White text in dark mode */
+body.dark-mode .signup-rectangle-title {
+    color: white;
 }
 
 body.dark-mode .login-inner-rectangle,
 body.dark-mode .signup-inner-rectangle {
-    background-color: #555; /* Darker inner background */
+    background-color: #2a2a2a;
 }
 
-body.dark-mode .form-input {
-    background-color: #666;
+body.dark-mode .form-input,
+body.dark-mode .form-input.reset-email-input {
+    border-bottom-color: white;
     color: white;
-    border-color: #888;
+    background-color: #333;
 }
 
-body.dark-mode .form-input::placeholder {
+body.dark-mode .form-input::placeholder,
+body.dark-mode .form-input.email-input::placeholder,
+body.dark-mode .form-input.password-input::placeholder,
+body.dark-mode .form-input.reset-email-input::placeholder,
+body.dark-mode .signup-inner-rectangle .username-input::placeholder,
+body.dark-mode .signup-inner-rectangle .email-input::placeholder,
+body.dark-mode .signup-inner-rectangle .password-input::placeholder,
+body.dark-mode .signup-inner-rectangle .confirm-password-input::placeholder {
     color: #ccc;
 }
 
-body.dark-mode .forgot-password-link,
-body.dark-mode .signup-link-group {
-    color: #99ccff; /* Lighter link color for dark mode */
+body.dark-mode .forgot-password-link-group { /* Correction pour le mode sombre du nouveau groupe de lien */
+    color: #99ccff;
+}
+
+/* Inversion des couleurs UNIQUEMENT pour les icônes de type "envoyer" en mode sombre */
+body.dark-mode .signup-icon-visual,
+body.dark-mode .login-icon-visual,
+body.dark-mode .submit-icon-visual { /* Ajout de .submit-icon-visual */
+    filter: invert(100%) brightness(200%);
+}
+
+body.dark-mode .login-form-submit-button,
+body.dark-mode .signup-form-submit-button,
+body.dark-mode #resetPasswordSubmitButton {
+    background-color: #a06b25;
+    border-color: #555;
+    color: white;
+}
+
+body.dark-mode .login-form-submit-button:hover,
+body.dark-mode .signup-form-submit-button:hover,
+body.dark-mode #resetPasswordSubmitButton:hover {
+    background-color: #8d5e20;
+}
+
+/* Corrections pour le mode sombre sur le texte des formulaires */
+body.dark-mode .signup-prompt-text,
+body.dark-mode .login-prompt-text,
+body.dark-mode .newsletter-label,
+body.dark-mode .signup-info-title,
+body.dark-mode .signup-info-text {
+    color: white;
+}
+
+body.dark-mode .signup-link-group,
+body.dark-mode .login-link-group {
+    color: #99ccff;
+}
+
+body.dark-mode .signup-link-group:hover,
+body.dark-mode .login-link-group:hover {
+    color: #77aadd;
+}
+
+
+/* New styles for the user dropdown in rectangle-one */
+.user-dropdown-container {
+    position: absolute;
+    top: 20px; /* 20px from the top */
+    left: 5px; /* 5px from the left */
+    display: inline-block;
+    z-index: 50; /* Ensure it's above other content if any */
+}
+
+.user-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.user-dropdown-icon {
+    width: 10px;
+    height: 10px;
+    display: block;
+    transition: transform 0.3s ease; /* For rotation effect */
+}
+
+.user-dropdown-icon.rotate {
+    transform: rotate(90deg); /* Rotates the icon downwards */
+}
+
+.user-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black; /* Default color for light mode */
+    transition: color 0.3s ease;
+}
+
+.user-dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 5px; /* Space below the button */
+}
+
+.user-dropdown-content.show {
+    display: block; /* Show when 'show' class is added by JS */
+}
+
+.user-dropdown-content .dropdown-item {
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: flex; /* Each link on its own line */
+    align-items: center; /* Center vertically the icon and the text */
+    gap: 5px; /* Space between the icon and the text */
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.user-dropdown-content .dropdown-item:hover {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.user-dropdown-content .dropdown-item.hidden {
+    display: none; /* For "Modification du compte" when user is not logged in */
+}
+
+/* Dark mode styles for the new user dropdown */
+body.dark-mode .user-text {
+    color: white;
+}
+
+body.dark-mode .user-dropdown-content {
+    background-color: #333;
+}
+
+body.dark-mode .user-dropdown-content .dropdown-item {
+    color: white;
+}
+
+body.dark-mode .user-dropdown-content .dropdown-item:hover {
+    background-color: #555;
+}
+
+/* Inversion des couleurs UNIQUEMENT pour l'icône "envoyer.png" en mode sombre dans le dropdown utilisateur */
+body.dark-mode .user-dropdown-icon {
+    filter: invert(100%) brightness(200%);
+}
+
+/* Message de la modale de mot de passe oublié */
+#resetPasswordMessage {
+    text-align: left; /* Aligne le texte du message à gauche */
+    /* Vous pouvez également ajouter d'autres styles si nécessaire, par exemple : */
+    /* padding-left: 10px; */ /* Si vous voulez un petit décalage par rapport au bord */
+}
+
+/* Assurez-vous que les inputs dans la modale sont également alignés à gauche si ce n'est pas déjà le cas */
+#forgotPasswordModal .form-input {
+    text-align: left;
 }

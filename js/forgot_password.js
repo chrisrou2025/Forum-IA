@@ -1,104 +1,78 @@
-// js/forgot_password.js
-
-document.addEventListener('DOMContentLoaded', () => {
-    const openForgotPasswordModalButton = document.getElementById('openForgotPasswordModalButton');
-    const forgotPasswordLink = document.querySelector('.forgot-password-link');
+document.addEventListener('DOMContentLoaded', function() {
+    // Éléments pour la modale "Mot de passe oublié"
+    const forgotPasswordLinkAndIcon = document.getElementById('forgotPasswordLinkAndIcon'); // Nouveau ID du groupe
     const forgotPasswordModal = document.getElementById('forgotPasswordModal');
-    const closeForgotPasswordModalButton = document.getElementById('closeForgotPasswordModal');
-    const resetEmailInput = document.getElementById('resetEmailInput');
+    const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
     const resetPasswordSubmitButton = document.getElementById('resetPasswordSubmitButton');
+    const resetPasswordMessage = document.getElementById('resetPasswordMessage');
+    const resetEmailInput = document.getElementById('resetEmail');
 
-    // Fonction réutilisable pour ouvrir la modale
-    function openModal() {
-        forgotPasswordModal.style.display = 'flex'; // Utilise flex pour centrer
-        resetEmailInput.focus(); // Met le focus sur le champ d'email
-        resetEmailInput.value = ''; // Vide le champ d'email au cas où il y avait une valeur
+    // Fonction pour ouvrir la modale
+    function openForgotPasswordModal(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+        forgotPasswordModal.style.display = 'flex'; // Utiliser flex pour centrer
+        resetPasswordMessage.textContent = ''; // Efface les messages précédents
+        resetEmailInput.value = ''; // Efface le champ d'entrée
     }
 
-    // Écouteur d'événements pour le bouton icône
-    if (openForgotPasswordModalButton) {
-        openForgotPasswordModalButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le comportement par défaut
-            openModal(); // Appelle la fonction pour ouvrir la modale
-        });
+    // Attacher la fonction au nouveau conteneur de lien unique
+    if (forgotPasswordLinkAndIcon) {
+        forgotPasswordLinkAndIcon.addEventListener('click', openForgotPasswordModal);
     }
 
-    // Écouteur d'événements pour le lien textuel "Mot de passe oublié ?"
-    if (forgotPasswordLink) {
-        forgotPasswordLink.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
-            openModal(); // Appelle la fonction pour ouvrir la modale
-        });
-    }
-
-    // Fonction pour fermer la modale (bouton X)
-    if (closeForgotPasswordModalButton) {
-        closeForgotPasswordModalButton.addEventListener('click', () => {
+    // Gérer la fermeture de la modale via le bouton croix
+    if (closeForgotPasswordModal) {
+        closeForgotPasswordModal.addEventListener('click', function() {
             forgotPasswordModal.style.display = 'none';
         });
     }
 
-    // Fonction pour fermer la modale si l'utilisateur clique en dehors du contenu
-    window.addEventListener('click', (event) => {
-        if (event.target === forgotPasswordModal) {
+    // Fermer la modale si l'utilisateur clique en dehors de celle-ci
+    window.addEventListener('click', function(event) {
+        if (event.target == forgotPasswordModal) {
             forgotPasswordModal.style.display = 'none';
         }
     });
 
-    // Fonction pour fermer la modale avec la touche Échap
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && forgotPasswordModal.style.display === 'flex') {
-            forgotPasswordModal.style.display = 'none';
-        }
-    });
-
-    // Gestion du clic sur le bouton "Envoyer" dans la modale
+    // Gérer la soumission du formulaire de réinitialisation (envoi de l'email)
     if (resetPasswordSubmitButton) {
-        resetPasswordSubmitButton.addEventListener('click', async (event) => { // Ajout de 'async' ici
-            event.preventDefault();
+        resetPasswordSubmitButton.addEventListener('click', function() {
             const email = resetEmailInput.value;
-
-            if (!email) {
-                alert('Veuillez entrer votre adresse e-mail.');
-                resetEmailInput.focus();
-                return;
-            }
-
-            // Validation simple du format de l'e-mail (peut être plus sophistiquée côté backend)
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Veuillez entrer une adresse e-mail valide.');
-                resetEmailInput.focus();
-                return;
-            }
-
-            // Ici, nous allons envoyer l'e-mail au backend
-            try {
-                // Remplacez '/api/password-reset-request' par l'URL de votre API backend
-                const response = await fetch('/api/password-reset-request', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email }),
-                });
-
-                // Gérer la réponse du backend
-                if (response.ok) {
-                    // Si la requête a réussi (statut 2xx)
-                    const data = await response.json(); // Si votre backend renvoie du JSON
-                    alert(data.message || 'Un e-mail de réinitialisation a été envoyé à votre adresse. Veuillez vérifier votre boîte de réception.');
-                    forgotPasswordModal.style.display = 'none'; // Ferme la modale après l'envoi
-                } else {
-                    // Si la requête a échoué (statut 4xx, 5xx)
-                    const errorData = await response.json(); // Tente de lire le message d'erreur du backend
-                    alert(errorData.message || 'Une erreur est survenue lors de l\'envoi de l\'e-mail de réinitialisation. Veuillez réessayer.');
-                }
-            } catch (error) {
-                // Gérer les erreurs réseau ou autres problèmes
-                console.error('Erreur lors de la requête de réinitialisation de mot de passe :', error);
-                alert('Impossible de se connecter au serveur. Veuillez vérifier votre connexion ou réessayer plus tard.');
+            if (email) {
+                // Ici, vous enverriez l'e-mail à votre backend via une requête AJAX (fetch, XMLHttpRequest, etc.)
+                // Exemple simplifié pour la démo :
+                resetPasswordMessage.textContent = 'Un lien de réinitialisation a été envoyé à ' + email;
+                resetPasswordMessage.style.color = 'green';
+                // En production, vous ajouteriez ici la logique de communication avec le serveur.
+                // fetch('/api/reset-password-request', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //     },
+                //     body: JSON.stringify({ email: email })
+                // })
+                // .then(response => response.json())
+                // .then(data => {
+                //     if (data.success) {
+                //         resetPasswordMessage.textContent = data.message || 'Un lien de réinitialisation a été envoyé.';
+                //         resetPasswordMessage.style.color = 'green';
+                //     } else {
+                //         resetPasswordMessage.textContent = data.message || 'Erreur lors de l\'envoi du lien.';
+                //         resetPasswordMessage.style.color = 'red';
+                //     }
+                // })
+                // .catch(error => {
+                //     console.error('Erreur:', error);
+                //     resetPasswordMessage.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+                //     resetPasswordMessage.style.color = 'red';
+                // });
+            } else {
+                resetPasswordMessage.textContent = 'Veuillez entrer votre adresse e-mail.';
+                resetPasswordMessage.style.color = 'red';
             }
         });
     }
+
+    // Note : L'initialisation de la langue et du contraste devrait être gérée par language.js et contrast.js
+    // Ces fonctions ne sont pas appelées ici car leurs scripts sont inclus séparément.
 });
