@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu_gauche.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-top-space"></div>
+
+        <div class="header-banner">
+            <div class="header-logo">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Logo Forum IA">
+                </a>
+            </div>
+            <div class="header-controls">
+                <div class="header-control-group">
+                    <img src="assets/icones/contact.png" alt="Icône Contact" class="contact-icon">
+                    <a href="mailto:contact@forumia.fr" class="contact-link">
+                        <button class="contact-button" data-lang-key="contactButton">Nous contacter</button>
+                    </a>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/connexion.png" alt="Icône Connexion" class="connexion-icon">
+                    <a href="connexion.html" class="login-link">
+                        <button class="login-button" data-lang-key="loginButton">Se connecter</button>
+                    </a>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/inscription.png" alt="Icône Inscription" class="inscription-icon">
+                    <a href="inscription.html" class="signup-link">
+                        <button class="signup-button" data-lang-key="signupButton">S'inscrire</button>
+                    </a>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <div class="lang-dropdown-container">
+                        <button class="lang-button" id="currentLangButton">
+                            <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
+                                id="currentLangIcon">
+                        </button>
+                        <div class="lang-dropdown-content" id="langDropdown">
+                            <a href="#" data-lang="fr">
+                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                            </a>
+                            <a href="#" data-lang="en">
+                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            </a>
+                            <a href="#" data-lang="es">
+                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            </a>
+                            <a href="#" data-lang="de">
+                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            </a>
+                            <a href="#" data-lang="it">
+                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="search-button" id="openSearchModalButton">
+                    <img src="assets/icones/recherche.png" alt="Icône Recherche" class="search-icon">
+                </button>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                    <button class="contrast-button" data-lang-key="contrastButton"
+                        id="toggleContrastButton">Contraste</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-title-section">
+            <h1 class="header-title" data-lang-key="mainTitle">VOTRE FORUM D'ÉCHANGE SUR L'IA</h1>
+            <p class="header-subtitle" data-lang-key="subtitle">Discutez, apprenez et partagez sur l'intelligence
+                artificielle</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="index-rectangles-container">
+            <div class="rectangle rectangle-one">
+                <div class="user-dropdown-container" id="userDropdownArea">
+                    <img src="assets/icones/parametre.png" alt="Icône Paramètres" class="settings-icon">
+                    <button class="user-dropdown-button" id="userDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="user-dropdown-icon">
+                        <span class="user-text">UTILISATEUR</span>
+                    </button>
+                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon" id="userLockIcon">
+
+                    <div class="user-dropdown-content" id="userDropdownContent">
+                        <a href="profil.html" class="dropdown-item">
+                            <img src="assets/icones/utilisateur.png" alt="Icône Profil">Profil
+                        </a>
+                        <a href="modification_compte.html" class="dropdown-item" id="modifyAccountLink">
+                            <img src="assets/icones/modification-compte.png"
+                                alt="Icône Modification du compte">Modification du compte
+                        </a>
+                        <a href="creer_post.html" class="dropdown-item">
+                            <img src="assets/icones/creation-post.png" alt="Icône Créer un post">Créer un nouveau post
+                        </a>
+                    </div>
+                </div>
+
+                <div class="admin-dropdown-container" id="adminDropdownArea">
+                    <img src="assets/icones/administration.png" alt="Icône Administration" class="admin-settings-icon">
+                    <button class="admin-dropdown-button" id="adminDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="admin-dropdown-icon">
+                        <span class="admin-text">ADMINISTRATION</span>
+                    </button>
+                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon"
+                        id="adminLockIcon">
+
+                    <div class="admin-dropdown-content" id="adminDropdownContent">
+                        <a href="moderation.html" class="dropdown-item">
+                            <img src="assets/icones/moderation.png" alt="Icône Modération">Modération
+                        </a>
+                        <a href="gestion_posts.html" class="dropdown-item">
+                            <img src="assets/icones/gestion-posts.png" alt="Icône Gestion des postes">Gestion des postes
+                        </a>
+                        <a href="gestion_utilisateurs.html" class="dropdown-item">
+                            <img src="assets/icones/gestion-utilisateur.png"
+                                alt="Icône Gestion des utilisateurs">Gestion des utilisateurs
+                        </a>
+                    </div>
+                </div>
+
+                <div class="categories-dropdown-container" id="categoriesDropdownArea">
+                    <img src="assets/icones/categories.png" alt="Icône Catégories" class="categories-icon">
+                    <button class="categories-dropdown-button" id="categoriesDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="categories-dropdown-icon">
+                        <span class="categories-text">CATEGORIES</span>
+                    </button>
+                    <div class="categories-dropdown-content" id="categoriesDropdownContent">
+                        <a href="tuto_ia.html" class="dropdown-item">
+                            <img src="assets/icones/tuto-ia.png" alt="Icône Tuto IA">Tuto IA
+                        </a>
+                        <a href="toolbox_ia.html" class="dropdown-item">
+                            <img src="assets/icones/toolbox-ia.png" alt="Icône Toolbox IA">Toolbox IA
+                        </a>
+                        <a href="debats_discussions.html" class="dropdown-item">
+                            <img src="assets/icones/débat.png" alt="Icône Débats et discussions sur l'IA">Débats et
+                            discussions sur l'IA
+                        </a>
+                        <a href="commentaires_site.html" class="dropdown-item">
+                            <img src="assets/icones/commentaire.png" alt="Icône Commentaire sur le site">Commentaire sur
+                            le site
+                        </a>
+                        <a href="imagerie_ia.html" class="dropdown-item">
+                            <img src="assets/icones/imagerie.png" alt="Icône Imagerie IA">Imagerie IA
+                        </a>
+                        <a href="actualites_ia.html" class="dropdown-item">
+                            <img src="assets/icones/actualites.png" alt="Icône Actualités sur l’IA">Actualités sur l’IA
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tags-dropdown-container" id="tagsDropdownArea">
+                    <img src="assets/icones/etiquette.png" alt="Icône Étiquette" class="tags-icon">
+                    <button class="tags-dropdown-button" id="tagsDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="tags-dropdown-icon">
+                        <span class="tags-text">TAGS</span>
+                    </button>
+                    <div class="tags-dropdown-content" id="tagsDropdownContent">
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Imagerie">Imagerie
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône IA">IA
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Machine Learning">Machine Learning
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Deep Learning">Deep Learning
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Robotique">Robotique
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Éthique IA">Éthique IA
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône NLP">NLP
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Vision par Ordinateur">Vision par Ordinateur
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Données Massives">Données Massives
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Algorithmes">Algorithmes
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Réseaux de neurones">Réseaux de neurones
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquette-m.png" alt="Icône Cybersécurité">Cybersécurité
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <img src="assets/icones/etiquettes.png" alt="Icône Toutes les tags">Toutes les Tags
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="rectangle rectangle-two">
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="mainFooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <span data-lang-key="copyrightText">Forum IA 2025</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 data-lang-key="searchModalTitle">Rechercher sur le Forum</h2>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Entrez vos mots-clés..."
+                    data-lang-key="searchPlaceholder">
+                <button id="performSearchButton" data-lang-key="searchButtonText">Rechercher</button>
+            </div>
+            <div id="searchResults" class="search-results-container">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/language.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
