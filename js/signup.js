@@ -1,17 +1,24 @@
 // js/signup.js
 document.addEventListener('DOMContentLoaded', () => {
-    const signupFormSubmitButton = document.getElementById('signupFormSubmitButton');
-    const usernameInput = document.getElementById('usernameInput');
-    const emailInput = document.getElementById('emailInput');
-    const passwordInput = document.getElementById('passwordInput');
-    const confirmPasswordInput = document.getElementById('confirmPasswordInput');
-    const formMessage = document.getElementById('formMessage'); // Pour afficher les messages
+    // CORRECTION : Utilisation des bons identifiants correspondant au HTML
+    const signupFormSubmitButton = document.querySelector('.signup-form-submit-button');
+    const usernameInput = document.getElementById('signupUsername');
+    const emailInput = document.getElementById('signupEmail');
+    const passwordInput = document.getElementById('signupPassword');
+    const confirmPasswordInput = document.getElementById('signupConfirmPassword');
+    const formMessage = document.getElementById('signupMessage'); // Pour afficher les messages
 
     // Fonction pour afficher un message (succès ou erreur)
     function displayMessage(message, isError = false) {
         formMessage.textContent = message;
         formMessage.style.color = isError ? 'red' : 'green';
         formMessage.style.display = 'block';
+    }
+
+    // Vérification que tous les éléments existent avant d'ajouter l'événement
+    if (!signupFormSubmitButton || !usernameInput || !emailInput || !passwordInput || !confirmPasswordInput || !formMessage) {
+        console.error('Erreur : Un ou plusieurs éléments du formulaire sont introuvables');
+        return;
     }
 
     signupFormSubmitButton.addEventListener('click', (event) => {

@@ -3,16 +3,13 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Référence correcte aux champs de saisie et au bouton de soumission
-    // Assurez-vous que ces IDs correspondent EXACTEMENT à ceux de votre connexion.html
-    const emailInput = document.getElementById('loginEmail'); // L'ID dans connexion.html est 'loginEmail'
-    const passwordInput = document.getElementById('loginPassword'); // L'ID dans connexion.html est 'loginPassword'
-    const loginSubmitButton = document.getElementById('loginFormSubmitButton'); // L'ID dans connexion.html est 'loginFormSubmitButton'
-    const loginMessageDisplay = document.getElementById('loginMessage'); // L'ID dans connexion.html est 'loginMessage'
+    const emailInput = document.getElementById('loginEmail');
+    const passwordInput = document.getElementById('loginPassword');
+    // CORRECTION : Utiliser querySelector avec la classe au lieu de getElementById
+    const loginSubmitButton = document.querySelector('.login-form-submit-button');
+    const loginMessageDisplay = document.getElementById('loginMessage');
 
     // Fonction pour obtenir la traduction des messages
-    // Cette fonction est répétée ici pour être autonome pour ce script.
-    // Dans une application plus grande, elle serait probablement dans un fichier global (ex: language.js)
-    // et accessible via une fonction exportée ou une variable globale.
     function getTranslation(key) {
         const translations = {
             fr: {
@@ -35,86 +32,111 @@ document.addEventListener('DOMContentLoaded', () => {
         return translations[currentLang] ? translations[currentLang][key] : key;
     }
 
+    // Vérification que tous les éléments nécessaires existent
+    if (!emailInput) {
+        console.error("L'élément avec l'ID 'loginEmail' n'a pas été trouvé.");
+        return;
+    }
+    
+    if (!passwordInput) {
+        console.error("L'élément avec l'ID 'loginPassword' n'a pas été trouvé.");
+        return;
+    }
+    
+    if (!loginSubmitButton) {
+        console.error("L'élément avec la classe 'login-form-submit-button' n'a pas été trouvé.");
+        return;
+    }
+    
+    if (!loginMessageDisplay) {
+        console.error("L'élément avec l'ID 'loginMessage' n'a pas été trouvé.");
+    }
+
     // Écouteur d'événements pour le bouton de connexion
-    if (loginSubmitButton) { // S'assurer que le bouton existe avant d'ajouter l'écouteur
-        loginSubmitButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Empêche le rechargement de la page par défaut du formulaire
+    loginSubmitButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Empêche le rechargement de la page
 
-            const email = emailInput.value.trim(); // Récupère la valeur de l'email et supprime les espaces
-            const password = passwordInput.value.trim(); // Récupère la valeur du mot de passe et supprime les espaces
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
 
-            // --- Logique de validation des champs obligatoires ---
-            if (!email || !password) {
-                if (loginMessageDisplay) {
-                    loginMessageDisplay.textContent = getTranslation('fillAllFields');
-                    loginMessageDisplay.style.color = 'red';
-                    loginMessageDisplay.style.display = 'block'; // S'assure que le message est visible
-                } else {
-                    // Fallback si l'élément de message n'est pas trouvé (pour le débogage)
-                    console.error("L'élément 'loginMessage' n'a pas été trouvé dans le DOM.");
-                    alert(getTranslation('fillAllFields'));
-                }
-                return; // TRÈS IMPORTANT : Arrête l'exécution de la fonction ici si les champs sont vides
+        // Logique de validation des champs obligatoires
+        if (!email || !password) {
+            if (loginMessageDisplay) {
+                loginMessageDisplay.textContent = getTranslation('fillAllFields');
+                loginMessageDisplay.style.color = 'red';
+                loginMessageDisplay.style.display = 'block';
             } else {
-                // Si les champs sont remplis, efface tout message d'erreur précédent
-                if (loginMessageDisplay) {
-                    loginMessageDisplay.textContent = '';
-                    loginMessageDisplay.style.display = 'none';
-                }
+                // Fallback si l'élément de message n'est pas trouvé
+                console.error("L'élément 'loginMessage' n'a pas été trouvé dans le DOM.");
+                alert(getTranslation('fillAllFields'));
+            }
+            return;
+        } else {
+            // Si les champs sont remplis, efface tout message d'erreur précédent
+            if (loginMessageDisplay) {
+                loginMessageDisplay.textContent = '';
+                loginMessageDisplay.style.display = 'none';
+            }
 
-                // --- Votre logique de connexion au backend commencerait ici ---
-                console.log("Email :", email, "Mot de passe :", password);
-                console.log("Les champs sont remplis. Prêt à envoyer au backend.");
+            // Logique de connexion
+            console.log("Email :", email, "Mot de passe :", password);
+            console.log("Les champs sont remplis. Prêt à envoyer au backend.");
 
-                // Exemple d'appel API factice (décommenter et adapter pour votre backend réel)
-                /*
-                try {
-                    const response = await fetch('/api/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ email, password }),
-                    });
+            // Simulation d'une connexion réussie pour le test
+            if (loginMessageDisplay) {
+                loginMessageDisplay.textContent = getTranslation('loginSuccess');
+                loginMessageDisplay.style.color = 'green';
+                loginMessageDisplay.style.display = 'block';
+            }
 
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (loginMessageDisplay) {
-                            loginMessageDisplay.textContent = getTranslation('loginSuccess');
-                            loginMessageDisplay.style.color = 'green';
-                            loginMessageDisplay.style.display = 'block';
-                        }
-                        // Gérer la connexion réussie (ex: stocker le token, rediriger)
-                        // window.location.href = 'index.html'; // Exemple de redirection
-                    } else {
-                        const errorData = await response.json();
-                        if (loginMessageDisplay) {
-                            loginMessageDisplay.textContent = errorData.message || getTranslation('loginError');
-                            loginMessageDisplay.style.color = 'red';
-                            loginMessageDisplay.style.display = 'block';
-                        }
-                    }
-                } catch (error) {
-                    console.error('Erreur de connexion:', error);
+            // Votre logique de connexion au backend irait ici
+            /*
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
                     if (loginMessageDisplay) {
-                        loginMessageDisplay.textContent = getTranslation('serverConnectionError');
+                        loginMessageDisplay.textContent = getTranslation('loginSuccess');
+                        loginMessageDisplay.style.color = 'green';
+                        loginMessageDisplay.style.display = 'block';
+                    }
+                    // Gérer la connexion réussie
+                    // window.location.href = 'index.html';
+                } else {
+                    const errorData = await response.json();
+                    if (loginMessageDisplay) {
+                        loginMessageDisplay.textContent = errorData.message || getTranslation('loginError');
                         loginMessageDisplay.style.color = 'red';
                         loginMessageDisplay.style.display = 'block';
                     }
                 }
-                */
+            } catch (error) {
+                console.error('Erreur de connexion:', error);
+                if (loginMessageDisplay) {
+                    loginMessageDisplay.textContent = getTranslation('serverConnectionError');
+                    loginMessageDisplay.style.color = 'red';
+                    loginMessageDisplay.style.display = 'block';
+                }
             }
-        });
-    }
+            */
+        }
+    });
 
-    // Gestion du message de succès de réinitialisation si présent dans l'URL
+    // Gestion du message de succès de réinitialisation
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('resetSuccess') === 'true') {
         if (loginMessageDisplay) {
             loginMessageDisplay.textContent = getTranslation('resetSuccess');
             loginMessageDisplay.style.color = 'green';
-            loginMessageDisplay.style.display = 'block'; // Assurez-vous qu'il est visible
-            // Supprimer le paramètre de l'URL pour ne pas afficher le message à chaque rechargement
+            loginMessageDisplay.style.display = 'block';
+            // Supprimer le paramètre de l'URL
             history.replaceState(null, '', window.location.pathname);
         }
     }

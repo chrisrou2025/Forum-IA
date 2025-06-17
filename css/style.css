@@ -649,8 +649,9 @@ body {
 }
 
 /* MODAL */
+
 .modal {
-    display: none;
+    display: none; /* La modale est cachée par défaut */
     position: fixed;
     z-index: 200;
     left: 0;
@@ -659,9 +660,15 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
+    /* AJOUT pour centrer la modal */
     justify-content: center;
     align-items: center;
+}
+
+/* Classe pour quand la modale est affichée - CORRIGÉE */
+.modal.show {
+    display: flex; /* Utilise flexbox pour centrer */
+    /* Suppression de padding-top qui décalait la modal vers le haut */
 }
 
 .modal-content {
@@ -673,6 +680,10 @@ body {
     border-radius: 10px;
     position: relative;
     text-align: center;
+    /* SUPPRESSION de margin-top qui n'est plus nécessaire */
+    /* Ajout de max-height pour éviter que la modal prenne toute la hauteur */
+    max-height: 80vh;
+    overflow-y: auto; /* Permet le défilement si le contenu dépasse */
 }
 
 .close-button {

@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Positionnement de l'ADMINISTRATION
         // top de l'utilisateur (20px) + hauteur totale occupée par l'utilisateur + espacement
-        adminDropdownArea.style.top = `${20 + userTotalOccupiedHeight + menuSpacing}px`;
+        adminDropdownArea.style.top = `${10 + userTotalOccupiedHeight + menuSpacing}px`;
 
         // Hauteur de la zone du bouton admin + son contenu si affiché
         const adminAreaCurrentHeight = adminDropdownArea.offsetHeight;
@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             adminDropdownIcon.classList.remove('rotate');
             adjustMenuPositions();
         }
+        // Keep categories menu open if it's the target of the click or if it's already open and not clicked outside
         if (!isClickInsideCategoriesDropdownArea && categoriesDropdownContent.classList.contains('show')) {
             categoriesDropdownContent.classList.remove('show');
             categoriesDropdownIcon.classList.remove('rotate');
@@ -146,6 +147,10 @@ document.addEventListener('DOMContentLoaded', function () {
             adjustMenuPositions();
         }
     });
+
+    // Ouvre le menu "Catégories" par défaut
+    categoriesDropdownContent.classList.add('show');
+    categoriesDropdownIcon.classList.add('rotate');
 
     // Appel initial pour positionner les menus au chargement
     adjustMenuPositions();
