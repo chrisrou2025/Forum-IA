@@ -91,6 +91,9 @@
     margin-top: 5px; /* Petite marge entre le bouton du menu et son contenu déroulant */
     top: 100%; /* Positionne le contenu juste en dessous de son bouton parent */
     left: 15px; /* Décalage pour l'alignement visuel avec les icônes du bouton parent */
+    list-style-type: none; /* AJOUTÉ: Supprime les puces des listes */
+    padding: 0; /* AJOUTÉ: Supprime le rembourrage par défaut des listes */
+    margin: 0; /* AJOUTÉ: Supprime la marge par défaut des listes */
 }
 
 /* Affichage du contenu du menu */

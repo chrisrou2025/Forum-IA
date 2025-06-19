@@ -23,7 +23,7 @@
                     <img src="assets/logo.png" alt="Logo Forum IA">
                 </a>
             </div>
-            <div class="header-controls">
+            <nav class="header-controls">
                 <div class="header-control-group">
                     <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
                     <div class="lang-dropdown-container">
@@ -32,23 +32,11 @@
                                 id="currentLangIcon">
                         </button>
                         <div class="lang-dropdown-content" id="langDropdown">
-                            <a href="#" data-lang="fr">
-                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                            <a href="#" class="lang-option" data-lang="fr">
+                                <img src="assets/icones/drapeau_fr.png" alt="Français" class="lang-icon"> Français
                             </a>
-                            <a href="#" data-lang="en">
-                                <img src="assets/icones/drapeau_en.png" alt="English"> English
-                            </a>
-                            <a href="#" data-lang="es">
-                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
-                            </a>
-                            <a href="#" data-lang="de">
-                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
-                            </a>
-                            <a href="#" data-lang="it">
-                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
-                            </a>
-                            <a href="#" data-lang="pt">
-                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            <a href="#" class="lang-option" data-lang="en">
+                                <img src="assets/icones/drapeau_en.png" alt="Anglais" class="lang-icon"> English
                             </a>
                         </div>
                     </div>
@@ -59,7 +47,7 @@
                     <button class="contrast-button" data-lang-key="contrastButton"
                         id="toggleContrastButton">Contraste</button>
                 </div>
-            </div>
+            </nav>
         </div>
 
         <div class="header-title-section header-title-section-reduced">
@@ -67,9 +55,11 @@
     </header>
 
     <main class="main-content main-connexion-layout">
-        <div class="login-main-rectangle">
+        <section class="login-main-rectangle">
             <div class="login-content-wrapper">
-                <h2 class="login-rectangle-title" data-lang-key="loginTitle">CONNEXION</h2>
+                <div class="title-box">
+                    <h1 class="login-rectangle-title" data-lang-key="loginTitle">Connexion</h1>
+                </div>
             </div>
             <div class="login-inner-rectangle">
                 <span id="loginMessage" class="form-message"></span>
@@ -90,7 +80,7 @@
                     <span class="signup-icon-visual"></span>
                 </a>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer class="footer" id="mainFooter">
@@ -121,7 +111,8 @@
     <script src="js/language.js"></script>
     <script src="js/contrast.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/forgot_password.js"></script>
+    <script src="js/forgot_Password.js"></script>
+
 </body>
 
 </html>

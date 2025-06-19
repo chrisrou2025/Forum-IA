@@ -1,6 +1,18 @@
 /* style.css */
 /* Nettoyé et optimisé. */
 
+/* Variables CSS pour éviter la répétition */
+:root {
+    --transition-standard: 0.3s ease;
+    --primary-orange: #D38731;
+    --primary-orange-hover: #c07a2c;
+    --dark-orange: #a06b25;
+    --dark-orange-hover: #8d5e20;
+    --border-radius-small: 5px;
+    --border-radius-medium: 25px;
+    --border-radius-large: 30px;
+}
+
 /* Styles généraux */
 body {
     margin: 0;
@@ -10,7 +22,8 @@ body {
 
 /* EN-TÊTE (HEADER) */
 .header {
-    width: 1440px;
+    max-width: 1920px; /* MODIFIÉ: Limite la largeur max sur les grands écrans */
+    width: 100%; /* AJOUTÉ: Occupe 100% de la largeur disponible jusqu'à max-width */
     margin: 0 auto; /* Centre l'en-tête */
 }
 
@@ -81,7 +94,7 @@ body {
     width: 25px;
     height: 25px;
     display: block; /* S'assure que l'icône se comporte comme un bloc pour les dimensions */
-    transition: filter 0.3s ease; /* For the dark mode effect */
+    transition: filter var(--transition-standard); /* For the dark mode effect */
 }
 
 /* Style du bouton recherche */
@@ -112,7 +125,7 @@ body {
     height: 20px;
     padding: 0 15px;
     border: 1px solid white;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
     background-color: transparent;
     color: white;
     font-family: 'Inria Sans', sans-serif;
@@ -122,8 +135,9 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
     width: auto;
+    text-decoration: none; /* AJOUTÉ: Supprime le soulignement */
 }
 
 .contact-button:hover,
@@ -154,7 +168,7 @@ body {
     width: 30px;
     height: 30px;
     display: block;
-    transition: filter 0.3s ease;
+    transition: filter var(--transition-standard);
 }
 
 .lang-dropdown-content {
@@ -164,7 +178,7 @@ body {
     min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 100;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
     top: 100%;
     left: 0;
     margin-top: 5px;
@@ -189,7 +203,7 @@ body {
 
 .lang-dropdown-content a:hover {
     background-color: #ddd;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
 }
 
 .lang-dropdown-content.show {
@@ -205,7 +219,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
 }
 
 /* Réduction de la hauteur de la zone de titre pour les pages de connexion/inscription */
@@ -221,7 +235,7 @@ body {
     color: black;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color var(--transition-standard), text-shadow var(--transition-standard);
 }
 
 .header-subtitle {
@@ -229,12 +243,13 @@ body {
     font-weight: 800;
     color: black;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    transition: color var(--transition-standard), text-shadow var(--transition-standard);
 }
 
 /* CONTENU PRINCIPAL (MAIN) */
 .main-content {
-    width: 1440px;
+    max-width: 1920px; /* MODIFIÉ: Limite la largeur max */
+    width: 100%; /* AJOUTÉ: Occupe 100% de la largeur disponible */
     height: 734px;
     background-image: url('../assets/main-background.jpg');
     background-size: cover;
@@ -265,9 +280,10 @@ body {
 
 .rectangle {
     background-color: white;
-    border-radius: 30px;
+    border-radius: var(--border-radius-large);
     border: 1px solid black;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color var(--transition-standard), border-color var(--transition-standard);
+    box-sizing: border-box !important;
 }
 
 .rectangle-one {
@@ -287,32 +303,32 @@ body {
     width: 960px;
     height: 680px;
     background-color: rgba(127, 117, 75, 0.8);
-    border-radius: 30px;
+    border-radius: var(--border-radius-large);
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
 }
 
 /* Conteneur pour le titre (connexion/inscription) */
 .login-content-wrapper,
 .signup-content-wrapper {
-    padding-top: 50px;
-    padding-left: 100px;
+    padding-top: 0px;
+    padding-left: 0px;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 /* Style du titre "Connexion" ou "Inscription" */
 .login-rectangle-title,
 .signup-rectangle-title {
     font-family: 'Inria Sans', sans-serif;
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 700;
     color: white;
     margin: 0;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 /* Rectangle blanc interne pour les formulaires (connexion/inscription) */
@@ -321,14 +337,14 @@ body {
     width: 760px;
     height: 495px;
     background-color: white;
-    border-radius: 25px;
+    border-radius: var(--border-radius-medium);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding: 40px 35px 0 35px;
     box-sizing: border-box;
     position: relative; /* Très important pour le positionnement absolu des éléments enfants */
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
 }
 
 /* Messages de succès/erreur sur les formulaires */
@@ -358,7 +374,7 @@ body {
     margin: 0;
     width: calc(100% - 70px);
     text-align: left;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 /* Styles pour le texte descriptif sur la page Inscription */
@@ -373,7 +389,7 @@ body {
     width: calc(100% - 70px);
     text-align: left;
     line-height: 1.4;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 /* Styles de base pour les champs de formulaire */
@@ -387,13 +403,84 @@ body {
     padding: 10px 0;
     color: #333;
     box-sizing: border-box;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: background-color var(--transition-standard), color var(--transition-standard), border-color var(--transition-standard);
     margin-bottom: 15px; /* Espace entre les inputs (valeur par défaut, peut être surchargée) */
 }
 
 .form-input::placeholder {
     color: #999;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
+}
+
+/* Style for the title box */
+.title-box {
+    /* Changez le background-color en blanc avec opacité de 20% */
+    background-color: rgba(255, 255, 255, 0.2);
+    border-top-left-radius: 30px; /* Top-left corner radius */
+    border-bottom-right-radius: 30px; /* Bottom-right corner radius */
+    padding: 15px 20px; /* Adjust padding as needed */
+    display: inline-block; /* Makes the div only as wide as its content */
+    margin-top: 0px; /* Adjust as needed for vertical positioning */
+    margin-left: -35px; /* To overlap the border of the main rectangle slightly if needed */
+    border: 1px solid black; /* Add a border if desired */
+    box-sizing: border-box;
+    /* Ensure title text is centered within its new box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adjust the title's margin within the new box */
+.login-rectangle-title,
+.signup-rectangle-title {
+    margin: 0; /* Remove default margin from h2 */
+    /* Nouvelle couleur du titre FF9C06 */
+    color: #FF9C06;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    /* Effet d'ombre (shadow) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajustez les valeurs selon l'effet désiré */
+    /* Stroke outside de 1px (implémenté via text-shadow pour un effet similaire ou avec un filtre) */
+    /* Pour un véritable "stroke outside", CSS seul est limité. text-shadow est la meilleure alternative. */
+    /* Nous pouvons simuler un effet de contour plus prononcé avec des ombres multiples */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+         2px 2px 4px rgba(0, 0, 0, 0.5); /* Garde l'ombre d'origine */
+}
+
+/* Adjust the content wrapper to ensure the title box is positioned correctly */
+.login-content-wrapper,
+.signup-content-wrapper {
+    padding-top: 0; /* Remove existing padding-top if any */
+    padding-left: 35px; /* Align with other content if needed */
+    width: 100%;
+    box-sizing: border-box;
+    display: flex; /* Use flexbox to align content */
+    justify-content: flex-start; /* Align to the start (left) */
+    align-items: center; /* Center vertically */
+    margin-bottom: 30px; /* Maintain space below the title box */
+}
+
+/* Dark mode adjustments for the new title box */
+body.dark-mode .title-box {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly less opaque white for dark mode */
+    border-color: #555;
+}
+
+body.dark-mode .login-rectangle-title,
+body.dark-mode .signup-rectangle-title {
+    color: #FF9C06;
+    /* Garde le même effet d'ombre pour le mode sombre */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+         2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Positionnement des champs pour la page de connexion */
@@ -406,7 +493,6 @@ body {
     position: absolute;
     top: 140px;
     left: 35px;
-    /* margin-bottom: 20px; <-- Supprimé car inefficace avec position: absolute */
 }
 
 /* Conteneur pour le lien "Mot de passe oublié ?" et l'icône */
@@ -418,7 +504,6 @@ body {
     display: flex; /* Maintient la disposition flex */
     align-items: center;
     justify-content: flex-start; /* Aligne le contenu à gauche */
-    /* REMPLACÉ PAR LA RÈGLE CI-DESSOUS pour le gap de l'icône interne */
 }
 
 /* NOUVEAUX STYLES POUR LE LIEN "MOT DE PASSE OUBLIÉ ?" ET SON ICÔNE */
@@ -433,16 +518,11 @@ body {
     font-size: 14px; /* Taille de police correcte */
     font-weight: 700;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 .forgot-password-link-group:hover {
     color: #555;
-}
-
-.forgot-password-link-group .forgot-password-text {
-    /* Ce span peut exister dans le HTML, mais le style hérite déjà du parent */
-    /* Aucune règle spécifique nécessaire ici à moins de vouloir le surcharger */
 }
 
 .submit-icon-visual { /* Style pour le span de l'icône "Envoyer" du lien mot de passe oublié */
@@ -451,9 +531,8 @@ body {
     height: 10px; /* Taille correcte */
     display: block;
     outline: none;
-    transition: filter 0.3s ease;
+    transition: filter var(--transition-standard);
 }
-
 
 /* Positionnement des champs pour la page d'inscription */
 .signup-inner-rectangle .username-input {
@@ -476,7 +555,6 @@ body {
     top: 260px;
     left: 35px;
 }
-
 
 /* Conteneur pour la case à cocher de la newsletter */
 .newsletter-consent-container {
@@ -504,13 +582,13 @@ body {
 
 /* Style de la checkbox quand elle est cochée */
 .newsletter-checkbox:checked {
-    background-color: #D38731;
-    border-color: #D38731;
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
 }
 
 /* Pour afficher un "tick" ou une couleur différente quand coché */
 .newsletter-checkbox:checked::before {
-    content: '\2713'; /* Caractère "checkmark" (tick) */
+    content: '\2713';
     display: block;
     color: white;
     font-size: 10px;
@@ -524,7 +602,7 @@ body {
     font-weight: 700;
     color: black;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 /* Bouton de connexion ou d'inscription dans les formulaires */
@@ -532,9 +610,9 @@ body {
 .signup-form-submit-button {
     width: 295px;
     height: 65px;
-    background-color: #D38731;
+    background-color: var(--primary-orange);
     border: 1px solid black;
-    border-radius: 25px;
+    border-radius: var(--border-radius-medium);
     color: black;
     font-family: 'Inria Sans', sans-serif;
     font-size: 20px;
@@ -547,12 +625,12 @@ body {
     bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    transition: background-color var(--transition-standard), border-color var(--transition-standard), color var(--transition-standard);
 }
 
 .login-form-submit-button:hover,
 .signup-form-submit-button:hover {
-    background-color: #c07a2c;
+    background-color: var(--primary-orange-hover);
 }
 
 /* Conteneur pour le prompt "Pas encore de compte ?" (page connexion) ou "Déjà un compte ?" (page inscription) */
@@ -576,7 +654,7 @@ body {
     text-decoration: none;
     color: black;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
 }
 
 .signup-link-group:hover,
@@ -601,7 +679,7 @@ body {
     height: 10px; /* Taille cohérente avec la demande */
     display: block;
     outline: none;
-    transition: filter 0.3s ease;
+    transition: filter var(--transition-standard);
 }
 
 /* Styles spécifiques pour la modale "Mot de passe oublié ?" */
@@ -631,25 +709,24 @@ body {
 
 #resetPasswordSubmitButton {
     padding: 10px 15px;
-    background-color: #D38731;
+    background-color: var(--primary-orange);
     color: black;
     border: 1px solid black;
-    border-radius: 25px;
+    border-radius: var(--border-radius-medium);
     cursor: pointer;
     font-size: 18px;
     font-family: 'Inria Sans', sans-serif;
     font-weight: 700;
     width: 120px;
     margin: 0 auto;
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    transition: background-color var(--transition-standard), border-color var(--transition-standard), color var(--transition-standard);
 }
 
 #resetPasswordSubmitButton:hover {
-    background-color: #c07a2c;
+    background-color: var(--primary-orange-hover);
 }
 
 /* MODAL */
-
 .modal {
     display: none; /* La modale est cachée par défaut */
     position: fixed;
@@ -668,7 +745,6 @@ body {
 /* Classe pour quand la modale est affichée - CORRIGÉE */
 .modal.show {
     display: flex; /* Utilise flexbox pour centrer */
-    /* Suppression de padding-top qui décalait la modal vers le haut */
 }
 
 .modal-content {
@@ -680,7 +756,6 @@ body {
     border-radius: 10px;
     position: relative;
     text-align: center;
-    /* SUPPRESSION de margin-top qui n'est plus nécessaire */
     /* Ajout de max-height pour éviter que la modal prenne toute la hauteur */
     max-height: 80vh;
     overflow-y: auto; /* Permet le défilement si le contenu dépasse */
@@ -723,7 +798,7 @@ body {
     display: flex;
     align-items: center;
     border: 1px solid #ddd;
-    border-radius: 25px;
+    border-radius: var(--border-radius-medium);
     padding: 5px 15px;
     margin: 20px auto;
     max-width: 400px;
@@ -744,7 +819,7 @@ body {
 }
 
 #performSearchButton {
-    background-color: #D38731;
+    background-color: var(--primary-orange);
     color: black;
     border: none;
     border-radius: 20px;
@@ -752,11 +827,11 @@ body {
     cursor: pointer;
     font-family: 'Inria Sans', sans-serif;
     font-weight: 700;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
 }
 
 #performSearchButton:hover {
-    background-color: #c07a2c;
+    background-color: var(--primary-orange-hover);
 }
 
 .search-results-container {
@@ -778,17 +853,17 @@ body {
     border-bottom: none;
 }
 
-
 /* PIED DE PAGE (FOOTER) */
 .footer {
-    width: 1440px;
+    max-width: 1920px; /* MODIFIÉ: Limite la largeur max */
+    width: 100%; /* AJOUTÉ: Occupe 100% de la largeur disponible */
     height: 70px;
     background-color: white;
-    margin: 0 auto;
+    margin: 0 auto; /* Centrera le pied de page */
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background-color 0.3s ease;
+    transition: background-color var(--transition-standard);
 }
 
 .footer-content {
@@ -811,7 +886,7 @@ body {
     width: 20px;
     height: 20px;
     margin-right: 5px;
-    transition: filter 0.3s ease;
+    transition: filter var(--transition-standard);
 }
 
 .footer-left span,
@@ -820,7 +895,91 @@ body {
     font-size: 14px;
     font-weight: 700;
     color: black;
-    transition: color 0.3s ease;
+    transition: color var(--transition-standard);
+}
+
+/* New styles for the user dropdown in rectangle-one */
+.user-dropdown-container {
+    position: absolute;
+    top: 20px; /* 20px from the top */
+    left: 5px; /* 5px from the left */
+    display: inline-block;
+    z-index: 50; /* Ensure it's above other content if any */
+}
+
+.user-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.user-dropdown-icon {
+    width: 10px;
+    height: 10px;
+    display: block;
+    transition: transform var(--transition-standard); /* For rotation effect */
+}
+
+.user-dropdown-icon.rotate {
+    transform: rotate(90deg); /* Rotates the icon downwards */
+}
+
+.user-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: black; /* Default color for light mode */
+    transition: color var(--transition-standard);
+}
+
+.user-dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: var(--border-radius-small);
+    margin-top: 5px; /* Space below the button */
+}
+
+.user-dropdown-content.show {
+    display: block; /* Show when 'show' class is added by JS */
+}
+
+.user-dropdown-content .dropdown-item {
+    color: black;
+    padding: 8px 10px;
+    text-decoration: none;
+    display: flex; /* Each link on its own line */
+    align-items: center; /* Center vertically the icon and the text */
+    gap: 5px; /* Space between the icon and the text */
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.user-dropdown-content .dropdown-item:hover {
+    background-color: #ddd;
+    border-radius: var(--border-radius-small);
+}
+
+.user-dropdown-content .dropdown-item.hidden {
+    display: none; /* For "Modification du compte" when user is not logged in */
+}
+
+/* Message de la modale de mot de passe oublié */
+#resetPasswordMessage {
+    text-align: left; /* Aligne le texte du message à gauche */
+}
+
+/* Assurez-vous que les inputs dans la modale sont également alignés à gauche si ce n'est pas déjà le cas */
+#forgotPasswordModal .form-input {
+    text-align: left;
 }
 
 /* STYLES POUR LE MODE SOMBRE (DARK MODE) */
@@ -860,7 +1019,7 @@ body.dark-mode .contrast-button:hover {
 
 body.dark-mode .rectangle {
     background-color: #444;
-    border-color: #666;
+    border-color: #888;
 }
 
 body.dark-mode .lang-dropdown-content a:hover {

@@ -1,0 +1,250 @@
+/* Styles pour post.html */
+
+/* Zone de contenu principal */
+.main-content {
+    display: flex;
+    justify-content: center; /* Centre le rectangle-two horizontalement */
+    padding-top: 65px;
+    margin: 0 auto;
+}
+
+/* Styles spécifiques pour le rectangle contenant le contenu du post */
+.rectangle-two {
+    position: relative; /* Nécessaire pour le positionnement absolu des enfants */
+    width: 960px; /* Ajuster la largeur selon les besoins */
+    min-height: 720px; /* Hauteur minimale pour le contenu du post */
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box; /* Inclut le rembourrage dans le calcul de la largeur */
+    margin-bottom: 50px; /* Espace avant le pied de page */
+}
+
+/* Styles pour le nouveau rectangle de catégorie */
+.category-box {
+    position: absolute;
+    top: 0px; /* Distance du haut */
+    left: 0px; /* Distance de la gauche */
+    width: 220px;
+    height: 50px;
+    background-color: #a2b0bd; /* Arrière-plan du mode sombre activé */
+    border-top-left-radius: 30px; /* Rayon de bordure du coin supérieur gauche */
+    border-bottom-right-radius: 30px; /* Rayon de bordure du coin inférieur droit */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    color: #FF9C06; /* Couleur du texte orange */
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    z-index: 1;
+    /* Effet d'ombre de texte existant pour le "stroke outside" */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+         2px 2px 4px rgba(0, 0, 0, 0.5); /* Garde l'ombre d'origine */
+}
+
+/* Styles pour l'image AI en haut du post */
+.rectangle-two .ai-image {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 70px;
+    left: 50px;
+}
+
+/* Styles pour le texte de l'image (titre/description à côté de l'icône AI) */
+.rectangle-two .image-text {
+    position: absolute;
+    top: 65px;
+    left: 130px;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: left; /* Aligne le texte à gauche */
+    color: #000;
+    width: 750px; /* Ajuste la largeur pour s'adapter au conteneur */
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    padding-right: 20px; /* Assure un espace par rapport au bord droit */
+}
+
+/* Ligne de séparation sous la section d'en-tête */
+.divider-line {
+    position: absolute;
+    top: 145px;
+    left: 15px;
+    right: 15px;
+    height: 1px;
+    background-color: black;
+}
+
+/* Styles pour les informations du posteur */
+.poster-info {
+    position: absolute;
+    top: 170px; /* 145px (divider-line) + 25px (desired gap) */
+    left: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.poster-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* If you want it round */
+    object-fit: cover;
+    margin-bottom: 5px; /* Space between icon and name */
+}
+
+.poster-name,
+.post-date {
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    color: #333;
+    margin: 0; /* Remove default paragraph margins */
+}
+
+.post-date {
+    margin-top: 2px; /* Small space between name and date */
+}
+
+/* Image de l'article dans la zone de contenu du post */
+.article-image {
+    position: absolute;
+    width: 416px; /* Updated width */
+    height: 227px; /* Updated height */
+    top: 185px; /* 145px (divider-line) + 40px (desired gap) */
+    left: 225px; /* Updated left position */
+    object-fit: cover; /* Assure que l'image couvre la zone sans distorsion */
+}
+
+/* Styles pour le contenu réel de l'article */
+.article-content {
+    position: absolute;
+    top: 420px; /* Positionne le contenu à 420px du haut de .rectangle-two */
+    left: 160px;
+    right: 180px;
+    bottom: 30px; /* Positionne le contenu à 30px du bas de .rectangle-two, permettant le défilement sur l'espace entre top et bottom */
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify; /* Justifie le texte pour une meilleure lisibilité */
+    overflow-y: auto; /* Permet le défilement vertical si le contenu dépasse la hauteur définie */
+    padding-right: 15px; /* Ajoute un léger rembourrage à droite pour éviter que le texte ne colle à la barre de défilement */
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+    font-family: 'Inter', sans-serif;
+    color: #000;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.article-content p {
+    margin-bottom: 1em;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1em;
+    margin-left: 20px;
+}
+
+.article-content li {
+    margin-bottom: 0.5em;
+}
+
+/* Styles pour le mode sombre pour post.html */
+body.dark-mode .rectangle-two {
+    background-color: #444;
+    border-color: #666;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ombre plus foncée pour le mode sombre */
+}
+
+body.dark-mode .category-box {
+    background-color: #555;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .rectangle-two .image-text {
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); /* Ombre plus forte pour le mode sombre */
+}
+
+body.dark-mode .divider-line {
+    background-color: #666;
+}
+
+body.dark-mode .poster-name,
+body.dark-mode .post-date,
+body.dark-mode .article-content {
+    color: #ddd;
+}
+
+body.dark-mode .article-content h1,
+body.dark-mode .article-content h2,
+body.dark-mode .article-content h3,
+body.dark-mode .article-content h4,
+body.dark-mode .article-content h5,
+body.dark-mode .article-content h6 {
+    color: white;
+}
+
+/* Nouveaux styles pour le conteneur d'icônes */
+.icon-grid-container {
+    position: absolute;
+    bottom: 590px; 
+    right: 30px; /* 30px du bord droit du rectangle-two */
+    display: flex; /* Utilise Flexbox pour aligner les icônes */
+    align-items: center; /* Centre les icônes verticalement */
+}
+
+.grid-icon {
+    width: 25px;
+    height: 25px;
+    /* Par défaut, pas de marge à droite pour les icônes, nous les gérons individuellement */
+}
+
+/* Espacements spécifiques entre les icônes */
+.vue-icon {
+    margin-right: 40px;
+}
+
+.partage-icon {
+    margin-right: 30px;
+}
+
+.commentaire-icon {
+    margin-right: 30px;
+}
+
+.telechargement-icon {
+    margin-right: 30px;
+}
+
+.follower-icon {
+    margin-right: 40px;
+}
+
+.like-icon {
+    margin-right: 10px;
+}
+
+/* La dernière icône n'a pas besoin de margin-right */
+.dislike-icon {
+    margin-right: 0;
+}

@@ -1,83 +1,145 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Éléments pour la modale "Mot de passe oublié"
-    const forgotPasswordLinkAndIcon = document.getElementById('forgotPasswordLinkAndIcon'); // Nouveau ID du groupe
+// modal.js - Code JavaScript pour gérer la modale "Mot de passe oublié ?"
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupération des éléments du DOM
+    const forgotPasswordLink = document.getElementById('forgotPasswordLinkAndIcon');
     const forgotPasswordModal = document.getElementById('forgotPasswordModal');
     const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
     const resetPasswordSubmitButton = document.getElementById('resetPasswordSubmitButton');
+    const resetEmail = document.getElementById('resetEmail');
     const resetPasswordMessage = document.getElementById('resetPasswordMessage');
-    const resetEmailInput = document.getElementById('resetEmail');
 
     // Fonction pour ouvrir la modale
-    function openForgotPasswordModal(event) {
-        event.preventDefault();
-        forgotPasswordModal.classList.add('show'); // Utilise la classe 'show'
+    function openModal() {
+        forgotPasswordModal.classList.add('show');
+        // Optionnel : empêcher le défilement de la page en arrière-plan
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Fonction pour fermer la modale
+    function closeModal() {
+        forgotPasswordModal.classList.remove('show');
+        // Réactiver le défilement de la page
+        document.body.style.overflow = 'auto';
+        // Réinitialiser le formulaire
+        resetForm();
+    }
+
+    // Fonction pour réinitialiser le formulaire
+    function resetForm() {
+        resetEmail.value = '';
         resetPasswordMessage.textContent = '';
-        resetEmailInput.value = '';
+        resetPasswordMessage.style.color = '';
     }
 
-    // Attacher la fonction au nouveau conteneur de lien unique
-    if (forgotPasswordLinkAndIcon) {
-        forgotPasswordLinkAndIcon.addEventListener('click', openForgotPasswordModal);
+    // Événement pour ouvrir la modale au clic sur "Mot de passe oublié ?"
+    if (forgotPasswordLink) {
+        forgotPasswordLink.addEventListener('click', function(e) {
+            e.preventDefault(); // Empêche le comportement par défaut du lien
+            openModal();
+        });
     }
 
-    // Gérer la fermeture de la modale via le bouton croix
-    closeForgotPasswordModal.addEventListener('click', function () {
-        forgotPasswordModal.classList.remove('show'); // Enlève la classe 'show'
-    });
+    // Événement pour fermer la modale au clic sur le bouton "X"
+    if (closeForgotPasswordModal) {
+        closeForgotPasswordModal.addEventListener('click', function(e) {
+            e.preventDefault();
+            closeModal();
+        });
+    }
 
-    // Fermer la modale si l'utilisateur clique en dehors de celle-ci
-    window.addEventListener('click', function (event) {
-        if (event.target == forgotPasswordModal) {
-            forgotPasswordModal.classList.remove('show'); // Enlève la classe 'show'
-        }
-    });
-
-    // Gérer la soumission du formulaire de réinitialisation (envoi de l'email)
-    if (resetPasswordSubmitButton) {
-        resetPasswordSubmitButton.addEventListener('click', function () {
-            const email = resetEmailInput.value;
-            if (email) {
-                // Ici, vous enverriez l'e-mail à votre backend via une requête AJAX (fetch, XMLHttpRequest, etc.)
-                // Exemple simplifié pour la démo :
-                resetPasswordMessage.textContent = 'Un lien de réinitialisation a été envoyé à ' + email;
-                resetPasswordMessage.style.color = 'green';
-                // En production, vous ajouteriez ici la logique de communication avec le serveur.
-                // fetch('/api/reset-password-request', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({ email: email })
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     if (data.success) {
-                //         resetPasswordMessage.textContent = data.message || 'Un lien de réinitialisation a été envoyé.';
-                //         resetPasswordMessage.style.color = 'green';
-                //     } else {
-                //         resetPasswordMessage.textContent = data.message || 'Erreur lors de l\'envoi du lien.';
-                //         resetPasswordMessage.style.color = 'red';
-                //     }
-                // })
-                // .catch(error => {
-                //     console.error('Erreur:', error);
-                //     resetPasswordMessage.textContent = 'Une erreur est survenue. Veuillez réessayer.';
-                //     resetPasswordMessage.style.color = 'red';
-                // });
-            } else {
-                resetPasswordMessage.textContent = 'Veuillez entrer votre adresse e-mail.';
-                resetPasswordMessage.style.color = 'red';
-                // Positionnement en bas et centré
-                // resetPasswordMessage.style.position = 'absolute';
-                // resetPasswordMessage.style.bottom = '20px';
-                // resetPasswordMessage.style.left = '50%';
-                // resetPasswordMessage.style.transform = 'translateX(-50%)';
-                resetPasswordMessage.style.textAlign = 'center';
-                resetPasswordMessage.style.width = '100%';
+    // Événement pour fermer la modale au clic à l'extérieur de celle-ci
+    if (forgotPasswordModal) {
+        forgotPasswordModal.addEventListener('click', function(e) {
+            // Si on clique sur l'arrière-plan de la modale (pas sur le contenu)
+            if (e.target === forgotPasswordModal) {
+                closeModal();
             }
         });
     }
 
-    // Note : L'initialisation de la langue et du contraste devrait être gérée par language.js et contrast.js
-    // Ces fonctions ne sont pas appelées ici car leurs scripts sont inclus séparément.
+    // Événement pour fermer la modale avec la touche Échap
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && forgotPasswordModal.classList.contains('show')) {
+            closeModal();
+        }
+    });
+
+    // Gestion de l'envoi du formulaire de réinitialisation
+    if (resetPasswordSubmitButton) {
+        resetPasswordSubmitButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const email = resetEmail.value.trim();
+            
+            // Validation simple de l'email
+            if (!email) {
+                showMessage('Veuillez entrer votre adresse e-mail.', 'error');
+                return;
+            }
+            
+            // Validation du format de l'email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showMessage('Veuillez entrer une adresse e-mail valide.', 'error');
+                return;
+            }
+            
+            // Simulation de l'envoi (à remplacer par votre logique d'envoi réelle)
+            showMessage('Envoi en cours...', 'info');
+            resetPasswordSubmitButton.disabled = true;
+            
+            // Simulation d'un délai d'envoi
+            setTimeout(function() {
+                showMessage('Un lien de réinitialisation a été envoyé à votre adresse e-mail.', 'success');
+                resetPasswordSubmitButton.disabled = false;
+                
+                // Fermer la modale après 2 secondes
+                setTimeout(function() {
+                    closeModal();
+                }, 2000);
+            }, 1500);
+        });
+    }
+
+    // Fonction pour afficher les messages dans la modale
+    function showMessage(message, type) {
+        if (resetPasswordMessage) {
+            resetPasswordMessage.textContent = message;
+            
+            // Définir la couleur selon le type de message
+            switch(type) {
+                case 'error':
+                    resetPasswordMessage.style.color = '#d32f2f';
+                    break;
+                case 'success':
+                    resetPasswordMessage.style.color = '#2e7d32';
+                    break;
+                case 'info':
+                    resetPasswordMessage.style.color = '#1976d2';
+                    break;
+                default:
+                    resetPasswordMessage.style.color = '#333';
+            }
+        }
+    }
+
+    // Validation en temps réel de l'email
+    if (resetEmail) {
+        resetEmail.addEventListener('input', function() {
+            // Effacer le message d'erreur quand l'utilisateur commence à taper
+            if (resetPasswordMessage.textContent && resetPasswordMessage.style.color === 'rgb(211, 47, 47)') {
+                resetPasswordMessage.textContent = '';
+            }
+        });
+    }
 });
+
+// Fonction utilitaire pour déboguer (à supprimer en production)
+function debugModal() {
+    console.log('Éléments de la modale:');
+    console.log('Link:', document.getElementById('forgotPasswordLinkAndIcon'));
+    console.log('Modal:', document.getElementById('forgotPasswordModal'));
+    console.log('Close button:', document.getElementById('closeForgotPasswordModal'));
+    console.log('Submit button:', document.getElementById('resetPasswordSubmitButton'));
+}

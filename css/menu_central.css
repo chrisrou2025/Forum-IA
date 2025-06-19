@@ -1,10 +1,11 @@
+/* Styles corrigés pour menu_central.css */
+
 .rectangle-two {
     position: relative;
 }
 
-/* Gardez la règle pour l'image AI */
-.rectangle-two img[src="assets/imageAI.webp"] {
-    /* Rendez cette règle plus spécifique pour l'image AI */
+/* Style spécifique pour l'image AI - sélecteur simplifié */
+.rectangle-two .ai-image {
     width: 90px;
     height: 90px;
     position: absolute;
@@ -23,8 +24,8 @@
     color: #000;
     width: 650px;
     line-height: 1.2;
+    /* Ombre portée pour améliorer la lisibilité */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Décalage X, Décalage Y, Flou, Couleur (noir avec 50% d'opacité) */
 }
 
 .random-post-container {
@@ -38,21 +39,19 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    /* Alignement horizontal des éléments internes */
     display: flex;
-    /* Ceci est crucial pour l'alignement horizontal */
     align-items: center;
     color: inherit;
     font: inherit;
     text-align: left;
 }
 
-/* Modifiez cette règle pour que l'icône ne soit PAS en position absolue */
+/* Icône du bouton post aléatoire */
 .random-post-button .random-icon {
-    /* Cibler spécifiquement l'icône à l'intérieur du bouton */
     width: 25px;
     height: 25px;
     margin-right: 5px;
-    /* Supprimez position: absolute; top; left; ici */
 }
 
 .random-text {
@@ -62,33 +61,27 @@
     white-space: nowrap;
 }
 
+/* Ligne de séparation */
 .divider-line {
     position: absolute;
-    /* Positionnement absolu par rapport à .rectangle-two */
     top: 145px;
-    /* 140px du haut du rectangle */
     left: 15px;
-    /* 15px du bord gauche */
     right: 15px;
-    /* 15px du bord droit */
     height: 1px;
-    /* Hauteur de la ligne (épaisseur) */
     background-color: black;
-    /* Couleur de la ligne */
 }
 
+/* En-têtes des colonnes */
 .post-headers {
     position: absolute;
-    top: calc(140px + 30px);
-    /* 140px (ligne) + 20px (espacement) */
+    /* Position calculée : ligne (140px) + espacement (30px) */
+    top: 170px;
     left: 105px;
-    /* Début à 105px du bord gauche */
     right: 55px;
-    /* Aligné avec le bord droit de la ligne, mais nous allons utiliser flexbox pour l'espacement interne */
-    display: flex;
-    /* Utilise flexbox pour aligner les éléments sur une ligne */
-    /* justify-content: space-between; ou d'autres valeurs si l'espacement exact doit être automatique */
-    /* Nous allons définir des marges pour les espacements spécifiques */
+    display: grid; /* Utilisation de Grid pour le positionnement */
+    /* Définition des colonnes pour le contenu et les espacements désirés */
+    grid-template-columns: min-content 500px min-content 60px min-content 65px min-content;
+    color: black;
 }
 
 .post-headers .header-item {
@@ -97,81 +90,60 @@
     font-weight: bolder;
     color: black;
     white-space: nowrap;
-    /* Empêche le texte de passer à la ligne */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* Décalage X, Décalage Y, Flou, Couleur (noir avec 50% d'opacité) */
 }
 
-/* Espacements spécifiques entre les éléments */
+/* Attribution des éléments aux colonnes de la grille pour gérer les espacements */
 .post-headers .header-item:nth-child(1) {
-    /* Sujets */
-    /* Pas de marge à gauche car c'est le premier élément */
+    grid-column: 1; /* "Sujets" */
 }
 
 .post-headers .header-item:nth-child(2) {
-    /* Réponses */
-    margin-left: 500px;
-    /* Espace de 200px après "Sujets" */
+    grid-column: 3; /* "Réponses", après le gap de 500px */
 }
 
 .post-headers .header-item:nth-child(3) {
-    /* Vues */
-    margin-left: 60px;
-    /* Espace de 60px après "Réponses" */
+    grid-column: 5; /* "Vues", après le gap de 60px */
 }
 
 .post-headers .header-item:nth-child(4) {
-    /* Activité */
-    margin-left: 65px;
-    /* Espace de 65px après "Vues" */
+    grid-column: 7; /* "Activité", après le gap de 65px */
 }
 
-/* Ajout de la classe pour l'image de l'article */
+/* Image de l'article */
 .article-image {
     position: absolute;
     width: 120px;
     height: 80px;
     top: 10px;
-    /* Position depuis le haut du rectangle */
     left: 435px;
-    /* Position à 360px du bord gauche du rectangle comme demandé */
     border-radius: 8px;
-    /* Optionnel : pour arrondir les coins de l'image */
 }
 
-/* Styles pour le nouveau rectangle (ajustement du left) */
+/* Rectangle de contenu du post */
 .post-content-rectangle {
     position: absolute;
     top: 195px;
-    /* Reste à 190px du haut */
     left: 80px;
-    /* Le rectangle commence à 90px du bord gauche */
     width: 850px;
     height: 100px;
     background-color: white;
     border-radius: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Retirez display: flex, justify-content, align-items ici car l'icône n'est plus à l'intérieur */
 }
 
-/* Styles pour l'icône (maintenant à l'extérieur) */
+/* Icône du rectangle de post - positionnement simplifié */
 .post-rectangle-icon {
     position: absolute;
     width: 30px;
     height: 30px;
     left: 30px;
-    /* 40px du bord gauche de .rectangle-two */
-
-    /* Centrage vertical par rapport au rectangle qu'il accompagne */
-    /* Le rectangle commence à top: 190px et fait 100px de haut. */
-    /* Le milieu du rectangle est à 190px + (100px / 2) = 190px + 50px = 240px */
-    /* Le top de l'icône doit être 240px - (30px / 2) = 240px - 15px = 225px */
-    top: calc(190px + 50px - 15px);
-    /* Calcul : top du rectangle + moitié hauteur rectangle - moitié hauteur icône */
+    /* Position verticale simplifiée : 225px au lieu du calcul complexe */
+    top: 225px;
 }
 
+/* Icône de l'auteur */
 .post-icon-auteur {
-    /* Anciennement .post-j-icon */
     position: absolute;
     width: 27px;
     height: 27px;
@@ -179,49 +151,47 @@
     left: 10px;
 }
 
+/* Texte de l'auteur */
 .post-author-text {
     position: absolute;
-    top: calc(10px + 27px + 5px);
-    /* 10px (top de l'icône) + 27px (hauteur de l'icône) + 5px (espacement) */
+    /* Position calculée : icône (10px) + hauteur icône (27px) + espacement (5px) */
+    top: 42px;
     left: 10px;
     font-family: 'Inria Sans', sans-serif;
     font-size: 12px;
 }
 
-/* NOUVEAU STYLE POUR LA DATE */
+/* Date du post */
 .post-date-text {
     position: absolute;
-    top: calc(10px + 27px + 5px + 12px + 3px); /* Position sous le nom d'auteur avec espacement */
-    left: 10px; /* Même alignement que le nom d'auteur */
-    font-family: 'Inria Sans', sans-serif; /* Même police */
+    /* Position sous le nom d'auteur avec espacement */
+    top: 57px;
+    left: 10px;
+    font-family: 'Inria Sans', sans-serif;
     font-size: 10px;
-    color: inherit; /* Hérite de la couleur du parent pour cohérence */
+    color: inherit;
 }
 
+/* Titre du post */
 .h4-titre-post {
     position: absolute;
     top: 5px;
-    /* 5px du bord haut du post-content-rectangle */
     left: 70px;
-    /* 70px du bord gauche du post-content-rectangle */
     font-family: 'Inria Sans', sans-serif;
     font-size: 14px;
     font-weight: bolder;
-    /* Gras */
     width: 350px;
-    /* Définir une largeur pour forcer le texte sur 2 lignes */
     line-height: 1.2;
-    /* Ajuster l'interligne si nécessaire pour une meilleure lecture sur 2 lignes */
     color: black;
-    /* Couleur du texte, si non déjà définie */
+    /* Suppression des marges par défaut */
     margin: 0;
-    /* AJOUTEZ CETTE LIGNE POUR SUPPRIMER LES MARGES PAR DÉFAUT */
 }
 
-/* NOUVEAUX STYLES POUR L'ARTICLE ET LE BOUTON */
+/* Extrait de l'article */
 .article-excerpt {
     position: absolute;
-    top: calc(5px + 12px * 2 * 1.2 + 10px);
+    /* Position calculée pour être sous le titre */
+    top: 45px;
     left: 105px;
     font-family: 'Inria Sans', sans-serif;
     font-size: 12px;
@@ -231,6 +201,7 @@
     font-weight: normal;
 }
 
+/* Bouton "lire la suite" */
 .read-more-button {
     font-family: 'Inria Sans', sans-serif;
     font-size: 12px;
@@ -239,26 +210,26 @@
     text-decoration: none;
 }
 
-/* STYLES POUR LE DARK MODE DU RECTANGLE 2 */
+/* ====== STYLES POUR LE MODE SOMBRE ====== */
 
-/* Mode sombre pour le rectangle 2 lui-même */
+/* Rectangle principal en mode sombre */
 body.dark-mode .rectangle-two {
     background-color: #444;
     border-color: #666;
     color: white;
 }
 
-/* Mode sombre pour le texte descriptif du forum */
+/* Texte descriptif en mode sombre */
 body.dark-mode .image-text {
     color: white;
 }
 
-/* Mode sombre pour le conteneur du bouton post aléatoire */
+/* Conteneur du bouton post aléatoire en mode sombre */
 body.dark-mode .random-post-container {
     background-color: transparent;
 }
 
-/* Mode sombre pour le bouton post aléatoire */
+/* Bouton post aléatoire en mode sombre */
 body.dark-mode .random-post-button {
     background-color: #555;
     color: white;
@@ -269,18 +240,18 @@ body.dark-mode .random-post-button:hover {
     background-color: #666;
 }
 
-/* Mode sombre pour le texte du bouton post aléatoire */
+/* Texte du bouton en mode sombre */
 body.dark-mode .random-text {
     color: white;
 }
 
-/* Mode sombre pour la ligne de séparation */
+/* Ligne de séparation en mode sombre */
 body.dark-mode .divider-line {
     background-color: #666;
     border-color: #777;
 }
 
-/* Mode sombre pour les en-têtes des colonnes */
+/* En-têtes des colonnes en mode sombre */
 body.dark-mode .post-headers {
     background-color: #555;
     color: white;
@@ -290,29 +261,29 @@ body.dark-mode .header-item {
     color: white;
 }
 
-/* Mode sombre pour le rectangle de contenu du post */
+/* Rectangle de contenu en mode sombre */
 body.dark-mode .post-content-rectangle {
     background-color: #333;
     border-color: #666;
     color: white;
 }
 
-/* Mode sombre pour le texte de l'auteur */
+/* Texte de l'auteur en mode sombre */
 body.dark-mode .post-author-text {
     color: #ccc;
 }
 
-/* Mode sombre pour le titre du post */
+/* Titre du post en mode sombre */
 body.dark-mode .h4-titre-post {
     color: white;
 }
 
-/* Mode sombre pour l'extrait de l'article */
+/* Extrait de l'article en mode sombre */
 body.dark-mode .article-excerpt {
     color: #ddd;
 }
 
-/* Mode sombre pour le bouton "lire la suite" */
+/* Bouton "lire la suite" en mode sombre */
 body.dark-mode .read-more-button {
     color: #99ccff;
 }
@@ -321,7 +292,7 @@ body.dark-mode .read-more-button:hover {
     color: #77aadd;
 }
 
-/* Mode sombre pour la nouvelle date */
+/* Date du post en mode sombre */
 body.dark-mode .post-date-text {
     color: #ccc;
 }
