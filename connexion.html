@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="loginPageTitle">Connexion - Forum IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-top-space"></div>
+
+        <div class="header-banner">
+            <div class="header-menu-burger">
+                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
+            </div>
+            
+            <div class="header-logo header-logo-centered">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Logo Forum IA">
+                </a>
+            </div>
+            <nav class="header-controls">
+                <div class="header-control-group">
+                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <div class="lang-dropdown-container">
+                        <button class="lang-button" id="currentLangButton">
+                            <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
+                                id="currentLangIcon">
+                        </button>
+                        <div class="lang-dropdown-content" id="langDropdown">
+                            <a href="#" data-lang="fr">
+                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                            </a>
+                            <a href="#" data-lang="en">
+                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            </a>
+                            <a href="#" data-lang="es">
+                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            </a>
+                            <a href="#" data-lang="de">
+                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            </a>
+                            <a href="#" data-lang="it">
+                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-control-group">
+                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                    <button class="contrast-button" data-lang-key="contrastButton"
+                        id="toggleContrastButton">Contraste</button>
+                </div>
+            </nav>
+        </div>
+
+        <div class="header-title-section header-title-section-reduced">
+        </div>
+    </header>
+
+    <main class="main-content main-connexion-layout">
+        <section class="login-main-rectangle">
+            <div class="login-content-wrapper">
+                <div class="title-box">
+                    <h1 class="login-rectangle-title" data-lang-key="loginTitle">Connexion</h1>
+                </div>
+            </div>
+            <div class="login-inner-rectangle">
+                <span id="loginMessage" class="form-message"></span>
+                <input type="email" class="form-input email-input" id="loginEmail" placeholder="Email"
+                    data-lang-key="emailPlaceholder">
+                <input type="password" class="form-input password-input" id="loginPassword" placeholder="Mot de passe"
+                    data-lang-key="passwordPlaceholder">
+
+                <div class="forgot-password-trigger-container">
+                    <a href="#" class="forgot-password-link-group" id="forgotPasswordLinkAndIcon">
+                        <span class="forgot-password-text">Mot de passe oublié ?</span>
+                        <span class="submit-icon-visual"></span>
+                    </a>
+                </div>
+                <button class="login-form-submit-button" data-lang-key="loginFormSubmitButton">Se connecter</button>
+                <a href="inscription.html" class="signup-prompt-and-icon login-link-group">
+                    <span class="signup-prompt-text" data-lang-key="noAccountPrompt">Pas encore de compte ?</span>
+                    <span class="signup-icon-visual"></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="mainFooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <span data-lang-key="copyrightText">Forum IA 2025</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeForgotPasswordModal">&times;</span>
+            <h2 data-lang-key="forgotPasswordModalTitle">Réinitialiser le mot de passe</h2>
+            <p data-lang-key="forgotPasswordModalText">Veuillez entrer votre adresse e-mail pour recevoir un lien de
+                réinitialisation.</p>
+            <div class="forgot-password-input-container">
+                <input type="email" class="form-input reset-email-input" id="resetEmail" placeholder="Email"
+                    data-lang-key="emailPlaceholder">
+                <button id="resetPasswordSubmitButton" data-lang-key="resetPasswordButton">Envoyer</button>
+            </div>
+            <p id="resetPasswordMessage" class="form-message"></p>
+        </div>
+    </div>
+
+    <script src="js/language.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/forgot_Password.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

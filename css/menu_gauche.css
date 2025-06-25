@@ -1,0 +1,203 @@
+/* menu_gauche.css */
+
+/* Style de l'icône "parametre.png" ajoutée à côté de la flèche */
+.settings-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px; /* Maintenir cette marge pour l'espace entre l'icône et le bouton */
+    display: block;
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+/* Style du bouton qui déclenche le menu déroulant (harmonisé pour tous) */
+.user-dropdown-button,
+.admin-dropdown-button,
+.categories-dropdown-button,
+.tags-dropdown-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    flex-grow: 1; /* Permet au bouton de prendre l'espace disponible */
+    /* MODIFICATION CLÉ: Aligner le contenu du bouton (flèche, texte) au début */
+    justify-content: flex-start;
+}
+
+/* Styles des textes des boutons principaux (UTILISATEUR, ADMINISTRATION, CATEGORIES, TAGS) */
+.user-text,
+.admin-text,
+.categories-text,
+.tags-text {
+    font-family: 'Inria Sans', sans-serif;
+    font-weight: 700; /* Tous les titres de menu en gras */
+    font-size: 16px; /* Taille de police uniforme */
+    color: black;
+    white-space: nowrap;
+}
+
+/* Styles des icônes de flèche de tous les menus */
+.user-dropdown-icon,
+.admin-dropdown-icon,
+.categories-dropdown-icon,
+.tags-dropdown-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 8px; /* Espace entre la flèche et le texte */
+    transition: transform 0.3s ease;
+}
+
+/* Rotation des flèches */
+.user-dropdown-icon.rotate,
+.admin-dropdown-icon.rotate,
+.categories-dropdown-icon.rotate,
+.tags-dropdown-icon.rotate {
+    transform: rotate(90deg);
+}
+
+/* Style de l'icône cadenas (ouverte/fermée) - spécifique à utilisateur/admin */
+.lock-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px; /* Marge à gauche pour espacer le cadenas du bouton */
+    margin-right: 10px; /* Marge à droite pour le garder à l'intérieur du conteneur */
+    cursor: pointer;
+    flex-shrink: 0; /* Empêche le cadenas de rétrécir */
+}
+
+/* Contenu des menus déroulants (générique pour tous) */
+.user-dropdown-content, /* AJOUTÉ ICI et harmonisé */
+.admin-dropdown-content,
+.categories-dropdown-content,
+.tags-dropdown-content {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; /* S'assure que le contenu est au-dessus des éléments non-menu */
+    border-radius: 5px;
+    margin-top: 5px; /* Petite marge entre le bouton du menu et son contenu déroulant */
+    top: 100%; /* Positionne le contenu juste en dessous de son bouton parent */
+    left: 15px; /* MODIFICATION CLÉ: Aligné à gauche comme les autres menus */
+    list-style-type: none; /* Supprime les puces des listes */
+    padding: 0; /* Supprime le rembourrage par défaut des listes */
+    margin: 0; /* Supprime la marge par défaut des listes */
+}
+
+/* Affichage du contenu du menu */
+.user-dropdown-content.show, /* AJOUTÉ ICI */
+.admin-dropdown-content.show,
+.categories-dropdown-content.show,
+.tags-dropdown-content.show {
+    display: block;
+}
+
+/* Styles pour les éléments individuels à l'intérieur de TOUS les menus déroulants */
+.user-dropdown-content .dropdown-item, /* AJOUTÉ ICI */
+.admin-dropdown-content .dropdown-item,
+.categories-dropdown-content .dropdown-item,
+.tags-dropdown-content .dropdown-item {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-family: 'Inria Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Styles au survol pour tous les dropdown-item */
+.dropdown-item:hover {
+    background-color: #ddd;
+}
+
+/* Styles des images dans tous les dropdown-item */
+.dropdown-item img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+/* Styles spécifiques aux icônes principales (hors flèches) */
+.admin-settings-icon,
+.categories-icon,
+.tags-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 10px; /* Assure une marge cohérente avec .settings-icon */
+    display: block;
+    flex-shrink: 0;
+    transition: filter 0.3s ease;
+}
+
+/* Styles pour les conteneurs des menus spécifiques (pour le border-top et le positionnement par JS) */
+.user-dropdown-container, /* AJOUTÉ ICI pour harmonisation */
+.admin-dropdown-container,
+.categories-dropdown-container,
+.tags-dropdown-container {
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid black;
+    padding-top: 10px;
+    margin-top: 10px; /* Ceci sera surchargé par JS pour un positionnement dynamique */
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+/* Z-index spécifiques pour l'ordre de superposition */
+.user-dropdown-container { z-index: 50; } /* Ajusté pour être potentiellement le premier */
+.admin-dropdown-container { z-index: 40; }
+.categories-dropdown-container { z-index: 30; }
+.tags-dropdown-container { z-index: 20; }
+
+
+/* Styles pour le mode sombre (dark mode) */
+body.dark-mode .user-text,
+body.dark-mode .admin-text,
+body.dark-mode .categories-text,
+body.dark-mode .tags-text,
+body.dark-mode .user-dropdown-content .dropdown-item, /* AJOUTÉ ICI */
+body.dark-mode .admin-dropdown-content .dropdown-item,
+body.dark-mode .categories-dropdown-content .dropdown-item,
+body.dark-mode .tags-dropdown-content .dropdown-item {
+    color: white;
+}
+
+/* Appliquer le filtre invert UNIQUEMENT aux icônes de flèche en mode sombre */
+body.dark-mode .user-dropdown-icon, /* AJOUTÉ ICI */
+body.dark-mode .admin-dropdown-icon,
+body.dark-mode .categories-dropdown-icon,
+body.dark-mode .tags-dropdown-icon {
+    filter: invert(1);
+}
+
+/* Couleur de fond des menus déroulants en mode sombre */
+body.dark-mode .user-dropdown-content, /* AJOUTÉ ICI */
+body.dark-mode .admin-dropdown-content,
+body.dark-mode .categories-dropdown-content,
+body.dark-mode .tags-dropdown-content {
+    background-color: #333;
+}
+
+/* Couleur de fond des éléments de menu déroulant au survol en mode sombre */
+body.dark-mode .dropdown-item:hover {
+    background-color: #555;
+}
+
+/* Couleur des lignes de séparation en mode sombre */
+body.dark-mode .user-dropdown-container, /* AJOUTÉ ICI */
+body.dark-mode .admin-dropdown-container,
+body.dark-mode .categories-dropdown-container,
+body.dark-mode .tags-dropdown-container {
+    border-top: 1px solid white;
+}

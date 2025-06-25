@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu_gauche.css">
+    <link rel="stylesheet" href="css/menu_central.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-top-space"></div>
+
+        <div class="header-banner">
+            <div class="header-menu-burger">
+                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
+            </div>
+            <div class="header-logo header-logo-left">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Logo Forum IA">
+                </a>
+            </div>
+            <div class="header-controls">
+                <div class="header-control-group">
+                    <img src="assets/icones/contact.png" alt="Icône Contact" class="contact-icon">
+                    <a href="mailto:contact@forumia.fr" class="contact-button" data-lang-key="contactButton">Nous
+                        contacter</a>
+                </div>
+                <div class="header-control-group">
+                    <img src="assets/icones/connexion.png" alt="Icône Connexion" class="connexion-icon">
+                    <a href="connexion.html" class="login-button" data-lang-key="loginButton">Se connecter</a>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/inscription.png" alt="Icône Inscription" class="inscription-icon">
+                    <a href="inscription.html" class="signup-button" data-lang-key="signupButton">S'inscrire</a>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <div class="lang-dropdown-container">
+                        <button class="lang-button" id="currentLangButton">
+                            <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
+                                id="currentLangIcon">
+                        </button>
+                        <div class="lang-dropdown-content" id="langDropdown">
+                            <a href="#" data-lang="fr">
+                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                            </a>
+                            <a href="#" data-lang="en">
+                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            </a>
+                            <a href="#" data-lang="es">
+                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            </a>
+                            <a href="#" data-lang="de">
+                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            </a>
+                            <a href="#" data-lang="it">
+                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="search-button" id="openSearchModalButton">
+                    <img src="assets/icones/recherche.png" alt="Icône Recherche" class="search-icon">
+                </button>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                    <button class="contrast-button" data-lang-key="contrastButton"
+                        id="toggleContrastButton">Contraste</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-title-section">
+            <h1 class="header-title" data-lang-key="mainTitle">VOTRE FORUM D'ÉCHANGE SUR L'IA</h1>
+            <p class="header-subtitle" data-lang-key="subtitle">Discutez, apprenez et partagez sur l'intelligence
+                artificielle</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="index-rectangles-container">
+            <nav class="rectangle rectangle-one">
+                <h2 class="sr-only">Menu de navigation principal</h2>
+                <div class="user-dropdown-container" id="userDropdownArea">
+                    <img src="assets/icones/parametre.png" alt="Icône Paramètres" class="settings-icon">
+                    <button class="user-dropdown-button" id="userDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="user-dropdown-icon">
+                        <span class="user-text">UTILISATEUR</span>
+                    </button>
+                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon" id="userLockIcon">
+
+                    <ul class="user-dropdown-content" id="userDropdownContent">
+                        <li>
+                            <a href="profil.html" class="dropdown-item">
+                                <img src="assets/icones/utilisateur.png" alt="Icône Profil">Profil
+                            </a>
+                        </li>
+                        <li>
+                            <a href="modification_compte.html" class="dropdown-item" id="modifyAccountLink">
+                                <img src="assets/icones/modification-compte.png"
+                                    alt="Icône Modification du compte">Modification du compte
+                            </a>
+                        </li>
+                        <li>
+                            <a href="creer_post.html" class="dropdown-item">
+                                <img src="assets/icones/creation-post.png" alt="Icône Créer un post">Créer un nouveau
+                                post
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="admin-dropdown-container" id="adminDropdownArea">
+                    <img src="assets/icones/administration.png" alt="Icône Administration" class="admin-settings-icon">
+                    <button class="admin-dropdown-button" id="adminDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="admin-dropdown-icon">
+                        <span class="admin-text">ADMINISTRATION</span>
+                    </button>
+                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon"
+                        id="adminLockIcon">
+                    <ul class="admin-dropdown-content" id="adminDropdownContent">
+                        <li>
+                            <a href="moderation.html" class="dropdown-item">
+                                <img src="assets/icones/moderation.png" alt="Icône Modération">Modération
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gestion_posts.html" class="dropdown-item">
+                                <img src="assets/icones/gestion-posts.png" alt="Icône Gestion des postes">Gestion des
+                                postes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="gestion_utilisateurs.html" class="dropdown-item">
+                                <img src="assets/icones/gestion-utilisateur.png"
+                                    alt="Icône Gestion des utilisateurs">Gestion des utilisateurs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories-dropdown-container" id="categoriesDropdownArea">
+                    <img src="assets/icones/categories.png" alt="Icône Catégories" class="categories-icon">
+                    <button class="categories-dropdown-button" id="categoriesDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="categories-dropdown-icon">
+                        <span class="categories-text">CATEGORIES</span>
+                    </button>
+                    <ul class="categories-dropdown-content" id="categoriesDropdownContent">
+                        <li>
+                            <a href="tuto_ia.html" class="dropdown-item">
+                                <img src="assets/icones/tuto-ia.png" alt="Icône Tuto IA">Tuto IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="toolbox_ia.html" class="dropdown-item">
+                                <img src="assets/icones/toolbox-ia.png" alt="Icône Toolbox IA">Toolbox IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="debats_discussions.html" class="dropdown-item">
+                                <img src="assets/icones/débat.png" alt="Icône Débats et discussions sur l'IA">Débats et
+                                discussions sur l'IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="commentaires_site.html" class="dropdown-item">
+                                <img src="assets/icones/commentaire.png" alt="Icône Commentaire sur le site">Commentaire
+                                sur
+                                le site
+                            </a>
+                        </li>
+                        <li>
+                            <a href="imagerie_ia.html" class="dropdown-item">
+                                <img src="assets/icones/imagerie.png" alt="Icône Imagerie IA">Imagerie IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="actualites_ia.html" class="dropdown-item">
+                                <img src="assets/icones/actualites.png" alt="Icône Actualités sur l’IA">Actualités sur
+                                l’IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="toutes_categories.html" class="dropdown-item">
+                                <img src="assets/icones/categories.png" alt="Icône Toutes les catégories">Toutes les
+                                catégories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tags-dropdown-container" id="tagsDropdownArea">
+                    <img src="assets/icones/etiquette.png" alt="Icône Étiquette" class="tags-icon">
+                    <button class="tags-dropdown-button" id="tagsDropdownButton">
+                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="tags-dropdown-icon">
+                        <span class="tags-text">TAGS</span>
+                    </button>
+                    <ul class="tags-dropdown-content" id="tagsDropdownContent">
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Imagerie">Imagerie
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône IA">IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Machine Learning">Machine Learning
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Deep Learning">Deep Learning
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Robotique">Robotique
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Éthique IA">Éthique IA
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône NLP">NLP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Vision par Ordinateur">Vision par
+                                Ordinateur
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Données Massives">Données Massives
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Algorithmes">Algorithmes
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Réseaux de neurones">Réseaux de
+                                neurones
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquette-m.png" alt="Icône Cybersécurité">Cybersécurité
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <img src="assets/icones/etiquettes.png" alt="Icône Toutes les tags">Toutes les Tags
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <section class="rectangle rectangle-two">
+                <h2 class="sr-only">Contenu principal du forum</h2> <img src="assets/imageAI.webp" alt="Image AI"
+                    class="ai-image">
+                <div class="image-text">
+                    Forum IA est un espace pour des débats animés sur des sujets liés à l’IA, où les membres peuvent
+                    partager leurs opinions et idées sur l’intelligence artificielle.
+                </div>
+                <aside class="random-post-container">
+                    <button class="random-post-button">
+                        <img src="assets/icones/melanger.png" alt="Icône Mélanger" class="random-icon">
+                        <span class="random-text">Post aléatoire</span>
+                    </button>
+                </aside>
+                <div class="divider-line"></div>
+                <header class="post-headers">
+                    <span class="header-item">Sujets</span>
+                    <span class="header-item">Réponses</span>
+                    <span class="header-item">Vues</span>
+                    <span class="header-item">Activité</span>
+                </header>
+                <img src="assets/icones/actualites.png" alt="Icône Imagerie" class="post-rectangle-icon">
+                <article class="post-content-rectangle">
+                    <img src="assets/icones/iconeJ.png" alt="Icône J" class="post-icon-auteur">
+                    <span class="post-author-text">Par Titi.R</span>
+                    <span class="post-date-text">posté le <time datetime="2025-05-20">20/05/25</time></span>
+                    <h4 class="h4-titre-post">
+                        Breaking News Alibaba dévoile EMO AI le concurrent de Sora d’OpenAI, et vous n’en croirez pas
+                        vos yeux !
+                    </h4>
+                    <div class="article-excerpt">
+                        "l'IA EMO AI a le pouvoir de Transformer une Simple Image en Vidéo Vivante Imaginez pouvoir
+                        donner vie à n'importe quelle image . . . " <a href="post.html" class="read-more-button">lire la
+                            suite</a>
+                    </div>
+                    <img src="assets/image_ai5.jpg" alt="Image IA" class="article-image">
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer" id="mainFooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <span data-lang-key="copyrightText">Forum IA 2025</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 data-lang-key="searchModalTitle">Rechercher sur le Forum</h2>
+            <div class="search-input-container">
+                <input type="text" id="searchInput" placeholder="Entrez vos mots-clés..."
+                    data-lang-key="searchPlaceholder">
+                <button id="performSearchButton" data-lang-key="searchButtonText">Rechercher</button>
+            </div>
+            <div id="searchResults" class="search-results-container">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/language.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

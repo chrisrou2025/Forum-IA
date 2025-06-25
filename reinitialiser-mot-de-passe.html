@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="resetPasswordPageTitle">Réinitialiser le mot de passe - Forum IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-top-space"></div>
+
+        <div class="header-banner">
+            <div class="header-logo header-logo-centered">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Logo Forum IA">
+                </a>
+            </div>
+            <div class="header-controls header-controls-login-page">
+                <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+
+                <div class="lang-dropdown-container">
+                    <button class="lang-button" id="currentLangButton">
+                        <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon" id="currentLangIcon">
+                    </button>
+                    <div class="lang-dropdown-content" id="langDropdown">
+                        <a href="#" data-lang="fr">
+                            <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                        </a>
+                        <a href="#" data-lang="en">
+                            <img src="assets/icones/drapeau_en.png" alt="English"> English
+                        </a>
+                        <a href="#" data-lang="es">
+                            <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                        </a>
+                        <a href="#" data-lang="de">
+                            <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                        </a>
+                        <a href="#" data-lang="it">
+                            <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                        </a>
+                        <a href="#" data-lang="pt">
+                            <img src="assets/icones/drapeau_pt.png"> Português
+                        </a>
+                    </div>
+                </div>
+
+                <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                <button class="contrast-button" data-lang-key="contrastButton" id="toggleContrastButton">Contraste</button>
+            </div>
+        </div>
+
+        <div class="header-title-section header-title-section-reduced" id="headerTitleSection">
+            </div>
+    </header>
+
+    <main class="main-content main-connexion-layout">
+        <div class="login-main-rectangle">
+            <div class="login-content-wrapper">
+                <h2 class="login-rectangle-title" data-lang-key="resetPasswordHeaderTitleRect">Réinitialiser votre mot de passe</h2>
+            </div>
+            
+            <div class="login-inner-rectangle">
+                <p id="resetPasswordMessage" class="form-message"></p>
+                <input type="password" id="newPasswordInput" class="form-input password-input" data-lang-key="newPasswordPlaceholder" placeholder="Nouveau mot de passe" required>
+                <input type="password" id="confirmNewPasswordInput" class="form-input password-input" data-lang-key="confirmNewPasswordPlaceholder" placeholder="Confirmer le nouveau mot de passe" required>
+
+                <button type="submit" id="submitNewPasswordButton" class="login-form-submit-button" data-lang-key="submitNewPasswordButtonText">Réinitialiser</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="mainFooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <span data-lang-key="copyrightText">Forum IA 2025</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/reset_password_page.js"></script>
+
+</body>
+</html>

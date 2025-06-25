@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="signupPageTitle">Inscription - Forum IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-top-space"></div>
+
+        <div class="header-banner">
+            <div class="header-menu-burger">
+                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
+            </div>
+            <div class="header-logo header-logo-centered">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Logo Forum IA">
+                </a>
+            </div>
+            <nav class="header-controls">
+                <div class="header-control-group">
+                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <div class="lang-dropdown-container">
+                        <button class="lang-button" id="currentLangButton">
+                            <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
+                                id="currentLangIcon">
+                        </button>
+                        <div class="lang-dropdown-content" id="langDropdown">
+                            <a href="#" data-lang="fr">
+                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                            </a>
+                            <a href="#" data-lang="en">
+                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            </a>
+                            <a href="#" data-lang="es">
+                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            </a>
+                            <a href="#" data-lang="de">
+                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            </a>
+                            <a href="#" data-lang="it">
+                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            </a>
+                            <a href="#" data-lang="pt">
+                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-control-group">
+                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                    <button class="contrast-button" data-lang-key="contrastButton"
+                        id="toggleContrastButton">Contraste</button>
+                </div>
+            </nav>
+        </div>
+
+        <div class="header-title-section header-title-section-reduced">
+        </div>
+    </header>
+
+    <main class="main-content main-signup-layout">
+        <section class="signup-main-rectangle">
+            <div class="signup-content-wrapper">
+                <div class="title-box">
+                    <h1 class="signup-rectangle-title" data-lang-key="signupTitle">Inscription</h1>
+                </div>
+            </div>
+            <div class="signup-inner-rectangle">
+                <span id="signupMessage" class="form-message"></span>
+                <h2 class="signup-info-title" data-lang-key="signupInfoTitle">Mes informations</h2>
+                <p class="signup-info-text" data-lang-key="signupInfoText">Pour créer votre compte, veuillez entrer vos
+                    informations personnelles dans les champs ci-dessous.</p>
+                <input type="text" class="form-input username-input" id="signupUsername" placeholder="Nom d'utilisateur"
+                    data-lang-key="usernamePlaceholder">
+                <input type="email" class="form-input email-input" id="signupEmail" placeholder="Email"
+                    data-lang-key="emailPlaceholder">
+                <input type="password" class="form-input password-input" id="signupPassword" placeholder="Mot de passe"
+                    data-lang-key="passwordPlaceholder">
+                <input type="password" class="form-input confirm-password-input" id="signupConfirmPassword"
+                    placeholder="Confirmer le mot de passe" data-lang-key="confirmPasswordPlaceholder">
+                <div class="newsletter-consent-container">
+                    <input type="checkbox" id="newsletterConsent" class="newsletter-checkbox">
+                    <label for="newsletterConsent" class="newsletter-label" data-lang-key="newsletterConsentLabel">Je
+                        souhaite ne pas recevoir la newsletter</label>
+                </div>
+                <button class="signup-form-submit-button" data-lang-key="signupFormSubmitButton">S'inscrire</button>
+                <a href="connexion.html" class="login-prompt-and-icon login-link-group">
+                    <span class="login-prompt-text" data-lang-key="alreadyAccountPrompt">Déjà un compte ?</span>
+                    <span class="login-icon-visual"></span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="mainFooter">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <span data-lang-key="copyrightText">Forum IA 2025</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/contrast.js"></script>
+    <script src="js/signup.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
