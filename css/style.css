@@ -14,7 +14,15 @@
     /* Nouvelle variable pour la couleur des liens en mode sombre */
     --dark-mode-link-color: #99ccff;
     --dark-mode-link-hover-color: #77aadd;
+    /* Dans votre fichier CSS principal */
+    --header-bottom-spacing: 2rem;        /* Desktop */
+    --header-bottom-spacing-mobile: 2rem; /* Mobile */
 }
+
+/* Ou pour une page spécifique */
+/* .main-connexion-layout {
+    --header-bottom-spacing: 3rem;
+} */
 
 /* CSS pour cacher visuellement les éléments pour les lecteurs d'écran */
 .sr-only {
@@ -58,7 +66,8 @@ body {
 
 .header-banner {
     width: 100%;
-    height: 115px; /* Hauteur fixe pour toutes les pages */
+    height: 130px;
+    /* Hauteur fixe pour toutes les pages */
     background-image: url('../assets/bandeau.jpg');
     background-size: cover;
     background-position: center;
@@ -71,23 +80,30 @@ body {
 .header-logo {
     width: 174px;
     height: 128px;
-    margin-left: 10px;
+    /* margin-left: 50px; */
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .header-logo img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 
 /* Centrage du logo dans le bandeau des pages de connexion/inscription */
 .header-banner .header-logo.header-logo-centered {
     position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 174px;
+    height: 128px;
+    /* Réinitialisation des marges pour le logo centré */
     margin-left: 0;
 }
 
@@ -108,6 +124,44 @@ body {
     gap: 5px;
 }
 
+.menu-burger-button {
+    /* Suppression des styles par défaut du bouton */
+    background: transparent;
+    border: none;
+    padding: 0, 5px, 0, 5px;
+    margin: 0;
+    cursor: pointer;
+
+    /* Alignement et taille */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Transitions pour une meilleure UX */
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* États interactifs */
+.menu-burger-button:hover {
+    opacity: 0.8;
+}
+
+.menu-burger-button:active {
+    transform: scale(0.95);
+}
+
+/* Focus pour l'accessibilité */
+.menu-burger-button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Suppression du focus par défaut du navigateur */
+.menu-burger-button:focus:not(:focus-visible) {
+    outline: none;
+}
+
 /* Styles uniformes pour toutes les icônes principales du header */
 .contact-icon,
 .connexion-icon,
@@ -119,6 +173,7 @@ body {
     width: 24px;
     height: 24px;
     cursor: pointer;
+    background: transparent;
     transition: all 0.2s ease;
     display: block;
     /* Assure que les icônes sont des blocs pour la taille */
@@ -1174,36 +1229,55 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
 /* MEDIA QUERIES POUR LA VERSION MOBILE */
 @media (max-width: 768px) {
     .header-banner {
-        height: 115px; /* Hauteur fixe comme demandé */
+        height: 130px;
         display: flex;
-        flex-direction: column; /* Pour pouvoir positionner des éléments en haut et en bas */
-        justify-content: space-between; /* Pour pousser les éléments du haut et du bas aux extrémités */
-        align-items: center; /* Pour centrer horizontalement les éléments par défaut */
-        padding: 5px 20px 0 20px; /* Padding haut de 5px et latéral de 20px */
-        box-sizing: border-box;
-        position: relative; /* Indispensable pour le positionnement absolu des enfants */
+        flex-direction: column;
+        align-items: center;
     }
 
     /* Menu Burger (gauche, en haut) */
     .header-menu-burger {
-        display: block; /* Toujours afficher le menu burger */
+        display: block;
+        /* Toujours afficher le menu burger */
         position: absolute;
-        top: 5px; /* 5px du haut */
-        left: 20px; /* 20px du bord gauche (à cause du padding du parent) */
-        z-index: 10; /* Assure qu'il est au-dessus */
-        margin: 0; /* Réinitialiser les marges */
+        top: 10px;
+        /* 5px du haut */
+        left: 20px;
+        /* 20px du bord gauche (à cause du padding du parent) */
+        z-index: 10;
+        /* Assure qu'il est au-dessus */
+        margin: 0;
+        /* Réinitialiser les marges */
     }
 
     /* Contrôles du Header (droite, en haut) */
     .header-controls {
         display: flex;
-        align-items: center; /* Aligner les icônes verticalement au centre de leur ligne */
-        gap: 10px; /* Espacement de 5px entre les icônes */
+        z-index: 10;
+        /* Assure qu'il est au-dessus */
+        margin: 0;
+        /* Réinitialiser les marges */
+        padding: 0;
+        /* Réinitialiser le padding */
         position: absolute;
-        top: -55px; /* 5px du haut */
-        right: 20px; /* 20px du bord droit (à cause du padding du parent) */
-        z-index: 10; /* Assure qu'il est au-dessus */
-        margin: 0; /* Réinitialiser les marges */
+        /* top: 10px; */
+        right: 20px;
+        /* 20px du bord droit (à cause du padding du parent) */
+        flex-direction: row;
+        /* Aligner les contrôles horizontalement */
+        justify-content: flex-end;
+        /* Aligner à droite */
+        align-items: center;
+        gap: stretch;
+        /* Espace entre les contrôles */
+        align-items: center;
+        /* Aligner les contrôles au centre verticalement */
+        width: 70%;
+        /* S'assurer que les contrôles prennent toute la largeur disponible */
+        box-sizing: border-box;
+        /* Inclure le padding et la bordure dans la largeur totale */
+        background-color: transparent;
+        /* Fond transparent pour le header */
     }
 
     /* Masquer les textes des boutons sur mobile */
@@ -1243,7 +1317,7 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
 
     /* Ajuster le dropdown des langues pour mobile - masquer le texte, ne garder que les drapeaux */
     .lang-dropdown-content {
-        right: 0;
+        right: auto;
         /* Aligner à droite de l'icône */
         left: auto;
         min-width: 60px;
@@ -1269,16 +1343,19 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
 
     /* Logo centré horizontalement et positionné vers le bas du header-banner */
     .header-logo.header-logo-centered,
-    .header-logo.header-logo-left { /* Applique ces styles aux deux classes de logo si elles peuvent apparaître */
+    .header-logo.header-logo-left {
+        /* Applique ces styles aux deux classes de logo si elles peuvent apparaître */
         position: relative;
-        bottom: -10px; /* Positionné vers le bas */
-        left: 50%;
-        transform: translateX(-50%); /* Centré horizontalement */
-        margin-left: 0; /* Réinitialiser les marges */
-        width: auto; /* Taille fixe du logo */
-        height: 50px; /* Taille fixe du logo */
-        z-index: 5; /* Peut être légèrement inférieur aux contrôles */
+        bottom: -25px;
+        /* Positionné vers le bas */
+        width: auto;
+        /* Taille fixe du logo */
+        height: 90%;
+        z-index: 5;
+        /* Peut être légèrement inférieur aux contrôles */
     }
+
+    
 
     /* Styles pour les titres */
     .header-title-section {
@@ -1309,6 +1386,18 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         height: 0px;
         width: auto;
         background-color: white;
+    }
+
+    /* Main Content */
+    .main-content {
+        /* Add transition for sliding */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* When the left menu is open, shift the main content */
+    body.left-menu-open .main-content {
+        transform: translateX(237px);
+        /* Shift by the width of rectangle-one */
     }
 
     /* Main Content */
@@ -1455,7 +1544,7 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         font-size: 16px;
     }
 
-    /* FOOTER (Pied de page) pour mobile */
+    /* PIED DE PAGE (FOOTER) pour mobile */
     .footer {
         height: 50px;
         width: 100%;
@@ -1482,6 +1571,33 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         width: 16px;
         height: 16px;
     }
+
+    /* --- SPECIFIC RULES FOR THE LEFT MENU (RECTANGLE-ONE) MOBILE BEHAVIOR --- */
+    .rectangle-one {
+        position: fixed;
+        width: 237px;
+        /* Matches its desktop width */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        left: -237px;
+        /* Hidden by default */
+        top: 0;
+        height: 100%;
+        background-color: white;
+        /* Ensure it has a background */
+        z-index: 1000;
+        transition: left 0.3s ease-in-out;
+        padding-top: 100px;
+        /* Adjust based on header height */
+        overflow-y: auto;
+        /* Enable scrolling for menu content */
+    }
+
+    /* This class is added by menu_burger.js when the menu is open */
+    .rectangle-one.show-mobile {
+        left: 0;
+    }
+
+    /* ------------------------------------------------------------------ */
 }
 
 /* Règle pour le logo aligné à gauche (pour index.html et post.html - desktop) */
@@ -1492,15 +1608,37 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         transform: none;
         margin-left: 0;
     }
+
+    /* --- SPECIFIC RULES TO RESET MOBILE BEHAVIOR FOR DESKTOP --- */
+    .rectangle-one {
+        position: relative;
+        /* Changed from static to relative to maintain its position within flex flow, but allow z-index if needed */
+        width: 237px;
+        /* Its original desktop width */
+        height: 671px;
+        /* Its original desktop height */
+        left: auto;
+        top: auto;
+        box-shadow: none;
+        z-index: auto;
+        padding-top: 0;
+    }
+
+    .main-content {
+        transform: translateX(0);
+        /* Ensure no transform on desktop */
+    }
+
+    .header-menu-burger {
+        display: none;
+        /* Hide burger icon on desktop */
+    }
+
+    /* ---------------------------------------------------------- */
 }
 
 /* Media query pour les très petits écrans (max-width: 480px) */
 @media (max-width: 480px) {
-
-    .header-banner {
-        padding-left: 8px;
-        padding-right: 15px;
-    }
 
     .header-menu-burger .menu-burger-icon {
         width: 20px;
@@ -1509,7 +1647,8 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
 
     /* Réduire l'espacement entre les icônes sur très petits écrans */
     .header-controls {
-        gap: 10px;
+        top: -65px;
+        align-items: stretch;
     }
 
     /* Réduire légèrement la taille des icônes si nécessaire */

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/menu_gauche.css">
     <link rel="stylesheet" href="css/menu_central.css">
-    <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
@@ -22,67 +21,69 @@
 
         <div class="header-banner">
             <div class="header-menu-burger">
-                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
+                <button class="menu-burger-button" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+                    <img src="assets/icones/menu-burger.png" alt="" class="menu-burger-icon" width="24" height="24">
+                </button>
             </div>
             <div class="header-logo header-logo-left">
                 <a href="index.html">
-                    <img src="assets/logo.png" alt="Logo Forum IA">
+                    <img src="assets/logo.png" alt="Logo Forum IA" width="120" height="40">
                 </a>
             </div>
             <div class="header-controls">
                 <div class="header-control-group">
-                    <img src="assets/icones/contact.png" alt="Icône Contact" class="contact-icon">
-                    <a href="mailto:contact@forumia.fr" class="contact-button" data-lang-key="contactButton">Nous
+                    <img src="assets/icones/contact.png" alt="" class="contact-icon" width="16" height="16">
+                    <a href="#" class="contact-button" data-lang-key="contactButton" onclick="window.location.href='mailto:contact@forumia.fr'; return false;">Nous
                         contacter</a>
                 </div>
                 <div class="header-control-group">
-                    <img src="assets/icones/connexion.png" alt="Icône Connexion" class="connexion-icon">
+                    <img src="assets/icones/connexion.png" alt="" class="connexion-icon" width="16" height="16">
                     <a href="connexion.html" class="login-button" data-lang-key="loginButton">Se connecter</a>
                 </div>
 
                 <div class="header-control-group">
-                    <img src="assets/icones/inscription.png" alt="Icône Inscription" class="inscription-icon">
+                    <img src="assets/icones/inscription.png" alt="" class="inscription-icon" width="16" height="16">
                     <a href="inscription.html" class="signup-button" data-lang-key="signupButton">S'inscrire</a>
                 </div>
 
                 <div class="header-control-group">
-                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <img src="assets/icones/globe.png" alt="" class="globe-icon" width="16" height="16">
                     <div class="lang-dropdown-container">
-                        <button class="lang-button" id="currentLangButton">
+                        <button class="lang-button" id="currentLangButton" aria-label="Changer de langue" aria-expanded="false" aria-haspopup="true">
                             <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
-                                id="currentLangIcon">
+                                id="currentLangIcon" width="16" height="12">
                         </button>
-                        <div class="lang-dropdown-content" id="langDropdown">
-                            <a href="#" data-lang="fr">
-                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                        <div class="lang-dropdown-content" id="langDropdown" role="menu" aria-labelledby="currentLangButton">
+                            <a href="#" data-lang="fr" role="menuitem">
+                                <img src="assets/icones/drapeau_fr.png" alt="" width="16" height="12"> Français
                             </a>
-                            <a href="#" data-lang="en">
-                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            <a href="#" data-lang="en" role="menuitem">
+                                <img src="assets/icones/drapeau_en.png" alt="" width="16" height="12"> English
                             </a>
-                            <a href="#" data-lang="es">
-                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            <a href="#" data-lang="es" role="menuitem">
+                                <img src="assets/icones/drapeau_es.png" alt="" width="16" height="12"> Español
                             </a>
-                            <a href="#" data-lang="de">
-                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            <a href="#" data-lang="de" role="menuitem">
+                                <img src="assets/icones/drapeau_de.png" alt="" width="16" height="12"> Deutsch
                             </a>
-                            <a href="#" data-lang="it">
-                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            <a href="#" data-lang="it" role="menuitem">
+                                <img src="assets/icones/drapeau_it.png" alt="" width="16" height="12"> Italiano
                             </a>
-                            <a href="#" data-lang="pt">
-                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            <a href="#" data-lang="pt" role="menuitem">
+                                <img src="assets/icones/drapeau_pt.png" alt="" width="16" height="12"> Português
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <button class="search-button" id="openSearchModalButton">
-                    <img src="assets/icones/recherche.png" alt="Icône Recherche" class="search-icon">
+                <button class="search-button" id="openSearchModalButton" aria-label="Ouvrir la recherche">
+                    <img src="assets/icones/recherche.png" alt="" class="search-icon" width="16" height="16">
                 </button>
 
                 <div class="header-control-group">
-                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
+                    <img src="assets/icones/contraste.png" alt="" class="contrast-icon" width="16" height="16">
                     <button class="contrast-button" data-lang-key="contrastButton"
-                        id="toggleContrastButton">Contraste</button>
+                        id="toggleContrastButton" aria-label="Activer/désactiver le mode contraste élevé">Contraste</button>
                 </div>
             </div>
         </div>
@@ -96,31 +97,30 @@
 
     <main class="main-content">
         <div class="index-rectangles-container">
-            <nav class="rectangle rectangle-one">
-                <h2 class="sr-only">Menu de navigation principal</h2>
+            <nav class="rectangle rectangle-one" aria-label="Menu de navigation principal">
                 <div class="user-dropdown-container" id="userDropdownArea">
-                    <img src="assets/icones/parametre.png" alt="Icône Paramètres" class="settings-icon">
-                    <button class="user-dropdown-button" id="userDropdownButton">
-                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="user-dropdown-icon">
+                    <img src="assets/icones/parametre.png" alt="" class="settings-icon" width="16" height="16">
+                    <button class="user-dropdown-button" id="userDropdownButton" aria-expanded="false" aria-haspopup="true" aria-controls="userDropdownContent">
+                        <img src="assets/icones/fleche.png" alt="" class="user-dropdown-icon" width="12" height="8">
                         <span class="user-text">UTILISATEUR</span>
                     </button>
-                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon" id="userLockIcon">
+                    <img src="assets/icones/cadenas-ouvert.png" alt="" class="lock-icon" id="userLockIcon" width="16" height="16">
 
-                    <ul class="user-dropdown-content" id="userDropdownContent">
-                        <li>
-                            <a href="profil.html" class="dropdown-item">
-                                <img src="assets/icones/utilisateur.png" alt="Icône Profil">Profil
+                    <ul class="user-dropdown-content" id="userDropdownContent" role="menu" aria-labelledby="userDropdownButton">
+                        <li role="none">
+                            <a href="profil.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/utilisateur.png" alt="" width="16" height="16">Profil
                             </a>
                         </li>
-                        <li>
-                            <a href="modification_compte.html" class="dropdown-item" id="modifyAccountLink">
+                        <li role="none">
+                            <a href="modification_compte.html" class="dropdown-item" id="modifyAccountLink" role="menuitem">
                                 <img src="assets/icones/modification-compte.png"
-                                    alt="Icône Modification du compte">Modification du compte
+                                    alt="" width="16" height="16">Modification du compte
                             </a>
                         </li>
-                        <li>
-                            <a href="creer_post.html" class="dropdown-item">
-                                <img src="assets/icones/creation-post.png" alt="Icône Créer un post">Créer un nouveau
+                        <li role="none">
+                            <a href="creer_post.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/creation-post.png" alt="" width="16" height="16">Créer un nouveau
                                 post
                             </a>
                         </li>
@@ -128,78 +128,78 @@
                 </div>
 
                 <div class="admin-dropdown-container" id="adminDropdownArea">
-                    <img src="assets/icones/administration.png" alt="Icône Administration" class="admin-settings-icon">
-                    <button class="admin-dropdown-button" id="adminDropdownButton">
-                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="admin-dropdown-icon">
+                    <img src="assets/icones/administration.png" alt="" class="admin-settings-icon" width="16" height="16">
+                    <button class="admin-dropdown-button" id="adminDropdownButton" aria-expanded="false" aria-haspopup="true" aria-controls="adminDropdownContent">
+                        <img src="assets/icones/fleche.png" alt="" class="admin-dropdown-icon" width="12" height="8">
                         <span class="admin-text">ADMINISTRATION</span>
                     </button>
-                    <img src="assets/icones/cadenas-ouvert.png" alt="Icône Cadenas" class="lock-icon"
-                        id="adminLockIcon">
-                    <ul class="admin-dropdown-content" id="adminDropdownContent">
-                        <li>
-                            <a href="moderation.html" class="dropdown-item">
-                                <img src="assets/icones/moderation.png" alt="Icône Modération">Modération
+                    <img src="assets/icones/cadenas-ouvert.png" alt="" class="lock-icon"
+                        id="adminLockIcon" width="16" height="16">
+                    <ul class="admin-dropdown-content" id="adminDropdownContent" role="menu" aria-labelledby="adminDropdownButton">
+                        <li role="none">
+                            <a href="moderation.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/moderation.png" alt="" width="16" height="16">Modération
                             </a>
                         </li>
-                        <li>
-                            <a href="gestion_posts.html" class="dropdown-item">
-                                <img src="assets/icones/gestion-posts.png" alt="Icône Gestion des postes">Gestion des
+                        <li role="none">
+                            <a href="gestion_posts.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/gestion-posts.png" alt="" width="16" height="16">Gestion des
                                 postes
                             </a>
                         </li>
-                        <li>
-                            <a href="gestion_utilisateurs.html" class="dropdown-item">
+                        <li role="none">
+                            <a href="gestion_utilisateurs.html" class="dropdown-item" role="menuitem">
                                 <img src="assets/icones/gestion-utilisateur.png"
-                                    alt="Icône Gestion des utilisateurs">Gestion des utilisateurs
+                                    alt="" width="16" height="16">Gestion des utilisateurs
                             </a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="categories-dropdown-container" id="categoriesDropdownArea">
-                    <img src="assets/icones/categories.png" alt="Icône Catégories" class="categories-icon">
-                    <button class="categories-dropdown-button" id="categoriesDropdownButton">
-                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="categories-dropdown-icon">
+                    <img src="assets/icones/categories.png" alt="" class="categories-icon" width="16" height="16">
+                    <button class="categories-dropdown-button" id="categoriesDropdownButton" aria-expanded="false" aria-haspopup="true" aria-controls="categoriesDropdownContent">
+                        <img src="assets/icones/fleche.png" alt="" class="categories-dropdown-icon" width="12" height="8">
                         <span class="categories-text">CATEGORIES</span>
                     </button>
-                    <ul class="categories-dropdown-content" id="categoriesDropdownContent">
-                        <li>
-                            <a href="tuto_ia.html" class="dropdown-item">
-                                <img src="assets/icones/tuto-ia.png" alt="Icône Tuto IA">Tuto IA
+                    <ul class="categories-dropdown-content" id="categoriesDropdownContent" role="menu" aria-labelledby="categoriesDropdownButton">
+                        <li role="none">
+                            <a href="tuto_ia.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/tuto-ia.png" alt="" width="16" height="16">Tuto IA
                             </a>
                         </li>
-                        <li>
-                            <a href="toolbox_ia.html" class="dropdown-item">
-                                <img src="assets/icones/toolbox-ia.png" alt="Icône Toolbox IA">Toolbox IA
+                        <li role="none">
+                            <a href="toolbox_ia.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/toolbox-ia.png" alt="" width="16" height="16">Toolbox IA
                             </a>
                         </li>
-                        <li>
-                            <a href="debats_discussions.html" class="dropdown-item">
-                                <img src="assets/icones/débat.png" alt="Icône Débats et discussions sur l'IA">Débats et
+                        <li role="none">
+                            <a href="debats_discussions.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/débat.png" alt="" width="16" height="16">Débats et
                                 discussions sur l'IA
                             </a>
                         </li>
-                        <li>
-                            <a href="commentaires_site.html" class="dropdown-item">
-                                <img src="assets/icones/commentaire.png" alt="Icône Commentaire sur le site">Commentaire
+                        <li role="none">
+                            <a href="commentaires_site.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/commentaire.png" alt="" width="16" height="16">Commentaire
                                 sur
                                 le site
                             </a>
                         </li>
-                        <li>
-                            <a href="imagerie_ia.html" class="dropdown-item">
-                                <img src="assets/icones/imagerie.png" alt="Icône Imagerie IA">Imagerie IA
+                        <li role="none">
+                            <a href="imagerie_ia.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/imagerie.png" alt="" width="16" height="16">Imagerie IA
                             </a>
                         </li>
-                        <li>
-                            <a href="actualites_ia.html" class="dropdown-item">
-                                <img src="assets/icones/actualites.png" alt="Icône Actualités sur l’IA">Actualités sur
-                                l’IA
+                        <li role="none">
+                            <a href="actualites_ia.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/actualites.png" alt="" width="16" height="16">Actualités sur
+                                l'IA
                             </a>
                         </li>
-                        <li>
-                            <a href="toutes_categories.html" class="dropdown-item">
-                                <img src="assets/icones/categories.png" alt="Icône Toutes les catégories">Toutes les
+                        <li role="none">
+                            <a href="toutes_categories.html" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/categories.png" alt="" width="16" height="16">Toutes les
                                 catégories
                             </a>
                         </li>
@@ -207,77 +207,62 @@
                 </div>
 
                 <div class="tags-dropdown-container" id="tagsDropdownArea">
-                    <img src="assets/icones/etiquette.png" alt="Icône Étiquette" class="tags-icon">
-                    <button class="tags-dropdown-button" id="tagsDropdownButton">
-                        <img src="assets/icones/fleche.png" alt="Flèche déroulante" class="tags-dropdown-icon">
+                    <img src="assets/icones/etiquette.png" alt="" class="tags-icon" width="16" height="16">
+                    <button class="tags-dropdown-button" id="tagsDropdownButton" aria-expanded="false" aria-haspopup="true" aria-controls="tagsDropdownContent">
+                        <img src="assets/icones/fleche.png" alt="" class="tags-dropdown-icon" width="12" height="8">
                         <span class="tags-text">TAGS</span>
                     </button>
-                    <ul class="tags-dropdown-content" id="tagsDropdownContent">
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Imagerie">Imagerie
+                    <ul class="tags-dropdown-content" id="tagsDropdownContent" role="menu" aria-labelledby="tagsDropdownButton">
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Imagerie
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône IA">IA
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">IA
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Machine Learning">Machine Learning
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Robotique
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Deep Learning">Deep Learning
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Éthique IA
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Robotique">Robotique
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Éthique IA">Éthique IA
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône NLP">NLP
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Vision par Ordinateur">Vision par
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Vision par
                                 Ordinateur
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Données Massives">Données Massives
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Données Massives
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Algorithmes">Algorithmes
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Algorithmes
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Réseaux de neurones">Réseaux de
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Réseaux de
                                 neurones
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquette-m.png" alt="Icône Cybersécurité">Cybersécurité
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquette-m.png" alt="" width="16" height="16">Cybersécurité
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="dropdown-item">
-                                <img src="assets/icones/etiquettes.png" alt="Icône Toutes les tags">Toutes les Tags
+                        <li role="none">
+                            <a href="#" class="dropdown-item" role="menuitem">
+                                <img src="assets/icones/etiquettes.png" alt="" width="16" height="16">Toutes les Tags
                             </a>
                         </li>
                     </ul>
@@ -285,15 +270,15 @@
             </nav>
 
             <section class="rectangle rectangle-two">
-                <h2 class="sr-only">Contenu principal du forum</h2> <img src="assets/imageAI.webp" alt="Image AI"
-                    class="ai-image">
+                <img src="assets/imageAI.webp" alt="Illustration représentant l'intelligence artificielle"
+                    class="ai-image" width="400" height="300">
                 <div class="image-text">
-                    Forum IA est un espace pour des débats animés sur des sujets liés à l’IA, où les membres peuvent
-                    partager leurs opinions et idées sur l’intelligence artificielle.
+                    Forum IA est un espace pour des débats animés sur des sujets liés à l'IA, où les membres peuvent
+                    partager leurs opinions et idées sur l'intelligence artificielle.
                 </div>
                 <aside class="random-post-container">
-                    <button class="random-post-button">
-                        <img src="assets/icones/melanger.png" alt="Icône Mélanger" class="random-icon">
+                    <button class="random-post-button" aria-label="Afficher un post aléatoire">
+                        <img src="assets/icones/melanger.png" alt="" class="random-icon" width="16" height="16">
                         <span class="random-text">Post aléatoire</span>
                     </button>
                 </aside>
@@ -304,21 +289,21 @@
                     <span class="header-item">Vues</span>
                     <span class="header-item">Activité</span>
                 </header>
-                <img src="assets/icones/actualites.png" alt="Icône Imagerie" class="post-rectangle-icon">
+                <img src="assets/icones/actualites.png" alt="" class="post-rectangle-icon" width="24" height="24">
                 <article class="post-content-rectangle">
-                    <img src="assets/icones/iconeJ.png" alt="Icône J" class="post-icon-auteur">
+                    <img src="assets/icones/iconeJ.png" alt="" class="post-icon-auteur" width="32" height="32">
                     <span class="post-author-text">Par Titi.R</span>
-                    <span class="post-date-text">posté le <time datetime="2025-05-20">20/05/25</time></span>
-                    <h4 class="h4-titre-post">
-                        Breaking News Alibaba dévoile EMO AI le concurrent de Sora d’OpenAI, et vous n’en croirez pas
+                    <span class="post-date-text">posté le <time datetime="2025-05-20">20 mai 2025</time></span>
+                    <h3 class="h3-titre-post">
+                        Breaking News Alibaba dévoile EMO AI le concurrent de Sora d'OpenAI, et vous n'en croirez pas
                         vos yeux !
-                    </h4>
+                    </h3>
                     <div class="article-excerpt">
                         "l'IA EMO AI a le pouvoir de Transformer une Simple Image en Vidéo Vivante Imaginez pouvoir
                         donner vie à n'importe quelle image . . . " <a href="post.html" class="read-more-button">lire la
                             suite</a>
                     </div>
-                    <img src="assets/image_ai5.jpg" alt="Image IA" class="article-image">
+                    <img src="assets/image_ai5.jpg" alt="Capture d'écran montrant l'interface EMO AI" class="article-image" width="300" height="200">
                 </article>
             </section>
         </div>
@@ -327,31 +312,33 @@
     <footer class="footer" id="mainFooter">
         <div class="footer-content">
             <div class="footer-left">
-                <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
+                <img src="assets/icones/droits_dauteur.png" alt="" class="copyright-icon" width="16" height="16">
                 <span data-lang-key="copyrightText">Forum IA 2025</span>
                 <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
             </div>
         </div>
     </footer>
 
-    <div id="searchModal" class="modal">
+    <div id="searchModal" class="modal" role="dialog" aria-labelledby="searchModalTitle" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2 data-lang-key="searchModalTitle">Rechercher sur le Forum</h2>
+            <button class="close-button" aria-label="Fermer la fenêtre de recherche">&times;</button>
+            <h2 id="searchModalTitle" data-lang-key="searchModalTitle">Rechercher sur le Forum</h2>
             <div class="search-input-container">
+                <label for="searchInput" class="sr-only">Mots-clés de recherche</label>
                 <input type="text" id="searchInput" placeholder="Entrez vos mots-clés..."
                     data-lang-key="searchPlaceholder">
                 <button id="performSearchButton" data-lang-key="searchButtonText">Rechercher</button>
             </div>
-            <div id="searchResults" class="search-results-container">
+            <div id="searchResults" class="search-results-container" role="region" aria-live="polite">
             </div>
         </div>
     </div>
 
-    <script src="js/language.js"></script>
-    <script src="js/contrast.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/main.js"></script>
+<script src="js/language.js" defer></script>
+<script src="js/contrast.js" defer></script>
+<script src="js/search.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/menu_burger.js" defer></script>
 </body>
 
 </html>

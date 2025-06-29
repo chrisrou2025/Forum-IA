@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
@@ -19,9 +18,6 @@
         <div class="header-top-space"></div>
 
         <div class="header-banner">
-            <div class="header-menu-burger">
-                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
-            </div>
             <div class="header-logo header-logo-centered">
                 <a href="index.html">
                     <img src="assets/logo.png" alt="Logo Forum IA">
@@ -82,20 +78,38 @@
                 <h2 class="signup-info-title" data-lang-key="signupInfoTitle">Mes informations</h2>
                 <p class="signup-info-text" data-lang-key="signupInfoText">Pour créer votre compte, veuillez entrer vos
                     informations personnelles dans les champs ci-dessous.</p>
-                <input type="text" class="form-input username-input" id="signupUsername" placeholder="Nom d'utilisateur"
-                    data-lang-key="usernamePlaceholder">
-                <input type="email" class="form-input email-input" id="signupEmail" placeholder="Email"
-                    data-lang-key="emailPlaceholder">
-                <input type="password" class="form-input password-input" id="signupPassword" placeholder="Mot de passe"
-                    data-lang-key="passwordPlaceholder">
-                <input type="password" class="form-input confirm-password-input" id="signupConfirmPassword"
-                    placeholder="Confirmer le mot de passe" data-lang-key="confirmPasswordPlaceholder">
-                <div class="newsletter-consent-container">
-                    <input type="checkbox" id="newsletterConsent" class="newsletter-checkbox">
-                    <label for="newsletterConsent" class="newsletter-label" data-lang-key="newsletterConsentLabel">Je
-                        souhaite ne pas recevoir la newsletter</label>
-                </div>
-                <button class="signup-form-submit-button" data-lang-key="signupFormSubmitButton">S'inscrire</button>
+                
+                <!-- Formulaire avec structure sémantique -->
+                <form id="signupForm" novalidate>
+                    <!-- Token CSRF caché -->
+                    <input type="hidden" name="csrf_token" id="csrfToken" value="">
+                    
+                    <!-- Labels cachés visuellement mais accessibles aux lecteurs d'écran -->
+                    <label for="signupUsername" class="sr-only">Nom d'utilisateur</label>
+                    <input type="text" class="form-input username-input" id="signupUsername" name="username"
+                        placeholder="Nom d'utilisateur" data-lang-key="usernamePlaceholder" required minlength="3" maxlength="20">
+                    
+                    <label for="signupEmail" class="sr-only">Adresse email</label>
+                    <input type="email" class="form-input email-input" id="signupEmail" name="email"
+                        placeholder="Email" data-lang-key="emailPlaceholder" required>
+                    
+                    <label for="signupPassword" class="sr-only">Mot de passe</label>
+                    <input type="password" class="form-input password-input" id="signupPassword" name="password"
+                        placeholder="Mot de passe" data-lang-key="passwordPlaceholder" required minlength="8">
+                    
+                    <label for="signupConfirmPassword" class="sr-only">Confirmer le mot de passe</label>
+                    <input type="password" class="form-input confirm-password-input" id="signupConfirmPassword" name="confirmPassword"
+                        placeholder="Confirmer le mot de passe" data-lang-key="confirmPasswordPlaceholder" required>
+                    
+                    <div class="newsletter-consent-container">
+                        <input type="checkbox" id="newsletterConsent" name="newsletterConsent" class="newsletter-checkbox">
+                        <label for="newsletterConsent" class="newsletter-label" data-lang-key="newsletterConsentLabel">Je
+                            souhaite ne pas recevoir la newsletter</label>
+                    </div>
+                    
+                    <button type="submit" class="signup-form-submit-button" data-lang-key="signupFormSubmitButton">S'inscrire</button>
+                </form>
+                
                 <a href="connexion.html" class="login-prompt-and-icon login-link-group">
                     <span class="login-prompt-text" data-lang-key="alreadyAccountPrompt">Déjà un compte ?</span>
                     <span class="login-icon-visual"></span>
@@ -114,10 +128,179 @@
         </div>
     </footer>
 
-    <script src="js/language.js"></script>
-    <script src="js/contrast.js"></script>
-    <script src="js/signup.js"></script>
-    <script src="js/main.js"></script>
+    <!-- CSS minimal pour les labels cachés et la validation -->
+    <style>
+        /* Label caché visuellement mais accessible aux lecteurs d'écran */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* États de validation discrets */
+        .form-input.error {
+            border-color: #dc3545 !important;
+        }
+        
+        .form-input.success {
+            border-color: #28a745 !important;
+        }
+        
+        /* Message d'erreur discret */
+        .form-message.error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .form-message.success {
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+
+    <script src="js/language.js" defer></script>
+    <script src="js/contrast.js" defer></script>
+    
+    <!-- Script de validation amélioré mais discret -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('signupForm');
+            const messageDiv = document.getElementById('signupMessage');
+            
+            // Éléments du formulaire
+            const username = document.getElementById('signupUsername');
+            const email = document.getElementById('signupEmail');
+            const password = document.getElementById('signupPassword');
+            const confirmPassword = document.getElementById('signupConfirmPassword');
+
+            // Fonction pour afficher un message
+            function showMessage(message, type) {
+                messageDiv.textContent = message;
+                messageDiv.className = `form-message ${type}`;
+            }
+
+            // Validation du nom d'utilisateur
+            function validateUsername() {
+                const value = username.value.trim();
+                if (value.length < 3 || value.length > 20 || !/^[a-zA-Z0-9]+$/.test(value)) {
+                    username.classList.add('error');
+                    username.classList.remove('success');
+                    return false;
+                } else {
+                    username.classList.remove('error');
+                    username.classList.add('success');
+                    return true;
+                }
+            }
+
+            // Validation de l'email
+            function validateEmail() {
+                const value = email.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    email.classList.add('error');
+                    email.classList.remove('success');
+                    return false;
+                } else {
+                    email.classList.remove('error');
+                    email.classList.add('success');
+                    return true;
+                }
+            }
+
+            // Validation du mot de passe (critères de sécurité)
+            function validatePassword() {
+                const value = password.value;
+                // Au moins 8 caractères, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial
+                const hasLength = value.length >= 8;
+                const hasUpper = /[A-Z]/.test(value);
+                const hasLower = /[a-z]/.test(value);
+                const hasNumber = /[0-9]/.test(value);
+                const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+                
+                const isValid = hasLength && hasUpper && hasLower && hasNumber && hasSpecial;
+                
+                if (isValid) {
+                    password.classList.remove('error');
+                    password.classList.add('success');
+                } else {
+                    password.classList.add('error');
+                    password.classList.remove('success');
+                }
+                return isValid;
+            }
+
+            // Validation de la confirmation du mot de passe
+            function validateConfirmPassword() {
+                if (password.value !== confirmPassword.value || confirmPassword.value.length === 0) {
+                    confirmPassword.classList.add('error');
+                    confirmPassword.classList.remove('success');
+                    return false;
+                } else {
+                    confirmPassword.classList.remove('error');
+                    confirmPassword.classList.add('success');
+                    return true;
+                }
+            }
+
+            // Événements de validation
+            username.addEventListener('blur', validateUsername);
+            email.addEventListener('blur', validateEmail);
+            password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validateConfirmPassword);
+
+            // Gestion de la soumission du formulaire
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validation complète
+                const isUsernameValid = validateUsername();
+                const isEmailValid = validateEmail();
+                const isPasswordValid = validatePassword();
+                const isConfirmPasswordValid = validateConfirmPassword();
+
+                if (!isUsernameValid) {
+                    showMessage('Le nom d\'utilisateur doit contenir entre 3 et 20 caractères (lettres et chiffres uniquement)', 'error');
+                    return;
+                }
+                
+                if (!isEmailValid) {
+                    showMessage('Veuillez entrer une adresse email valide', 'error');
+                    return;
+                }
+                
+                if (!isPasswordValid) {
+                    showMessage('Le mot de passe doit contenir au moins 8 caractères avec majuscule, minuscule, chiffre et caractère spécial', 'error');
+                    return;
+                }
+                
+                if (!isConfirmPasswordValid) {
+                    showMessage('Les mots de passe ne correspondent pas', 'error');
+                    return;
+                }
+
+                // Si tout est valide
+                showMessage('Inscription en cours...', 'success');
+                
+                // Ici vous ajouteriez l'envoi vers votre serveur
+                // fetch('/api/signup', { method: 'POST', body: new FormData(form) })
+                
+                // Simulation d'une inscription réussie
+                setTimeout(() => {
+                    showMessage('Inscription réussie !', 'success');
+                }, 1000);
+            });
+
+            // Génération d'un token CSRF simple (à remplacer par une génération côté serveur)
+            document.getElementById('csrfToken').value = 'csrf_' + Math.random().toString(36).substr(2, 9);
+        });
+    </script>
 
 </body>
 

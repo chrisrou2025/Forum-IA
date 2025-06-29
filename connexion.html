@@ -10,64 +10,152 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inria+Sans:wght@700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/header.css">
+    <style>
+        /* Espacement réglable sous le header */
+        .header-spacing {
+            height: var(--header-bottom-spacing, 2rem);
+            background-color: transparent;
+        }
+        
+        /* Responsive pour l'espacement */
+        @media (max-width: 768px) {
+            .header-spacing {
+                height: var(--header-bottom-spacing-mobile, 1rem);
+            }
+        }
+        
+        /* Amélioration de l'accessibilité */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* États de focus améliorés */
+        .form-input:focus,
+        .login-form-submit-button:focus,
+        .lang-button:focus,
+        .contrast-button:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
+        /* Indicateur de chargement */
+        .loading {
+            position: relative;
+            pointer-events: none;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Messages d'erreur */
+        .form-message.error {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .form-message.success {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 
 <body>
-
     <header class="header">
         <div class="header-top-space"></div>
 
         <div class="header-banner">
-            <div class="header-menu-burger">
-                <img src="assets/icones/menu-burger.png" alt="Icône Menu" class="menu-burger-icon">
-            </div>
-            
             <div class="header-logo header-logo-centered">
-                <a href="index.html">
+                <a href="index.html" aria-label="Retour à l'accueil du Forum IA">
                     <img src="assets/logo.png" alt="Logo Forum IA">
                 </a>
             </div>
-            <nav class="header-controls">
+            
+            <nav class="header-controls" role="navigation" aria-label="Contrôles d'accessibilité">
                 <div class="header-control-group">
-                    <img src="assets/icones/globe.png" alt="Icône Globe" class="globe-icon">
+                    <img src="assets/icones/globe.png" alt="" class="globe-icon" aria-hidden="true">
                     <div class="lang-dropdown-container">
-                        <button class="lang-button" id="currentLangButton">
-                            <img src="assets/icones/drapeau_fr.png" alt="Langue actuelle" class="lang-icon"
-                                id="currentLangIcon">
+                        <button class="lang-button" 
+                                id="currentLangButton" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                                aria-label="Sélectionner une langue">
+                            <img src="assets/icones/drapeau_fr.png" 
+                                 alt="Français" 
+                                 class="lang-icon"
+                                 id="currentLangIcon">
+                            <span class="sr-only">Langue actuelle : Français</span>
                         </button>
-                        <div class="lang-dropdown-content" id="langDropdown">
-                            <a href="#" data-lang="fr">
-                                <img src="assets/icones/drapeau_fr.png" alt="Français"> Français
+                        <div class="lang-dropdown-content" 
+                             id="langDropdown" 
+                             role="menu"
+                             aria-labelledby="currentLangButton">
+                            <a href="#" data-lang="fr" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_fr.png" alt=""> Français
                             </a>
-                            <a href="#" data-lang="en">
-                                <img src="assets/icones/drapeau_en.png" alt="English"> English
+                            <a href="#" data-lang="en" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_en.png" alt=""> English
                             </a>
-                            <a href="#" data-lang="es">
-                                <img src="assets/icones/drapeau_es.png" alt="Español"> Español
+                            <a href="#" data-lang="es" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_es.png" alt=""> Español
                             </a>
-                            <a href="#" data-lang="de">
-                                <img src="assets/icones/drapeau_de.png" alt="Deutsch"> Deutsch
+                            <a href="#" data-lang="de" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_de.png" alt=""> Deutsch
                             </a>
-                            <a href="#" data-lang="it">
-                                <img src="assets/icones/drapeau_it.png" alt="Italiano"> Italiano
+                            <a href="#" data-lang="it" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_it.png" alt=""> Italiano
                             </a>
-                            <a href="#" data-lang="pt">
-                                <img src="assets/icones/drapeau_pt.png" alt="Português"> Português
+                            <a href="#" data-lang="pt" role="menuitem" tabindex="-1">
+                                <img src="assets/icones/drapeau_pt.png" alt=""> Português
                             </a>
                         </div>
                     </div>
                 </div>
+                
                 <div class="header-control-group">
-                    <img src="assets/icones/contraste.png" alt="Icône Contraste" class="contrast-icon">
-                    <button class="contrast-button" data-lang-key="contrastButton"
-                        id="toggleContrastButton">Contraste</button>
+                    <img src="assets/icones/contraste.png" alt="" class="contrast-icon" aria-hidden="true">
+                    <button class="contrast-button" 
+                            data-lang-key="contrastButton"
+                            id="toggleContrastButton"
+                            aria-pressed="false">Contraste</button>
                 </div>
             </nav>
         </div>
 
-        <div class="header-title-section header-title-section-reduced">
-        </div>
+        <!-- Espacement réglable avec CSS custom properties -->
+        <div class="header-spacing"></div>
     </header>
 
     <main class="main-content main-connexion-layout">
@@ -77,24 +165,63 @@
                     <h1 class="login-rectangle-title" data-lang-key="loginTitle">Connexion</h1>
                 </div>
             </div>
+            
             <div class="login-inner-rectangle">
-                <span id="loginMessage" class="form-message"></span>
-                <input type="email" class="form-input email-input" id="loginEmail" placeholder="Email"
-                    data-lang-key="emailPlaceholder">
-                <input type="password" class="form-input password-input" id="loginPassword" placeholder="Mot de passe"
-                    data-lang-key="passwordPlaceholder">
+                <!-- Formulaire de connexion avec structure sémantique -->
+                <form id="loginForm" novalidate>
+                    <div id="loginMessage" class="form-message" role="alert" aria-live="polite"></div>
+                    
+                    <div class="form-group">
+                        <label for="loginEmail" class="sr-only" data-lang-key="emailLabel">Adresse email</label>
+                        <input type="email" 
+                               class="form-input email-input" 
+                               id="loginEmail" 
+                               name="email"
+                               placeholder="Email"
+                               data-lang-key="emailPlaceholder"
+                               required
+                               autocomplete="email"
+                               aria-describedby="email-error">
+                        <div id="email-error" class="field-error" role="alert"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword" class="sr-only" data-lang-key="passwordLabel">Mot de passe</label>
+                        <input type="password" 
+                               class="form-input password-input" 
+                               id="loginPassword" 
+                               name="password"
+                               placeholder="Mot de passe"
+                               data-lang-key="passwordPlaceholder"
+                               required
+                               autocomplete="current-password"
+                               aria-describedby="password-error">
+                        <div id="password-error" class="field-error" role="alert"></div>
+                    </div>
 
-                <div class="forgot-password-trigger-container">
-                    <a href="#" class="forgot-password-link-group" id="forgotPasswordLinkAndIcon">
-                        <span class="forgot-password-text">Mot de passe oublié ?</span>
-                        <span class="submit-icon-visual"></span>
+                    <div class="forgot-password-trigger-container">
+                        <a href="#" 
+                           class="forgot-password-link-group" 
+                           id="forgotPasswordLinkAndIcon"
+                           role="button"
+                           aria-label="Ouvrir la réinitialisation de mot de passe">
+                            <span class="forgot-password-text" data-lang-key="forgotPasswordText">Mot de passe oublié ?</span>
+                            <span class="submit-icon-visual" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    
+                    <button type="submit" 
+                            class="login-form-submit-button" 
+                            id="loginSubmitButton"
+                            data-lang-key="loginFormSubmitButton">Se connecter</button>
+                </form>
+                
+                <div class="signup-section">
+                    <a href="inscription.html" class="signup-prompt-and-icon login-link-group">
+                        <span class="signup-prompt-text" data-lang-key="noAccountPrompt">Pas encore de compte ?</span>
+                        <span class="signup-icon-visual" aria-hidden="true"></span>
                     </a>
                 </div>
-                <button class="login-form-submit-button" data-lang-key="loginFormSubmitButton">Se connecter</button>
-                <a href="inscription.html" class="signup-prompt-and-icon login-link-group">
-                    <span class="signup-prompt-text" data-lang-key="noAccountPrompt">Pas encore de compte ?</span>
-                    <span class="signup-icon-visual"></span>
-                </a>
             </div>
         </section>
     </main>
@@ -104,31 +231,65 @@
             <div class="footer-left">
                 <img src="assets/icones/droits_dauteur.png" alt="Droits d'auteur" class="copyright-icon">
                 <span data-lang-key="copyrightText">Forum IA 2025</span>
-                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droit réservés</span>
+                <span data-lang-key="allRightsReserved" class="all-rights-text">Tous droits réservés</span>
             </div>
         </div>
     </footer>
 
-    <div id="forgotPasswordModal" class="modal">
+    <!-- Modal de réinitialisation de mot de passe -->
+    <div id="forgotPasswordModal" 
+         class="modal" 
+         role="dialog" 
+         aria-labelledby="forgotPasswordModalTitle"
+         aria-hidden="true">
         <div class="modal-content">
-            <span class="close-button" id="closeForgotPasswordModal">&times;</span>
-            <h2 data-lang-key="forgotPasswordModalTitle">Réinitialiser le mot de passe</h2>
-            <p data-lang-key="forgotPasswordModalText">Veuillez entrer votre adresse e-mail pour recevoir un lien de
-                réinitialisation.</p>
-            <div class="forgot-password-input-container">
-                <input type="email" class="form-input reset-email-input" id="resetEmail" placeholder="Email"
-                    data-lang-key="emailPlaceholder">
-                <button id="resetPasswordSubmitButton" data-lang-key="resetPasswordButton">Envoyer</button>
+            <div class="modal-header">
+                <h2 id="forgotPasswordModalTitle" data-lang-key="forgotPasswordModalTitle">Réinitialiser le mot de passe</h2>
+                <button class="close-button" 
+                        id="closeForgotPasswordModal"
+                        aria-label="Fermer la modal"
+                        type="button">&times;</button>
             </div>
-            <p id="resetPasswordMessage" class="form-message"></p>
+            
+            <div class="modal-body">
+                <p data-lang-key="forgotPasswordModalText">
+                    Veuillez entrer votre adresse e-mail pour recevoir un lien de réinitialisation.
+                </p>
+                
+                <form id="resetPasswordForm" novalidate>
+                    <div class="forgot-password-input-container">
+                        <label for="resetEmail" class="sr-only" data-lang-key="emailLabel">Adresse email</label>
+                        <input type="email" 
+                               class="form-input reset-email-input" 
+                               id="resetEmail" 
+                               name="resetEmail"
+                               placeholder="Email"
+                               data-lang-key="emailPlaceholder"
+                               required
+                               autocomplete="email"
+                               aria-describedby="reset-email-error">
+                        <button type="submit" 
+                                id="resetPasswordSubmitButton" 
+                                data-lang-key="resetPasswordButton">Envoyer</button>
+                    </div>
+                    <div id="reset-email-error" class="field-error" role="alert"></div>
+                    <div id="resetPasswordMessage" class="form-message" role="alert" aria-live="polite"></div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <script src="js/language.js"></script>
-    <script src="js/contrast.js"></script>
-    <script src="js/login.js"></script>
-    <script src="js/forgot_Password.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Fallback pour utilisateurs sans JavaScript -->
+    <noscript>
+        <div class="noscript-message">
+            <p>Ce site nécessite JavaScript pour fonctionner correctement. Veuillez l'activer dans votre navigateur.</p>
+        </div>
+    </noscript>
+
+    <script src="js/language.js" defer></script>
+    <script src="js/contrast.js" defer></script>
+    <script src="js/login.js" defer></script>
+    <script src="js/forgot_Password.js" defer></script>
 
 </body>
 
