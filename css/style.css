@@ -8,15 +8,17 @@
     --primary-orange-hover: #c07a2c;
     --dark-orange: #a06b25;
     --dark-orange-hover: #8d5e20;
-    --border-radius-small: 5px;
-    --border-radius-medium: 25px;
-    --border-radius-large: 30px;
+    --border-radius-small: 3px;
+    --border-radius-medium: 8px;
+    --border-radius-large: 10px;
     /* Nouvelle variable pour la couleur des liens en mode sombre */
     --dark-mode-link-color: #99ccff;
     --dark-mode-link-hover-color: #77aadd;
     /* Dans votre fichier CSS principal */
-    --header-bottom-spacing: 2rem;        /* Desktop */
-    --header-bottom-spacing-mobile: 2rem; /* Mobile */
+    --header-bottom-spacing: 2rem;
+    /* Desktop */
+    --header-bottom-spacing-mobile: 2rem;
+    /* Mobile */
 }
 
 /* Ou pour une page spécifique */
@@ -60,7 +62,7 @@ body {
 
 .header-top-space {
     width: 100%;
-    height: 30px;
+    height: 5px;
     background-color: white;
 }
 
@@ -75,21 +77,19 @@ body {
     align-items: center;
     position: relative;
     /* Pour positionner les contrôles */
+    border-top: #260661 solid 5px;
+    border-bottom: #260661 solid 5px;
 }
 
 .header-logo {
     width: 174px;
     height: 128px;
-    /* margin-left: 50px; */
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
 }
 
 .header-logo img {
     width: 100%;
     height: 100%;
-    /* object-fit: contain; */
 }
 
 /* Centrage du logo dans le bandeau des pages de connexion/inscription */
@@ -312,37 +312,37 @@ body {
 
 .header-title-section {
     width: 100%;
-    height: 94px;
+    height: 100px;
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     transition: background-color var(--transition-standard);
 }
 
 /* Réduction de la hauteur de la zone de titre pour les pages de connexion/inscription */
 .header-title-section-reduced {
-    height: 30px;
+    height: 5px;
     background-color: white;
 }
 
 .header-title {
-    font-size: 32px;
+    margin-top: 10px;
+    font-size: 36px;
     font-weight: 800;
     color: black;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    margin-bottom: 10px;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     transition: color var(--transition-standard), text-shadow var(--transition-standard);
 }
 
 .header-subtitle {
-    font-size: 16px;
+    margin-top: -10px;
+    font-size: 20px;
     font-weight: 800;
     color: black;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    transition: color var(--transition-standard), text-shadow var(--transition-standard);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: color var(--transition-standard), text-shadow var(--transition-standard)
+
 }
 
 /* Masquer le menu-burger par défaut sur tous les écrans (visible seulement via media queries) */
@@ -1355,7 +1355,7 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         /* Peut être légèrement inférieur aux contrôles */
     }
 
-    
+
 
     /* Styles pour les titres */
     .header-title-section {
