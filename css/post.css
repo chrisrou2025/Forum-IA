@@ -1,6 +1,8 @@
-/* Styles optimisés pour post.html */
+/* post.css - Version optimisée sans changement de mise en page */
 
-/* Variables CSS utilisées et organisées */
+/* ================================
+   VARIABLES CSS COMPLÈTES
+   ================================ */
 :root {
     /* Couleurs principales */
     --bg-primary: white;
@@ -10,26 +12,39 @@
     --text-tertiary: #ddd;
     --accent-orange: #FF9C06;
     --divider-color: black;
-    
+
     /* Couleurs mode sombre */
     --dark-bg-primary: #444;
     --dark-bg-secondary: #555;
     --dark-text-primary: white;
     --dark-text-secondary: #ddd;
     --dark-divider-color: #666;
-    
+
     /* Espacements et dimensions */
     --container-width: 960px;
     --container-min-height: 720px;
     --border-radius-main: 10px;
+    --border-radius-medium: 8px;
+    /* Variable manquante ajoutée */
     --header-top-padding: 65px;
-    --content-padding: 30px;
-    --icon-spacing-large: 30px; /* Espace large pour desktop/tablet */
-    --icon-spacing-small: 10px; /* Espace réduit pour mobile */
-    --like-dislike-spacing-large: 15px; /* (30px / 2) */
-    --like-dislike-spacing-small: 5px; /* (10px / 2) */
-    
-    /* Polices (conservées) */
+    --content-padding: 10px;
+
+    /* Espacements d'icônes - Variables manquantes ajoutées */
+    --icon-spacing-large: 30px;
+    --icon-spacing-small: 0px;
+    --like-dislike-spacing-large: 15px;
+    /* Variable manquante ajoutée */
+    --like-dislike-spacing-small: 8px;
+    /* Variable manquante ajoutée */
+
+    /* Hauteurs calculées - Documentation des calculs complexes */
+    --icon-container-base-height: 70px;
+    --icon-container-additional: calc(var(--icon-container-base-height) / 3);
+    --icon-container-adjustment: 15px;
+    --icon-container-final-height: calc(var(--icon-container-base-height) + var(--icon-container-additional) - var(--icon-container-adjustment));
+    --icon-container-inner-height: calc(var(--icon-container-final-height) - 44px);
+
+    /* Polices */
     --font-primary: 'Inria Sans', sans-serif;
     --font-secondary: 'Inter', sans-serif;
 }
@@ -44,7 +59,9 @@ body.dark-mode {
     --divider-color: var(--dark-divider-color);
 }
 
-/* Zone de contenu principal */
+/* ================================
+   CONTENEUR PRINCIPAL
+   ================================ */
 .main-content {
     display: flex;
     justify-content: center;
@@ -52,14 +69,26 @@ body.dark-mode {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--content-padding);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Rectangle principal - Structure conservée mais responsive */
+/* ================================
+   RECTANGLE PRINCIPAL - MISE EN PAGE PRÉSERVÉE
+   ================================ */
 .rectangle-two {
     position: relative;
+    /* Garder ceci car d'autres éléments restent en position absolue */
     width: 100%;
     max-width: var(--container-width);
-    min-width: 320px; /* Largeur minimale pour mobile */
+    min-width: 320px;
     min-height: var(--container-min-height);
     background-color: var(--bg-primary);
     border-radius: var(--border-radius-main);
@@ -67,8 +96,15 @@ body.dark-mode {
     box-sizing: border-box;
     margin-bottom: 50px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    /* Hauteur de l'espace réservé pour les icônes (augmentée d'un tiers, puis légèrement diminuée) */
-    padding-bottom: calc(70px + (70px / 3) - 15px); 
+    padding-bottom: var(--icon-container-final-height);
+
+    /* Enlever les propriétés flexbox d'ici si elles n'affectent que le nouveau wrapper */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    /* flex-wrap: wrap; */
+    /* gap: 20px; */
+    /* padding: 10px; */
 }
 
 /* Mode sombre pour le rectangle principal */
@@ -76,7 +112,51 @@ body.dark-mode .rectangle-two {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Boîte de catégorie - Dimensions conservées */
+/* ================================
+   NOUVEAU CONTENEUR FLEXBOX POUR IMAGE ET TEXTE
+   ================================ */
+.image-text-flex-wrapper {
+    position: relative;
+    /* Nécessaire pour positionner les éléments à l'intérieur */
+    top: 30px;
+    /* Ajusté pour l'alignement vertical */
+    left: 20px;
+    /* Ajusté pour l'alignement horizontal */
+    width: calc(100% - 40px);
+    /* Ajusté pour l'alignement horizontal */
+    max-width: calc(var(--container-width) - 40px);
+    /* Limite la largeur max pour éviter le débordement */
+    /* Utilisation de la variable calculée pour la largeur max */
+    height: auto;
+    /* Permet au conteneur de s'ajuster à son contenu */
+    /* Pas besoin de min-width ici, car le conteneur prendra l'espace restant par défaut */
+    /* Pas besoin de flex-grow ici, car le conteneur prendra l'espace restant par défaut */
+    /* Pas besoin de flex-shrink ici, car le conteneur prendra l'espace restant par défaut */
+    /* Pas besoin de position absolue ici, car le conteneur est géré par le parent flexbox */
+    /* Pas besoin de margin-right si gap est utilisé sur le parent */
+    /* Pas besoin de top/left car géré par le parent flexbox */
+    box-sizing: border-box;
+    /* Assure que le padding est inclus dans la largeur */
+    padding: 10px;
+    /* Ajoute un padding pour l'espacement interne */
+    display: flex;
+    /* Active Flexbox */
+    align-items: center;
+    /* Aligne les éléments verticalement */
+    justify-content: flex-start;
+    /* Aligne les éléments au début horizontalement */
+    flex-wrap: wrap;
+    /* Permet aux éléments de passer à la ligne */
+    gap: 30px;
+    /* AJUSTÉ: Espace entre l'image et le texte pour l'alignement horizontal */
+}
+
+
+/* ================================
+   ÉLÉMENTS DE CONTENU - POSITIONS PRÉSERVÉES
+   ================================ */
+
+/* Boîte de catégorie */
 .category-box {
     position: absolute;
     top: 0;
@@ -84,8 +164,10 @@ body.dark-mode .rectangle-two {
     width: 220px;
     height: 50px;
     background-color: var(--bg-secondary);
-    border-top-left-radius: var(--border-radius-main);
-    border-bottom-right-radius: var(--border-radius-main);
+    border-top-left-radius: var(--border-radius-medium);
+    border-bottom-right-radius: var(--border-radius-medium);
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,45 +175,84 @@ body.dark-mode .rectangle-two {
     box-sizing: border-box;
     color: var(--accent-orange);
     font-family: var(--font-primary);
-    font-size: 24px; /* Taille conservée */
+    font-size: 24px;
     font-weight: 700;
     z-index: 1;
     text-shadow:
         -1px -1px 0 #000,
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000,
-         2px 2px 4px rgba(0, 0, 0, 0.5);
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease;
 }
 
-/* Image AI - Positions conservées */
-.rectangle-two .ai-image {
-    width: 50px; /* Taille conservée */
+/* Image AI */
+/* Maintenant, ai-image est un flex item à l'intérieur de .image-text-flex-wrapper */
+.ai-image {
+    width: 50px;
     height: 50px;
-    position: absolute;
-    top: 70px;
-    left: 50px;
+    display: block;
+    /* Assure que l'image est un bloc */
+    object-fit: cover;
+    /* Garde l'image proportionnelle */
+    margin-top: auto;
+    /* Aligne l'image en bas du conteneur flex */
+    margin-bottom: auto;
+    /* Aligne l'image en haut du conteneur flex */
+    /* Pas besoin de position absolue ici, car l'image est gérée par le parent flexbox */
+    /* Pas besoin de margin-right si gap est utilisé sur le parent */
+    /* Pas besoin de top/left car géré par le parent flexbox */
+    flex-shrink: 0;
+    /* Empêche l'image de rétrécir */
+    /* Pas besoin de margin-right si gap est utilisé sur le parent */
 }
 
-/* Texte de l'image - Police et taille conservées */
-.rectangle-two .image-text {
-    position: absolute;
-    top: 65px;
-    left: 130px;
-    right: 20px; /* Responsive à droite */
+/* Texte de l'image */
+/* Maintenant, image-text est un flex item à l'intérieur de .image-text-flex-wrapper */
+.image-text-flex-wrapper .image-text {
+    position: relative;
+    /* Nécessaire pour le positionnement dans le flexbox */
+    top: 0;
+    /* Ajusté pour l'alignement vertical */
+    left: 0;
+    /* Ajusté pour l'alignement horizontal */
+    width: 100%;
+    /* Prend toute la largeur disponible */
+    /* Enlève les marges par défaut */
+    margin-left: 120px;
+    /* Espace entre le texte et l'image */
+    /* margin-bottom: 30px; */
+    display: flex;
+    /* Active Flexbox pour le texte */
+    align-items: center;
+    /* Aligne le texte verticalement */
+    /* justify-content: flex-start; */
+    /* Aligne le texte au début horizontalement */
+    /* flex-direction: column; */
+    /* Empile les éléments verticalement */
+    /* gap: 10px; */
+    /* Espace entre les lignes de texte */
+    /* padding: 10px; */
+    /* Ajoute un padding pour l'espacement interne */
+    box-sizing: border-box;
+
     font-family: var(--font-primary);
-    font-size: 24px; /* Taille conservée */
+    font-size: 24px;
     font-weight: bolder;
     text-align: left;
     color: var(--text-primary);
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: color 0.3s ease;
+    flex-grow: 1;
+    /* Permet au texte de prendre l'espace restant */
+    /* min-width: 0; */
+    /* Important pour permettre au texte de rétrécir à l'intérieur de l'élément flex */
 }
 
 /* Mode sombre pour le texte de l'image */
-body.dark-mode .rectangle-two .image-text {
+body.dark-mode .image-text-flex-wrapper .image-text {
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
@@ -146,7 +267,7 @@ body.dark-mode .rectangle-two .image-text {
     transition: background-color 0.3s ease;
 }
 
-/* Informations du posteur - Styles conservés */
+/* Informations du posteur */
 .poster-info {
     position: absolute;
     top: 170px;
@@ -157,7 +278,7 @@ body.dark-mode .rectangle-two .image-text {
 }
 
 .poster-icon {
-    width: 45px; /* Taille conservée */
+    width: 45px;
     height: 45px;
     border-radius: 50%;
     object-fit: cover;
@@ -167,7 +288,7 @@ body.dark-mode .rectangle-two .image-text {
 .poster-name,
 .post-date {
     font-family: var(--font-primary);
-    font-size: 14px; /* Taille conservée */
+    font-size: 14px;
     color: var(--text-secondary);
     margin: 0;
     transition: color 0.3s ease;
@@ -177,43 +298,43 @@ body.dark-mode .rectangle-two .image-text {
     margin-top: 2px;
 }
 
-/* Image de l'article - Dimensions conservées mais responsive */
+/* Image de l'article */
 .article-image {
     position: absolute;
-    width: min(416px, calc(100% - 300px)); /* Responsive mais conserve la taille sur grand écran */
-    height: 227px; /* Hauteur conservée */
+    width: min(416px, calc(100% - 300px));
+    height: 227px;
     top: 185px;
     left: 225px;
     object-fit: cover;
 }
 
-/* Contenu de l'article - Police et taille conservées */
+/* Contenu de l'article */
 .article-content {
     position: absolute;
     top: 420px;
     left: 160px;
     right: 180px;
-    /* Ajusté pour le nouvel espace icônes */
-    bottom: calc(30px + (70px / 3) - 15px);
+    /* Utilisation des variables calculées */
+    bottom: calc(30px + var(--icon-container-additional) - var(--icon-container-adjustment));
     font-family: var(--font-primary);
-    font-size: 14px; /* Taille conservée */
+    font-size: 14px;
     line-height: 1.6;
     color: var(--text-secondary);
     text-align: justify;
     overflow-y: auto;
     padding-right: 15px;
     transition: color 0.3s ease;
-    padding-bottom: 20px; /* Conserve le padding pour que le texte ne soit pas caché par les icônes */
+    padding-bottom: 20px;
 }
 
-/* Titres dans le contenu - Polices conservées */
+/* Titres dans le contenu */
 .article-content h1,
 .article-content h2,
 .article-content h3,
 .article-content h4,
 .article-content h5,
 .article-content h6 {
-    font-family: var(--font-secondary); /* Inter conservée */
+    font-family: var(--font-secondary);
     color: var(--text-primary);
     margin-top: 1em;
     margin-bottom: 0.5em;
@@ -234,209 +355,403 @@ body.dark-mode .rectangle-two .image-text {
     margin-bottom: 0.5em;
 }
 
-/* Conteneur d'icônes - Positionné en bas du rectangle-two, avec marges et centrage vertical */
+/* ================================
+   CONTENEUR D'ICÔNES - ORGANISATION AMÉLIORÉE
+   ================================ */
 .icon-grid-container {
     position: absolute;
-    bottom: 22px; /* Centré verticalement dans l'espace réservé pour desktop */
-    left: 20px; /* Marge à gauche de 20px */
-    right: 20px; /* Marge à droite de 20px */
+    bottom: 5px;
+    left: 20px;
+    right: 20px;
+    /* Utilisation de la variable calculée documentée */
+    height: var(--icon-container-inner-height);
     display: flex;
-    align-items: center; /* Centrage vertical des icônes dans leur conteneur */
-    flex-wrap: wrap; /* Permet l'adaptation sur petit écran */
-    z-index: 2; /* Au-dessus des autres éléments */
-    gap: var(--icon-spacing-large); /* Utilisation de la variable d'espacement */
-    justify-content: flex-start; /* Par défaut, les éléments sont à gauche */
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    z-index: 2;
+    gap: var(--icon-spacing-large);
 }
 
 .grid-icon {
-    width: 25px; /* Taille conservée */
+    width: 25px;
     height: 25px;
     transition: transform 0.2s ease;
+    flex-shrink: 0;
 }
 
 .grid-icon:hover {
     transform: scale(1.1);
 }
 
-/* Suppression des espacements individuels au profit de 'gap' */
-.vue-icon, .partage-icon, .commentaire-icon, .telechargement-icon, .follower-icon, .like-icon, .dislike-icon {
-    margin-right: 0; 
+/* Espacement des icônes avec variables documentées */
+.vue-icon,
+.partage-icon,
+.commentaire-icon,
+.telechargement-icon,
+.follower-icon,
+.like-icon,
+.dislike-icon {
+    margin-right: 20px;
+    padding: 5px;
 }
 
 /* Positionnement des icônes like et dislike à droite */
 .like-icon {
-    margin-left: auto; /* Pousse l'icône "like" et les suivantes à droite */
-    margin-right: var(--like-dislike-spacing-large); /* Réduit de moitié l'espace entre like et dislike */
+    margin-left: auto;
+    margin-right: var(--like-dislike-spacing-large);
 }
 
 .dislike-icon {
-    margin-right: 0; /* Assure qu'il n'y a pas de marge à droite pour la dernière icône */
+    margin-right: 10px;
 }
 
-
-/* Responsivité pour tablettes */
+/* ================================
+   RESPONSIVE DESIGN - TABLETTES
+   ================================ */
 @media (max-width: 1024px) {
     .rectangle-two {
         margin: 0 20px;
-        padding-bottom: calc(70px + (70px / 3) - 15px); /* Diminué légèrement de 15px */
+        padding-bottom: var(--icon-container-final-height);
     }
-    
+
+    /* Ajustement du wrapper pour tablettes */
+    .image-text-flex-wrapper {
+        position: relative;
+        /* Nécessaire pour positionner les éléments à l'intérieur */
+        top: 30px;
+        /* Ajuster pour tablettes */
+        left: 50px;
+        /* Ajuster pour tablettes */
+        max-width: calc(var(--container-width) - 70px);
+        /* Limiter la largeur max */
+        /* Pas besoin de max-width ici, car on utilise 100% - 70px */
+
+        width: calc(100% - 70px);
+        /* Maintenir la largeur relative */
+        gap: 15px;
+        /* Ajuster le gap pour les tablettes */
+    }
+
     .article-content {
         left: 140px;
         right: 140px;
-        bottom: calc(30px + (70px / 3) - 15px); /* Ajusté pour le nouvel espace icônes */
-        padding-bottom: 20px; /* Conserver le padding pour le texte */
+        bottom: calc(30px + var(--icon-container-additional) - var(--icon-container-adjustment));
+        padding-bottom: 20px;
     }
-    
+
     .article-image {
         left: 200px;
         width: min(380px, calc(100% - 280px));
     }
 
-    /* Réduction de l'espacement des icônes sur tablette */
     .icon-grid-container {
-        gap: 20px; /* Ajustement spécifique pour les tablettes */
-        bottom: 22px; /* Centré verticalement pour tablette */
-        left: 20px; /* Marge à gauche de 20px */
-        right: 20px; /* Marge à droite de 20px */
+        gap: 20px;
+        bottom: 22px;
+        left: 20px;
+        right: 20px;
+        height: var(--icon-container-inner-height);
     }
 
     .like-icon {
-        margin-right: calc(20px / 2); /* Ajuster l'espacement entre like et dislike pour tablette */
+        margin-right: calc(var(--like-dislike-spacing-large) / 2);
     }
 }
 
-/* Responsivité pour mobile */
+/* ================================
+   RESPONSIVE DESIGN - MOBILE
+   ================================ */
 @media (max-width: 768px) {
     :root {
         --header-top-padding: 40px;
+        /* Variables spécifiques mobile */
+        --mobile-icon-container-base: 60px;
+        --mobile-icon-container-additional: calc(var(--mobile-icon-container-base) / 3);
+        --mobile-icon-container-final: calc(var(--mobile-icon-container-base) + var(--mobile-icon-container-additional) - var(--icon-container-adjustment));
+        --mobile-article-content-bottom: calc(80px + var(--mobile-icon-container-additional) - var(--icon-container-adjustment));
     }
-    
+
     .main-content {
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 20px;
-        height: calc(100vh - 60px); /* Hauteur fixe pour le conteneur main */
-        display: flex; /* Active flexbox */
-        align-items: stretch; /* Étire les enfants */
+        padding-top: 10px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
-    
+
     .rectangle-two {
-        border-radius: 20px;
-        height: 100%; /* Occupe toute la hauteur du main-content */
-        width: 100%; /* Largeur complète */
-        min-height: auto; /* Retire la contrainte de hauteur minimale */
-        display: flex; /* Active flexbox pour organiser le contenu interne */
-        flex-direction: column; /* Empilement vertical */
-        padding-bottom: calc(60px + (60px / 3) - 15px); /* Diminuer légèrement de 15px pour mobile */
+        border-radius: 10px;
+        height: 100%;
+        width: 100%;
+        min-height: auto;
+        padding-bottom: var(--mobile-icon-container-final);
+        padding: 10px 5px;
+        /* Ajuster le padding pour le conteneur */
     }
-    
+
     .category-box {
         width: 180px;
         height: 45px;
         font-size: 20px;
-        flex-shrink: 0; /* Ne rétrécit pas */
+        flex-shrink: 0;
     }
-    
-    .rectangle-two .ai-image {
+
+    /* Ajustement du wrapper pour mobiles */
+    .image-text-flex-wrapper {
+        position: relative;
+        /* Nécessaire pour positionner les éléments à l'intérieur */
+        top: 30px;
+        /* Ajuster pour mobiles */
+        left: 10px;
+        /* Ajuster pour mobiles */
+        max-width: calc(var(--container-width) - 20px);
+        /* Limiter la largeur max */
+        /* Pas besoin de max-width ici, car on utilise 100% - 20px
+        width: calc(100% - 40px); /* Ajuster la largeur sur mobile */
+        flex-direction: row;
+        /* Empile les éléments horizontalement sur mobile */
+        align-items: center;
+        /* Centre les éléments horizontalement dans la colonne */
+        gap: 10px;
+        /* Réduit l'espace entre les éléments empilés */
+    }
+
+    /* Styles pour l'image AI à l'intérieur du wrapper */
+    .image-text-flex-wrapper .ai-image {
         width: 45px;
         height: 45px;
-        top: 60px;
-        left: 30px;
+        /* Pas besoin de top/left/margin ici, géré par le flex-wrapper */
     }
-    
-    .rectangle-two .image-text {
-        position: absolute;
-        top: 55px;
-        left: 90px;
-        right: 80px;
-        font-size: 16px; /* Réduit légèrement */
-        line-height: 1.2; /* Espacement compact */
-        max-height: 100px; /* Hauteur augmentée */
-        overflow: hidden; /* Utiliser 'hidden' pour éviter le chevauchement visuel */
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-        display: block; /* Simplifie l'affichage */
+
+    /* Styles pour le texte à l'intérieur du wrapper */
+    .image-text-flex-wrapper .image-text {
+        font-size: 18px;
+        /* Taille de police pour les mobiles */
+        text-align: left;
+        /* Aligner le texte à gauche sur mobile */
+        flex-grow: 0;
+        /* Permet au texte de prendre l'espace restant */
+        flex-shrink: 0;
+        /* Empêche le texte de rétrécir */
+        /* flex-basis: auto; */
+        /* Permet au texte de s'ajuster à son contenu */
+        width: 100%;
+        /* Ajuster la largeur pour laisser de l'espace pour l'image */
+        max-width: calc(100% - 60px);
+        /* Limite la largeur max pour éviter le débordement */
+        /* Enlève les marges par défaut */
+        margin-bottom: 0;
+        /* Enlève la marge inférieure pour éviter l'espace supplémentaire */
+        margin-top: 0;
+        /* Enlève la marge supérieure pour éviter l'espace supplémentaire */
+        margin-left: 70px;
+        /* Espace entre l'image et le texte */
+        display: flex;
+        /* Active Flexbox pour le texte */
+        align-items: center;
+        /* Centre le texte verticalement */
+        justify-content: flex-start;
+        /* Aligne le texte au début horizontalement */
+        box-sizing: border-box;
+        /* Assure que le padding est inclus dans la largeur */
+        margin-right: 0;
+        /* Enlève la marge droite pour les très petits écrans */
+        padding: 5px;
+        /* Ajuste le padding pour les très petits écrans */
     }
-    
+
     .divider-line {
-        top: 145px; /* Ajusté pour tenir compte du titre multi-lignes */
+        top: 125px;
         left: 10px;
         right: 10px;
         flex-shrink: 0;
     }
-    
+
     .poster-info {
-        top: 165px; /* Ajusté */
-        left: 30px;
+        top: 135px;
+        left: 0px;
         flex-shrink: 0;
+        /* Ajuste le positionnement pour les très petits écrans */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        /* Aligne les éléments horizontalement */
+        justify-content: flex-start;
+        /* Aligne les éléments au début horizontalement */
+        /* Espace entre les éléments */
+        gap: 10px;
+        /* Espace entre l'icône et le texte */
+        margin-left: 10px;
+        /* Ajuste le positionnement pour les très petits écrans */
+        margin-right: 0;
+        padding: 5px;
+        /* Ajuste le padding pour les très petits écrans */
+        box-sizing: border-box;
     }
-    
+
     .article-image {
         position: static;
+        /* Garder static pour qu'il suive le flux */
         width: calc(100% - 60px);
         height: 200px;
-        margin: 190px 30px 20px 30px; /* Marge top ajustée */
+        margin: 80px 0px 20px 30px;
         flex-shrink: 0;
     }
-    
+
     .article-content {
         position: static;
-        margin: 20px 30px 20px 30px; /* Marge bottom réduite */
+        /* Garder static pour qu'il suive le flux */
+        margin-left: 10px;
         height: auto;
-        flex-grow: 1; /* Prend tout l'espace restant */
-        overflow-y: auto; /* Scroll si nécessaire */
+        flex-grow: 1;
+        /* Permet au contenu de prendre l'espace restant */
+        flex-basis: auto;
+        /* Permet au contenu de s'ajuster à son contenu */
+        flex-shrink: 1;
+        /* Permet au contenu de s'ajuster à l'espace disponible */
+
+        overflow-y: auto;
         padding-right: 15px;
-        padding-bottom: calc(80px + (80px / 3) - 15px); /* Espace pour les icônes si en bas, diminué légèrement */
+        padding-bottom: var(--mobile-article-content-bottom);
     }
-    
+
     .icon-grid-container {
-        bottom: 18px; /* Centré verticalement pour mobile */
-        left: 20px; /* Marge à gauche de 20px */
-        right: 20px; /* Marge à droite de 20px */
-        justify-content: flex-start; /* Par défaut, les éléments sont à gauche */
+        bottom: 18px;
+        left: 20px;
+        right: 20px;
+        height: auto;
+        justify-content: flex-start;
         background-color: transparent;
         padding: 5px;
-        border-radius: 10px;
         box-shadow: none;
         position: absolute;
-        flex-shrink: 0;
-        gap: var(--icon-spacing-small); /* Utilisation de la variable d'espacement réduite */
+        flex-shrink: 1;
+        gap: var(--icon-spacing-small);
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
     }
 
     .like-icon {
-        margin-left: auto; /* Pousse l'icône "like" et les suivantes à droite */
-        margin-right: var(--like-dislike-spacing-small); /* Réduit de moitié l'espace entre like et dislike */
+        margin-left: auto;
+        margin-right: var(--like-dislike-spacing-small);
+    }
+
+    /* Pied de page pour mobile */
+    .footer {
+        height: 50px;
+        width: 100%;
+        max-width: 1920px;
+        margin: 0 auto;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .footer-content {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .footer-left span,
+    .footer-right span {
+        font-size: 12px;
+    }
+
+    .copyright-icon {
+        width: 16px;
+        height: 16px;
     }
 }
 
-/* Très petits écrans */
+/* ================================
+   RESPONSIVE DESIGN - TRÈS PETITS ÉCRANS
+   ================================ */
 @media (max-width: 480px) {
     .category-box {
         width: 150px;
         height: 40px;
         font-size: 18px;
     }
-    
-    .rectangle-two .image-text {
-        font-size: 18px;
+
+    .image-text-flex-wrapper {
+        position: relative;
+        /* Nécessaire pour le positionnement dans le flexbox */
+        top: 0;
+        /* Ajusté pour l'alignement vertical */
+        left: 0;
+        /* Ajusté pour l'alignement horizontal */
+        width: 100%;
+        /* margin-bottom: auto; */
+        margin-top: 30px;
+        /* Ajusté pour l'alignement vertical */
+        max-width: 100%;
+        /* Limite la largeur max pour éviter le débordement */
+        height: auto;
+        /* Permet au conteneur de s'ajuster à son contenu */
+        /* justify-content: flex-start; */
+        /* Aligne le texte au début horizontalement */
+        flex-direction: column;
+        /* Empile les éléments verticalement */
+        gap: 10px;
+        /* Espace entre les lignes de texte */
+        /* padding: 10px; */
+        /* Ajoute un padding pour l'espacement interne */
+        display: flex;
+        /* Active Flexbox pour le texte */
+        align-items: center;
+        /* Centre le texte verticalement */
+        box-sizing: border-box;
+        /* Assure que le padding est inclus dans la largeur */
+        padding: 5px;
+        /* Ajuste le padding pour les très petits écrans */
+        margin-right: 0px;
+        /* Enlève la marge droite pour les très petits écrans */
+        margin-left: 0px;
+        /* Enlève la marge gauche pour les très petits écrans */
+        gap: 5px;
+        /* Espace entre l'image et le texte pour l'alignement horizontal */
+        flex-wrap: wrap;
+        /* Permet aux éléments de passer à la ligne */
+        justify-content: left;
+        /* Aligne les éléments au début horizontalement */
+        flex-shrink: 0;
+        /* Empêche le conteneur de rétrécir */
+        flex-grow: 1;
+        /* Permet au conteneur de prendre l'espace restant */
+        flex-basis: auto;
+        /* Permet au conteneur de s'ajuster à son contenu */
+        
     }
-    
+
+    .image-text-flex-wrapper .ai-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .image-text-flex-wrapper .image-text {
+        font-size: 16px;
+        /* Ajusté à 16px pour les très petits écrans */
+    }
+
     .grid-icon {
         width: 22px;
         height: 22px;
     }
-    
-    /* Espacements encore plus réduits */
+
     .icon-grid-container {
-        gap: 8px; /* Ajustement spécifique pour les très petits écrans */
-        bottom: 18px; /* Conserve le centrage vertical pour les très petits écrans */
-        left: 10px; /* Marge réduite pour les très petits écrans */
-        right: 10px; /* Marge réduite pour les très petits écrans */
+        gap: 5px;
+        bottom: 1px;
+        left: 0px;
+        right: 0px;
+        height: auto;
     }
 
     .like-icon {
-        margin-right: 4px; /* Ajuster l'espacement entre like et dislike pour très petits écrans (8px / 2) */
+        margin-right: 0px;
     }
 }

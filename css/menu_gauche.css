@@ -1,4 +1,4 @@
-/* menu_gauche.css - Version optimisée */
+/* menu_gauche.css - Version optimisée sans changement de mise en page */
 
 /* ================================
    VARIABLES CSS POUR LA MAINTENANCE
@@ -11,8 +11,9 @@
     --menu-item-font-weight: 400;
     --menu-padding: 8px 16px;
     --menu-margin: 10px;
-    --menu-spacing: 1px; /* Espacement optimisé entre les menus */
+    --menu-spacing: 1px;
     --menu-border-radius: 5px;
+    --menu-border-radius-medium: 8px; /* Variable manquante ajoutée */
     --menu-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     --menu-z-index-base: 20;
     --transition-duration: 0.3s;
@@ -31,26 +32,44 @@
 }
 
 /* ================================
-   STYLES DE BASE POUR TOUS LES MENUS
+   STYLES DE BASE COMMUNS (OPTIMISÉS)
    ================================ */
 
-/* Conteneur principal pour tous les menus */
-.menu-dropdown-container {
-    position: relative; /* Position relative pour contenir les éléments absolus */
+/* Conteneurs de menus - Classe commune */
+.user-dropdown-container,
+.admin-dropdown-container,
+.categories-dropdown-container,
+.tags-dropdown-container {
+    position: relative;
     left: 5px;
     right: 5px;
     display: flex;
     align-items: center;
     border-top: 1px solid var(--border-color);
-    padding-top: var(--menu-margin);
-    margin-top: var(--menu-margin);
+    padding-top: var(--menu-spacing);
+    margin-top: var(--menu-spacing);
     width: calc(100% - 10px);
     box-sizing: border-box;
-    min-height: 28px; /* Hauteur minimale pour éviter les problèmes de layout */
+    min-height: 28px;
 }
 
-/* Boutons de déclenchement des menus */
-.menu-dropdown-button {
+/* Premier menu sans marge supérieure */
+.user-dropdown-container:first-child {
+    margin-top: 0;
+    padding-top: var(--menu-spacing);
+}
+
+/* Z-index spécifiques pour chaque menu */
+.user-dropdown-container { z-index: calc(var(--menu-z-index-base) + 4); }
+.admin-dropdown-container { z-index: calc(var(--menu-z-index-base) + 3); }
+.categories-dropdown-container { z-index: calc(var(--menu-z-index-base) + 2); }
+.tags-dropdown-container { z-index: calc(var(--menu-z-index-base) + 1); }
+
+/* Boutons de déclenchement - Classe commune */
+.user-dropdown-button,
+.admin-dropdown-button,
+.categories-dropdown-button,
+.tags-dropdown-button {
     background: none;
     border: none;
     cursor: pointer;
@@ -59,19 +78,25 @@
     padding: 0;
     flex-grow: 1;
     justify-content: flex-start;
-    outline: none; /* Sera remplacé par un focus visible */
+    outline: none;
     transition: opacity var(--transition-duration) ease;
 }
 
 /* États de focus pour l'accessibilité */
-.menu-dropdown-button:focus {
+.user-dropdown-button:focus,
+.admin-dropdown-button:focus,
+.categories-dropdown-button:focus,
+.tags-dropdown-button:focus {
     outline: 2px solid #2f46ad;
     outline-offset: 2px;
     border-radius: 2px;
 }
 
-/* Textes des boutons principaux */
-.menu-text {
+/* Textes des boutons - Classe commune */
+.user-text,
+.admin-text,
+.categories-text,
+.tags-text {
     font-family: 'Inria Sans', sans-serif;
     font-weight: var(--menu-font-weight);
     font-size: var(--menu-font-size);
@@ -80,8 +105,11 @@
     transition: color var(--transition-duration) ease;
 }
 
-/* Icônes de flèche */
-.menu-dropdown-icon {
+/* Icônes de flèche - Classe commune */
+.user-dropdown-icon,
+.admin-dropdown-icon,
+.categories-dropdown-icon,
+.tags-dropdown-icon {
     width: var(--arrow-icon-size);
     height: var(--arrow-icon-size);
     margin-right: 8px;
@@ -90,12 +118,19 @@
 }
 
 /* Rotation des flèches (état ouvert) */
-.menu-dropdown-icon.rotate {
+.user-dropdown-icon.rotate,
+.admin-dropdown-icon.rotate,
+.categories-dropdown-icon.rotate,
+.tags-dropdown-icon.rotate {
     transform: rotate(90deg);
 }
 
-/* Icônes principales (paramètres, cadenas, etc.) */
-.menu-main-icon {
+/* Icônes principales - Classe commune */
+.settings-icon,
+.lock-icon,
+.admin-settings-icon,
+.categories-icon,
+.tags-icon {
     width: var(--menu-icon-size);
     height: var(--menu-icon-size);
     margin-left: var(--menu-margin);
@@ -106,13 +141,16 @@
     cursor: pointer;
 }
 
-/* Contenu des menus déroulants */
-.menu-dropdown-content {
+/* Contenu des menus déroulants - Classe commune */
+.user-dropdown-content,
+.admin-dropdown-content,
+.categories-dropdown-content,
+.tags-dropdown-content {
     display: none;
     position: absolute;
     background-color: var(--bg-color);
     min-width: 200px;
-    max-width: 300px; /* Largeur maximale pour éviter les débordements */
+    max-width: 300px;
     box-shadow: var(--menu-shadow);
     border-radius: var(--menu-border-radius);
     margin-top: 5px;
@@ -123,11 +161,14 @@
     margin: 0;
     z-index: calc(var(--menu-z-index-base) + 10);
     transition: opacity var(--transition-duration) ease;
-    overflow: hidden; /* Évite les débordements */
+    overflow: hidden;
 }
 
 /* Affichage du contenu du menu */
-.menu-dropdown-content.show {
+.user-dropdown-content.show,
+.admin-dropdown-content.show,
+.categories-dropdown-content.show,
+.tags-dropdown-content.show {
     display: block;
     animation: fadeIn var(--transition-duration) ease;
 }
@@ -138,8 +179,11 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Éléments individuels des menus */
-.dropdown-item {
+/* Éléments individuels des menus - Classe commune */
+.user-dropdown-content .dropdown-item,
+.admin-dropdown-content .dropdown-item,
+.categories-dropdown-content .dropdown-item,
+.tags-dropdown-content .dropdown-item {
     color: var(--text-color);
     padding: var(--menu-padding);
     text-decoration: none;
@@ -153,7 +197,7 @@
     cursor: pointer;
 }
 
-/* États de survol et focus pour tous les dropdown-item */
+/* États de survol et focus pour les éléments de menu */
 .user-dropdown-content .dropdown-item:hover,
 .admin-dropdown-content .dropdown-item:hover,
 .categories-dropdown-content .dropdown-item:hover,
@@ -178,171 +222,6 @@
 }
 
 /* ================================
-   CLASSES SPÉCIFIQUES PAR MENU
-   ================================ */
-
-/* Optimisation spécifique : le premier menu n'a pas besoin de marge supérieure */
-.user-dropdown-container:first-child {
-    margin-top: 0;
-    padding-top: var(--menu-spacing);
-}
-
-/* Espacement réduit pour les menus suivants */
-.admin-dropdown-container,
-.categories-dropdown-container,
-.tags-dropdown-container {
-    margin-top: var(--menu-spacing); /* Espacement uniforme et réduit */
-}
-.user-dropdown-container { 
-    z-index: calc(var(--menu-z-index-base) + 4);
-}
-.admin-dropdown-container { 
-    z-index: calc(var(--menu-z-index-base) + 3);
-}
-.categories-dropdown-container { 
-    z-index: calc(var(--menu-z-index-base) + 2);
-}
-.tags-dropdown-container { 
-    z-index: calc(var(--menu-z-index-base) + 1);
-}
-
-/* Application directe des styles aux éléments spécifiques */
-.user-dropdown-container,
-.admin-dropdown-container,
-.categories-dropdown-container,
-.tags-dropdown-container {
-    position: relative;
-    left: 5px;
-    right: 5px;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid var(--border-color);
-    padding-top: var(--menu-spacing); /* Réduit de 10px à 5px */
-    margin-top: var(--menu-spacing); /* Réduit de 10px à 5px */
-    width: calc(100% - 10px);
-    box-sizing: border-box;
-    min-height: 28px; /* Réduit de 40px à 35px */
-}
-
-.user-dropdown-button,
-.admin-dropdown-button,
-.categories-dropdown-button,
-.tags-dropdown-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    flex-grow: 1;
-    justify-content: flex-start;
-    outline: none;
-    transition: opacity var(--transition-duration) ease;
-}
-
-.user-dropdown-button:focus,
-.admin-dropdown-button:focus,
-.categories-dropdown-button:focus,
-.tags-dropdown-button:focus {
-    outline: 2px solid #2f46ad;
-    outline-offset: 2px;
-    border-radius: 2px;
-}
-
-.user-text,
-.admin-text,
-.categories-text,
-.tags-text {
-    font-family: 'Inria Sans', sans-serif;
-    font-weight: var(--menu-font-weight);
-    font-size: var(--menu-font-size);
-    color: var(--text-color);
-    white-space: nowrap;
-    transition: color var(--transition-duration) ease;
-}
-
-.user-dropdown-icon,
-.admin-dropdown-icon,
-.categories-dropdown-icon,
-.tags-dropdown-icon {
-    width: var(--arrow-icon-size);
-    height: var(--arrow-icon-size);
-    margin-right: 8px;
-    transition: transform var(--transition-duration) ease;
-    flex-shrink: 0;
-}
-
-.user-dropdown-icon.rotate,
-.admin-dropdown-icon.rotate,
-.categories-dropdown-icon.rotate,
-.tags-dropdown-icon.rotate {
-    transform: rotate(90deg);
-}
-
-.user-dropdown-content,
-.admin-dropdown-content,
-.categories-dropdown-content,
-.tags-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--bg-color);
-    min-width: 200px;
-    max-width: 300px;
-    box-shadow: var(--menu-shadow);
-    border-radius: var(--menu-border-radius);
-    margin-top: 5px;
-    top: 100%;
-    left: 15px;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    z-index: calc(var(--menu-z-index-base) + 10);
-    transition: opacity var(--transition-duration) ease;
-    overflow: hidden;
-}
-
-.user-dropdown-content.show,
-.admin-dropdown-content.show,
-.categories-dropdown-content.show,
-.tags-dropdown-content.show {
-    display: block;
-    animation: fadeIn var(--transition-duration) ease;
-}
-
-.user-dropdown-content .dropdown-item,
-.admin-dropdown-content .dropdown-item,
-.categories-dropdown-content .dropdown-item,
-.tags-dropdown-content .dropdown-item {
-    color: var(--text-color);
-    padding: var(--menu-padding);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    border-radius: var(--menu-border-radius);
-    font-family: 'Inria Sans', sans-serif;
-    font-size: var(--menu-font-size);
-    font-weight: var(--menu-item-font-weight);
-    transition: background-color var(--transition-duration) ease, color var(--transition-duration) ease;
-    cursor: pointer;
-}
-
-/* Icônes spécifiques avec leurs tailles originales */
-.settings-icon,
-.lock-icon,
-.admin-settings-icon,
-.categories-icon,
-.tags-icon {
-    width: var(--menu-icon-size);
-    height: var(--menu-icon-size);
-    margin-left: var(--menu-margin);
-    margin-right: var(--menu-margin);
-    display: block;
-    flex-shrink: 0;
-    transition: filter var(--transition-duration) ease;
-    cursor: pointer;
-}
-
-/* ================================
    MODE SOMBRE (DARK MODE)
    ================================ */
 
@@ -354,7 +233,7 @@
     --border-color: var(--dark-border-color);
 }
 
-/* Styles spécifiques pour le mode sombre */
+/* Styles spécifiques pour le mode sombre - Textes */
 body.dark-mode .user-text,
 body.dark-mode .admin-text,
 body.dark-mode .categories-text,
@@ -366,7 +245,7 @@ body.dark-mode .tags-dropdown-content .dropdown-item {
     color: var(--dark-text-color);
 }
 
-/* Inversion des icônes de flèche uniquement */
+/* Inversion des icônes de flèche pour le mode sombre */
 body.dark-mode .user-dropdown-icon,
 body.dark-mode .admin-dropdown-icon,
 body.dark-mode .categories-dropdown-icon,
@@ -382,7 +261,7 @@ body.dark-mode .tags-dropdown-content {
     background-color: var(--dark-bg-color);
 }
 
-/* Couleur de fond des éléments de menu déroulant au survol en mode sombre */
+/* Couleur de fond des éléments au survol en mode sombre */
 body.dark-mode .dropdown-item:hover {
     background-color: var(--dark-hover-bg-color);
 }
@@ -406,7 +285,10 @@ body.dark-mode .tags-dropdown-container {
 }
 
 /* Fallback pour les polices */
-.menu-text,
+.user-text,
+.admin-text,
+.categories-text,
+.tags-text,
 .dropdown-item {
     font-family: 'Inria Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -417,12 +299,18 @@ body.dark-mode .tags-dropdown-container {
 
 /* Adaptation pour les petits écrans */
 @media (max-width: 768px) {
-    .menu-dropdown-content {
+    .user-dropdown-content,
+    .admin-dropdown-content,
+    .categories-dropdown-content,
+    .tags-dropdown-content {
         min-width: 150px;
         left: 10px;
     }
     
-    .menu-dropdown-container {
+    .user-dropdown-container,
+    .admin-dropdown-container,
+    .categories-dropdown-container,
+    .tags-dropdown-container {
         left: 2px;
         right: 2px;
         width: calc(100% - 4px);
@@ -448,7 +336,10 @@ body.dark-mode .tags-dropdown-container {
         --dark-hover-bg-color: #666;
     }
     
-    .menu-dropdown-button:focus {
+    .user-dropdown-button:focus,
+    .admin-dropdown-button:focus,
+    .categories-dropdown-button:focus,
+    .tags-dropdown-button:focus {
         outline: 3px solid #007acc;
     }
 }
