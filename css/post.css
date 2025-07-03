@@ -31,10 +31,10 @@
 
     /* Espacements d'icônes - Variables manquantes ajoutées */
     --icon-spacing-large: 30px;
-    --icon-spacing-small: 0px;
-    --like-dislike-spacing-large: 15px;
+    --icon-spacing-small: auto;
+    --like-dislike-spacing-large: 0px;
     /* Variable manquante ajoutée */
-    --like-dislike-spacing-small: 8px;
+    --like-dislike-spacing-small: auto;
     /* Variable manquante ajoutée */
 
     /* Hauteurs calculées - Documentation des calculs complexes */
@@ -97,14 +97,6 @@ body.dark-mode {
     margin-bottom: 50px;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     padding-bottom: var(--icon-container-final-height);
-
-    /* Enlever les propriétés flexbox d'ici si elles n'affectent que le nouveau wrapper */
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: flex-start; */
-    /* flex-wrap: wrap; */
-    /* gap: 20px; */
-    /* padding: 10px; */
 }
 
 /* Mode sombre pour le rectangle principal */
@@ -118,7 +110,7 @@ body.dark-mode .rectangle-two {
 .image-text-flex-wrapper {
     position: relative;
     /* Nécessaire pour positionner les éléments à l'intérieur */
-    top: 30px;
+    top: 55px;
     /* Ajusté pour l'alignement vertical */
     left: 20px;
     /* Ajusté pour l'alignement horizontal */
@@ -129,12 +121,6 @@ body.dark-mode .rectangle-two {
     /* Utilisation de la variable calculée pour la largeur max */
     height: auto;
     /* Permet au conteneur de s'ajuster à son contenu */
-    /* Pas besoin de min-width ici, car le conteneur prendra l'espace restant par défaut */
-    /* Pas besoin de flex-grow ici, car le conteneur prendra l'espace restant par défaut */
-    /* Pas besoin de flex-shrink ici, car le conteneur prendra l'espace restant par défaut */
-    /* Pas besoin de position absolue ici, car le conteneur est géré par le parent flexbox */
-    /* Pas besoin de margin-right si gap est utilisé sur le parent */
-    /* Pas besoin de top/left car géré par le parent flexbox */
     box-sizing: border-box;
     /* Assure que le padding est inclus dans la largeur */
     padding: 10px;
@@ -196,13 +182,10 @@ body.dark-mode .rectangle-two {
     /* Assure que l'image est un bloc */
     object-fit: cover;
     /* Garde l'image proportionnelle */
-    margin-top: auto;
+    margin-top: -15px;
     /* Aligne l'image en bas du conteneur flex */
     margin-bottom: auto;
     /* Aligne l'image en haut du conteneur flex */
-    /* Pas besoin de position absolue ici, car l'image est gérée par le parent flexbox */
-    /* Pas besoin de margin-right si gap est utilisé sur le parent */
-    /* Pas besoin de top/left car géré par le parent flexbox */
     flex-shrink: 0;
     /* Empêche l'image de rétrécir */
     /* Pas besoin de margin-right si gap est utilisé sur le parent */
@@ -227,14 +210,6 @@ body.dark-mode .rectangle-two {
     /* Active Flexbox pour le texte */
     align-items: center;
     /* Aligne le texte verticalement */
-    /* justify-content: flex-start; */
-    /* Aligne le texte au début horizontalement */
-    /* flex-direction: column; */
-    /* Empile les éléments verticalement */
-    /* gap: 10px; */
-    /* Espace entre les lignes de texte */
-    /* padding: 10px; */
-    /* Ajoute un padding pour l'espacement interne */
     box-sizing: border-box;
 
     font-family: var(--font-primary);
@@ -361,7 +336,7 @@ body.dark-mode .image-text-flex-wrapper .image-text {
 .icon-grid-container {
     position: absolute;
     bottom: 5px;
-    left: 20px;
+    left: 25px;
     right: 20px;
     /* Utilisation de la variable calculée documentée */
     height: var(--icon-container-inner-height);
@@ -371,6 +346,7 @@ body.dark-mode .image-text-flex-wrapper .image-text {
     flex-wrap: wrap;
     z-index: 2;
     gap: var(--icon-spacing-large);
+    box-sizing: border-box;
 }
 
 .grid-icon {
@@ -502,7 +478,7 @@ body.dark-mode .image-text-flex-wrapper .image-text {
     .image-text-flex-wrapper {
         position: relative;
         /* Nécessaire pour positionner les éléments à l'intérieur */
-        top: 30px;
+        top: 40px;
         /* Ajuster pour mobiles */
         left: 10px;
         /* Ajuster pour mobiles */
@@ -520,8 +496,8 @@ body.dark-mode .image-text-flex-wrapper .image-text {
 
     /* Styles pour l'image AI à l'intérieur du wrapper */
     .image-text-flex-wrapper .ai-image {
-        width: 45px;
-        height: 45px;
+        width: auto;
+        height: auto;
         /* Pas besoin de top/left/margin ici, géré par le flex-wrapper */
     }
 
@@ -744,11 +720,26 @@ body.dark-mode .image-text-flex-wrapper .image-text {
     }
 
     .icon-grid-container {
-        gap: 5px;
-        bottom: 1px;
-        left: 0px;
+        bottom: 18px;
+        left: 5px;
         right: 0px;
         height: auto;
+        justify-content: flex-start;
+        background-color: transparent;
+        padding: 5px;
+        box-shadow: none;
+        position: absolute;
+        flex-shrink: 1;
+        gap: var(--icon-spacing-small);
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        /* Empêche le conteneur de rétrécir */
+        flex-grow: 1;
+        /* Permet au conteneur de prendre l'espace restant */
+        flex-basis: auto;
+        /* Permet au conteneur de s'ajuster à son contenu */
     }
 
     .like-icon {

@@ -342,7 +342,6 @@ body {
     color: black;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     transition: color var(--transition-standard), text-shadow var(--transition-standard)
-
 }
 
 /* Masquer le menu-burger par défaut sur tous les écrans (visible seulement via media queries) */
@@ -1167,7 +1166,7 @@ body.dark-mode .forgot-password-link-group {
 /* Inversion des couleurs UNIQUEMENT pour les icônes de type "envoyer" et user-dropdown en mode sombre */
 body.dark-mode .signup-icon-visual,
 body.dark-mode .login-icon-visual,
-body.dark-mode .submit-icon-visual{
+body.dark-mode .submit-icon-visual {
     filter: invert(100%) brightness(200%);
 }
 
@@ -1345,8 +1344,6 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
         z-index: 5;
         /* Peut être légèrement inférieur aux contrôles */
     }
-
-
 
     /* Styles pour les titres */
     .header-title-section {
@@ -1660,6 +1657,11 @@ body.dark-mode .user-dropdown-content .dropdown-item:hover {
 
     .header-subtitle {
         font-size: 12px;
+    }
+
+    .header-title-section-reduced {
+        height: 0px;
+        background-color: white;
     }
 
     .modal-content {
