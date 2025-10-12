@@ -1,4 +1,4 @@
-# Forum IA - README
+# Forum IA
 
 ## 📋 Description du projet
 
