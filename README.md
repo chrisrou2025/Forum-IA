@@ -288,7 +288,7 @@ SOFTWARE.
 Pour toute question ou suggestion :
 - **Email** : contact@forum-ia.fr
 - **GitHub Issues** : [Ouvrir un ticket](https://github.com/chrisrou2025/forum-ia/issues)
-- **Site web** : [www.forumia.fr](https://www.forum-ia.fr)
+- **Site web** : [www.forum-ia.fr](https://www.forum-ia.fr)
 
 ## 🙏 Remerciements
 
