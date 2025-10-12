@@ -281,14 +281,14 @@ SOFTWARE.
 
 ## 👥 Auteurs
 
-- Christian ROUPIOZ - *Développement initial* - [Profil GitHub](https://github.com/votre-username)
+- Christian ROUPIOZ - *Développement initial* - [Profil GitHub](https://github.com/chrisrou2025)
 
 ## 📧 Contact
 
 Pour toute question ou suggestion :
-- **Email** : contact@forumia.fr
-- **GitHub Issues** : [Ouvrir un ticket](https://github.com/votre-username/forum-ia/issues)
-- **Site web** : [www.forumia.fr](https://www.forumia.fr)
+- **Email** : contact@forum-ia.fr
+- **GitHub Issues** : [Ouvrir un ticket](https://github.com/chrisrou2025/forum-ia/issues)
+- **Site web** : [www.forumia.fr](https://www.forum-ia.fr)
 
 ## 🙏 Remerciements
 
