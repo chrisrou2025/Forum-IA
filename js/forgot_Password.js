@@ -5,20 +5,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const forgotPasswordLink = document.getElementById('forgotPasswordLinkAndIcon');
     const forgotPasswordModal = document.getElementById('forgotPasswordModal');
     const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
     const resetPasswordSubmitButton = document.getElementById('resetPasswordSubmitButton');
     const resetEmail = document.getElementById('resetEmail');
     const resetPasswordMessage = document.getElementById('resetPasswordMessage');
 
     // Fonction pour ouvrir la modale
     function openModal() {
-        forgotPasswordModal.classList.add('show');
+        if (forgotPasswordModal) {
+            forgotPasswordModal.classList.add('show');
+            forgotPasswordModal.setAttribute('aria-hidden', 'false');
+        }
         // Optionnel : empêcher le défilement de la page en arrière-plan
         document.body.style.overflow = 'hidden';
     }
 
     // Fonction pour fermer la modale
     function closeModal() {
-        forgotPasswordModal.classList.remove('show');
+        if (forgotPasswordModal) {
+            forgotPasswordModal.classList.remove('show');
+            forgotPasswordModal.setAttribute('aria-hidden', 'true');
+        }
         // Réactiver le défilement de la page
         document.body.style.overflow = 'auto';
         // Réinitialiser le formulaire
@@ -66,8 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Gestion de l'envoi du formulaire de réinitialisation
-    if (resetPasswordSubmitButton) {
-        resetPasswordSubmitButton.addEventListener('click', function(e) {
+    if (resetPasswordForm) {
+        resetPasswordForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
             const email = resetEmail.value.trim();
@@ -87,12 +94,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Simulation de l'envoi (à remplacer par votre logique d'envoi réelle)
             showMessage('Envoi en cours...', 'info');
-            resetPasswordSubmitButton.disabled = true;
+            if (resetPasswordSubmitButton) {
+                resetPasswordSubmitButton.disabled = true;
+            }
             
             // Simulation d'un délai d'envoi
             setTimeout(function() {
                 showMessage('Un lien de réinitialisation a été envoyé à votre adresse e-mail.', 'success');
-                resetPasswordSubmitButton.disabled = false;
+                if (resetPasswordSubmitButton) {
+                    resetPasswordSubmitButton.disabled = false;
+                }
                 
                 // Fermer la modale après 2 secondes
                 setTimeout(function() {

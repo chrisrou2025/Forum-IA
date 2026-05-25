@@ -128,7 +128,7 @@ body {
     /* Suppression des styles par défaut du bouton */
     background: transparent;
     border: none;
-    padding: 0, 5px, 0, 5px;
+    padding: 0 5px;
     margin: 0;
     cursor: pointer;
 

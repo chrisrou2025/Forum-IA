@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Référence correcte aux champs de saisie et au bouton de soumission
     const emailInput = document.getElementById('loginEmail');
     const passwordInput = document.getElementById('loginPassword');
+    const loginForm = document.getElementById('loginForm');
     // CORRECTION : Utiliser querySelector avec la classe au lieu de getElementById
     const loginSubmitButton = document.querySelector('.login-form-submit-button');
     const loginMessageDisplay = document.getElementById('loginMessage');
@@ -52,8 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("L'élément avec l'ID 'loginMessage' n'a pas été trouvé.");
     }
 
-    // Écouteur d'événements pour le bouton de connexion
-    loginSubmitButton.addEventListener('click', (event) => {
+    function handleLoginSubmit(event) {
         event.preventDefault(); // Empêche le rechargement de la page
 
         const email = emailInput.value.trim();
@@ -71,63 +71,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(getTranslation('fillAllFields'));
             }
             return;
-        } else {
-            // Si les champs sont remplis, efface tout message d'erreur précédent
-            if (loginMessageDisplay) {
-                loginMessageDisplay.textContent = '';
-                loginMessageDisplay.style.display = 'none';
-            }
+        }
 
-            // Logique de connexion
-            console.log("Email :", email, "Mot de passe :", password);
-            console.log("Les champs sont remplis. Prêt à envoyer au backend.");
+        // Si les champs sont remplis, efface tout message d'erreur précédent
+        if (loginMessageDisplay) {
+            loginMessageDisplay.textContent = '';
+            loginMessageDisplay.style.display = 'none';
+        }
 
-            // Simulation d'une connexion réussie pour le test
-            if (loginMessageDisplay) {
-                loginMessageDisplay.textContent = getTranslation('loginSuccess');
-                loginMessageDisplay.style.color = 'green';
-                loginMessageDisplay.style.display = 'block';
-            }
+        // Logique de connexion
+        console.log("Email :", email, "Mot de passe :", password);
+        console.log("Les champs sont remplis. Prêt à envoyer au backend.");
 
-            // Votre logique de connexion au backend irait ici
-            /*
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
-                });
+        // Simulation d'une connexion réussie pour le test
+        if (loginMessageDisplay) {
+            loginMessageDisplay.textContent = getTranslation('loginSuccess');
+            loginMessageDisplay.style.color = 'green';
+            loginMessageDisplay.style.display = 'block';
+        }
 
-                if (response.ok) {
-                    const data = await response.json();
-                    if (loginMessageDisplay) {
-                        loginMessageDisplay.textContent = getTranslation('loginSuccess');
-                        loginMessageDisplay.style.color = 'green';
-                        loginMessageDisplay.style.display = 'block';
-                    }
-                    // Gérer la connexion réussie
-                    // window.location.href = 'index.html';
-                } else {
-                    const errorData = await response.json();
-                    if (loginMessageDisplay) {
-                        loginMessageDisplay.textContent = errorData.message || getTranslation('loginError');
-                        loginMessageDisplay.style.color = 'red';
-                        loginMessageDisplay.style.display = 'block';
-                    }
-                }
-            } catch (error) {
-                console.error('Erreur de connexion:', error);
+        // Votre logique de connexion au backend irait ici
+        /*
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
                 if (loginMessageDisplay) {
-                    loginMessageDisplay.textContent = getTranslation('serverConnectionError');
+                    loginMessageDisplay.textContent = getTranslation('loginSuccess');
+                    loginMessageDisplay.style.color = 'green';
+                    loginMessageDisplay.style.display = 'block';
+                }
+                // Gérer la connexion réussie
+                // window.location.href = 'index.html';
+            } else {
+                const errorData = await response.json();
+                if (loginMessageDisplay) {
+                    loginMessageDisplay.textContent = errorData.message || getTranslation('loginError');
                     loginMessageDisplay.style.color = 'red';
                     loginMessageDisplay.style.display = 'block';
                 }
             }
-            */
+        } catch (error) {
+            console.error('Erreur de connexion:', error);
+            if (loginMessageDisplay) {
+                loginMessageDisplay.textContent = getTranslation('serverConnectionError');
+                loginMessageDisplay.style.color = 'red';
+                loginMessageDisplay.style.display = 'block';
+            }
         }
-    });
+        */
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', handleLoginSubmit);
+    }
 
     // Gestion du message de succès de réinitialisation
     const urlParams = new URLSearchParams(window.location.search);

@@ -26,9 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return; // Arrêter l'exécution du script
     }
 
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
+
     // Gérer la soumission du formulaire de nouveau mot de passe
-    if (submitNewPasswordButton) {
-        submitNewPasswordButton.addEventListener('click', async (event) => { // Ajout de 'async'
+    if (resetPasswordForm) {
+        resetPasswordForm.addEventListener('submit', async (event) => {
             event.preventDefault(); // Empêche le rechargement de la page
 
             const newPassword = newPasswordInput.value;
